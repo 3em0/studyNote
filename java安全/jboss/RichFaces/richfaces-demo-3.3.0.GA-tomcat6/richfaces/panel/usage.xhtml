@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<style>
+		  .gridContent {
+		  	vertical-align:top;
+		  }
+		  
+		  .outpanelHeader {
+		  	height:4px;
+		  	border-width: 0;
+		  }
+		  .inpanelBody {
+		    height:180px;
+		    overflow:auto;
+		  }
+		  
+		</style>
+				<p>
+				The panel is a rectangle area on a page that may contain any content including other panels.
+				Panel has a header (optionally) and a body. The default look-n-feel is based on the 
+				current skin. Look-n-feel of any parts of the panel, including color scheme, borders and
+				paddings can be customizable using with pre-defined number of CSS classes.
+				</p>
+
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Panel with default Look-n-feel</legend>
+				
+					<div class="sample-container" >
+
+						<ui:include src="/richfaces/panel/examples/simplePanel.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/panel/examples/simplePanel.xhtml"/>
+						</ui:include>
+
+					</div>
+				</fieldset>
+
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Panel without header</legend>
+
+					<div class="sample-container" >
+
+						<ui:include src="/richfaces/panel/examples/headlessPanel.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/panel/examples/headlessPanel.xhtml"/>
+						</ui:include>
+					</div>
+				</fieldset>
+
+				<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Nested panels</legend>
+
+					<div class="sample-container" >
+						The panels can be nested:
+						<br/><br/>
+						<ui:include src="/richfaces/panel/examples/nestedPanels.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/panel/examples/nestedPanels.xhtml"/>
+						</ui:include>				
+
+					</div>
+				</fieldset>
+
+		</ui:define>
+
+	</ui:composition>
+</html>

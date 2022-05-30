@@ -1,0 +1,27 @@
+//backgrouns
+...
+<u:selector name=".rich-box-bgcolor-header">
+	<u:style name="background-color" skin="headerBackgroundColor" />
+</u:selector>
+
+<u:selector name=".rich-box-bgcolor-general">
+	<u:style name="background-color" skin="generalBackgroundColor" />
+</u:selector>
+...
+
+//gradient elements
+...
+<u:selector name=".rich-gradient-menu">
+	<u:style name="background-image">
+		<f:resource f:key="org.richfaces.renderkit.html.gradientimages.MenuGradientImage"/>
+	</u:style>
+	<u:style name="background-repeat" value="repeat-x" />
+</u:selector>
+
+<u:selector name=".rich-gradient-tab">
+	<u:style name="background-image">
+		<f:resource f:key="org.richfaces.renderkit.html.gradientimages.TabGradientImage"/>
+	</u:style>
+	<u:style name="background-repeat" value="repeat-x" />
+</u:selector>
+...

@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<style>
+	.cent{
+		text-align:center;
+	}
+	.top{
+		vertical-align:top;
+	}
+	.70per{
+		width:70%;
+	}
+	.30per{
+		width:200px;
+	}
+</style>
+	<h:form>
+		<h:panelGrid columns="2" columnClasses="top 70per, top 30per" width="100%">
+		<rich:orderingList value="#{library.songsList}" var="lib" listHeight="300" listWidth="350" converter="orderingListConverter" selection="#{library.selectedSongsSet}">
+			<rich:column  width="180">
+			<f:facet name="header">
+				<h:outputText value="Song Name" />
+			</f:facet> 
+				<h:outputText value="#{lib.title}"></h:outputText>
+			</rich:column>
+			<rich:column> 
+				<f:facet name="header">
+					<h:outputText value="Artist Name" />
+				</f:facet>
+				<h:outputText value="#{lib.album.artist.name}"></h:outputText><br/>
+			</rich:column>
+			<a4j:support event="onclick" ignoreDupResponses="true" requestDelay="500" action="#{library.takeSelection}" reRender="output"/>
+			<a4j:support event="onkeyup" ignoreDupResponses="true" requestDelay="500" action="#{library.takeSelection}" reRender="output"/>
+		</rich:orderingList>
+		<rich:panel id="output" header="Current Selection" style="width:200px">
+			<rich:dataList value="#{library.selectedSongsList}" var="song" rendered="#{not empty library.selectedSongsList}">
+				<h:outputText value="#{song.title}"></h:outputText>
+			</rich:dataList>
+			<h:outputText value="No Songs Selected" rendered="#{empty library.selectedSongsList}"/>
+		</rich:panel>
+		</h:panelGrid>
+	</h:form>
+</ui:composition>

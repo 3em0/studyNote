@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="title">RichFaces - Open Source Rich JSF Components</ui:define>
+	<ui:define name="body">
+		<div id="coming" style="display:none">
+		<div style="text-align:center"><h:graphicImage value="/images/coming_soon.gif" />
+		</div>
+		<p>The demo example development for this component is in progress. You can see
+		the documentations for it using the links that located right above the left side
+		menu.<br/>
+		If you still have questions how to use the component in right way, ask your
+		questions at JBoss RichFaces forum at:<br />
+		<a target="_blank" href="http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261">
+		http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261</a>
+		</p>
+		</div>
+		<rich:effect event="load" for="window" type="Appear" params="targetId:'coming',duration:1.0,from:0.4,to:1.0" />
+		
+	</ui:define>
+</ui:composition>
+</html>

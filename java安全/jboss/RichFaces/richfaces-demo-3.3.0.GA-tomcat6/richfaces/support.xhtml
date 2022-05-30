@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="title">RichFaces - Open Source Rich JSF Components - Ajax Support</ui:define>
+	<ui:define name="body">
+		<rich:tabPanel switchType="server" styleClass="top_tab" contentClass="content_tab" headerClass="header_tabs_class" inactiveTabClass="inactive_tab" activeTabClass="active_tab"
+		selectedTab="#{componentNavigator.currentComponent.activeTab}" valueChangeListener="#{componentNavigator.tabPanelSwitched}">
+			<rich:tab label="Usage" name="usage">
+				<ui:include src="/richfaces/support/usage.xhtml"/>
+			</rich:tab>			
+			<rich:tab label="Dynamic Forms Sample" name="selects">
+				<ui:include src="/richfaces/support/dropDowns.xhtml"/>
+			</rich:tab>			 
+			<rich:tab name="info" label="Tag Information">
+				<rich:insert
+					src="/WEB-INF/#{componentNavigator.currentComponent.tagInfoLocation}"
+					errorContent="/templates/include/tagInfoNotes.xhtml" />
+			</rich:tab>	
+		</rich:tabPanel>
+	</ui:define>
+	</ui:composition>
+</html>
+

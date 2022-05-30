@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<p>
+				<b>listShuttle</b> component allows to select items using two lists with move controls and reorder items in result list. 
+			</p>
+			<p>
+				List Shuttle could contain several columns in list representation. And it
+				also has strong keyboard support out of the box.
+			</p>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">ListShuttle example</legend>
+				<div class="sample-container">
+					<p>Customize simple application toolbar using List Shuttle. 
+					In this example you may select items and their order within the toolBar.
+					<br/>
+					After you move some items between lists or reorder them in "Currently Active" list - you'll
+					see the changes on the toolbar
+					</p>
+					<br/><br/>
+					<ui:include src="/richfaces/listShuttle/examples/toolBarCustomization.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/listShuttle/examples/toolBarCustomization.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+			<p>
+				Content definition for this component - analogous to any Iteration component.
+				So, all you need is define collection in List Shuttle <b>sourceValue</b> attribute 
+				and iterate the collection in nested columns through <b>var</b> attribute.
+			</p>
+			<p>
+				Result items will be stored under the collection defined in <b>targetValue</b> attribute.  
+			</p>
+			<p>
+				In order to set initially selected rows or to process submitted selection - 
+				use <b>sourceSelection</b> and <b>targetSelection</b> attributes.
+			</p>
+		</ui:define>
+
+	</ui:composition>
+</html>

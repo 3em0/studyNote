@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<rich:inplaceSelect value="#{inplaceComponentsBean.inputValue}"
+		defaultLabel="Click here to edit">
+		<f:selectItem itemValue="0" itemLabel="Option 1" />
+		<f:selectItem itemValue="1" itemLabel="Option 2" />
+		<f:selectItem itemValue="2" itemLabel="Option 3" />
+		<f:selectItem itemValue="3" itemLabel="Option 4" />
+		<f:selectItem itemValue="4" itemLabel="Option 5" />
+	</rich:inplaceSelect>
+	<rich:spacer width="100%" height="20px"/>
+</ui:composition>

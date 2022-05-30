@@ -1,0 +1,3 @@
+ <factory>
+  <application-factory>org.richfaces.ui.application.StateApplicationFactory</application-factory>
+ </factory>

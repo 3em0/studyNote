@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	<style>
+		.header{
+			font-weight:bold;
+		}
+		.rich-calendar-header{
+			text-align:center;
+		}
+	</style>
+
+	<h:form id="form">
+		<rich:messages/>
+		<a4j:jsFunction name="ajaxSubmit" oncomplete="#{rich:component('panel')}.show()" reRender="editContent" />
+		<rich:calendar value="#{calendarBean.selectedDate}"
+			popup="false" showApplyButton="false" 
+			cellWidth="100px" cellHeight="100px" 
+			boundaryDatesMode="none" showWeeksBar="false" 
+			dataModel="#{calendarDataModel}" onchanged="if (event.rich.date) {ajaxSubmit();}" oncurrentdateselect="return false" id="organizer" valueChangeListener="#{calendarDataModel.valueChanged}" showFooter="false">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value="Current Month" styleClass="header"/>
+				</h:panelGroup>
+			</f:facet>
+			<a4j:outputPanel layout="block" id="cell" onclick="#{rich:component('organizer')}.resetSelectedDate()" style="height: 100%;">
+				<h:panelGrid columns="1">
+					<h:outputText value="{day}" style="align:center"/>
+					<h:outputText value="{data.shortDescription.escapeHTML()}"/>
+					<h:outputText value="{data.description.escapeHTML()}"/>
+				</h:panelGrid>
+			</a4j:outputPanel>
+		</rich:calendar>
+	</h:form>
+	<rich:modalPanel id="panel" resizeable="false">
+		<f:facet name="header">Edit Day:</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="/images/modal/close.png" id="hidelink" styleClass="hidelink"/>
+				<rich:componentControl for="panel" attachTo="hidelink" operation="hide" event="onclick"/>
+			</h:panelGroup>
+		</f:facet>
+		<h:form>
+			<h:panelGrid columns="2" id="editContent">
+				<h:outputText value="Short Description:"/>
+				<h:inputText value="#{calendarDataModel.currentShortDescription}"/>
+				<h:outputText value="Day Notes:"/>
+				<h:inputTextarea value="#{calendarDataModel.currentDescription}"/>
+				<a4j:commandButton value="Store" action="#{calendarDataModel.storeDayDetails}" id="storebutton" oncomplete="#{rich:component('panel')}.hide()" reRender="organizer"/>
+				<button type="button" id="cancelbutton" onclick="#{rich:component('panel')}.hide()">Cancel</button>
+			</h:panelGrid>
+		</h:form>
+	</rich:modalPanel>
+</ui:composition>

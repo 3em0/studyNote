@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition  template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+			<p>
+				One of the most frequently asked question from the community is about the
+				problems occurring while trying to create so called dependent selects. 
+			</p>
+			<p>
+				Here you could explore a simple sample of this case and check the source
+				code used.
+			</p>
+			<p>
+				After you select the produce type, the second select list is populated 
+				and contains the items of this type, and if you change the type it will
+				be updated again with proper values. 
+			</p>
+			
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Dynamic selects Demo</legend>
+					<div class="sample-container" >
+
+						<ui:include src="/richfaces/support/examples/dynamicSelects.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/support/examples/dynamicSelects.xhtml"/>
+						</ui:include>			
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/demo/ajaxsupport/SelectsBean.java"/>
+							<ui:param name="openlabel" value="View SelectsBean.java Source" />
+							<ui:param name="sourcetype" value="java" />
+						</ui:include>				
+
+								
+					</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

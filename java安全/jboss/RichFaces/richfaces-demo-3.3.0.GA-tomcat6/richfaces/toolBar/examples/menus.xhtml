@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+		<style>
+			.barsearch {
+				height:14px;
+				width:100px;
+			}
+			.barsearchbutton {
+				border-width:1px;
+				background-color:#{a4jSkin.generalBackgroundColor};
+			}
+		</style>
+		<h:form>
+		<rich:toolBar height="34" itemSeparator="line">
+			<rich:toolBarGroup>
+			  <h:graphicImage id="edit" value="/images/icons/edit.gif" />
+			  <h:outputLabel value="Edit" for="edit" />
+			</rich:toolBarGroup>
+			<rich:toolBarGroup>						  
+			  <h:graphicImage id="find" value="/images/icons/find.gif" />
+			  <h:outputLabel value="Find" for="find" />
+			</rich:toolBarGroup>
+			<rich:toolBarGroup>						  
+			  <h:graphicImage id="filter" value="/images/icons/filter.gif" />
+			  <h:outputLabel value="Filter" for="filter" />
+			</rich:toolBarGroup>
+			<rich:toolBarGroup location="right">
+				<h:inputText styleClass="barsearch" />
+				<h:commandButton styleClass="barsearchbutton" onclick="return false;"  value="Search" />
+			</rich:toolBarGroup>
+		</rich:toolBar>
+		</h:form>
+
+
+</ui:composition>

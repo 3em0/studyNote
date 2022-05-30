@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<style type="text/css">
+			.viewsourcepanel {
+				 padding: 10px;
+				 width: 100%;
+				 overflow: auto;
+				 border-width: 0;
+			}
+
+			.viewsourcebody {
+				padding: 0;
+			}
+
+			input[type="button"], input[type="submit"] {
+			 	background-color:#{a4jSkin.trimColor};
+			}
+			</style>				
+			<p>a4j:htmlCommandLink functionality is similar to the standard h:commandLink component except the additional feature.
+			
+			</p>
+			<p>
+				h:commandLink renderer generates the JavaScript code that is used to submit a form when a link
+				is clicked. However, if the h:commandLink is rendered outside of the form, for example, when
+				you point to it with reRender, the wrong code is generated that causes incorrect functionality.
+				This issue could be solved by a4j:form usage. 
+			</p>
+			<p>But another problem is that the link should render hidden inputs 
+				for its parameters encoding. And these fields are not generated if the link is not initially rendered and 
+				then updated via Ajax. Such problems could be solved with the a4j:htmlCommandLink usage. Necessary fields are encoded
+				even when the link is not rendered initially. Hence it may be Ajax updated and parameters work correctly. 
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">HtmlCommandLink usage example</legend>
+				<div class="sample-container">
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert highlight="xhtml" src="/richfaces/htmlCommandLink/snippets/commandLinkProblem.xhtml"></rich:insert>
+					</rich:panel>
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

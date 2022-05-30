@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<h:form>
+		<h:panelGrid columns="3" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom : 4px">
+			<rich:panel bodyClass="rich-laguna-panel-no-header">
+				<h:panelGrid columns="8">
+				<h:outputText value="Group Separator:" />
+				 <a4j:commandLink value="Line" reRender="bar">
+				 	<a4j:actionparam name="gs" value="line" assignTo="#{tbBean.groupSeparator}" />
+				 </a4j:commandLink>
+				 
+				 <a4j:commandLink value="Grid" reRender="bar">
+				 	<a4j:actionparam name="gs" value="grid" assignTo="#{tbBean.groupSeparator}" />
+				 </a4j:commandLink>
+				 
+				 <a4j:commandLink value="Disc" reRender="bar">
+				 	<a4j:actionparam name="gs" value="disc" assignTo="#{tbBean.groupSeparator}" />
+				 </a4j:commandLink>
+				 
+				 <a4j:commandLink value="Square" reRender="bar">
+				 	<a4j:actionparam name="gs" value="square" assignTo="#{tbBean.groupSeparator}" />
+				 </a4j:commandLink>
+				 
+				 <a4j:commandLink value="None" reRender="bar">
+				 	<a4j:actionparam name="gs" value="none" assignTo="#{tbBean.groupSeparator}" />
+				 </a4j:commandLink>
+				 </h:panelGrid>
+			</rich:panel>
+			<h:panelGroup style="padding-left : 4px">
+				<br/>
+			</h:panelGroup>
+			<rich:panel bodyClass="rich-laguna-panel-no-header">
+				<h:panelGrid columns="8">
+				<h:outputText value="Group Item Separator:" />
+				 <a4j:commandLink value="Line" reRender="bar">
+				 	<a4j:actionparam name="gs" value="line" assignTo="#{tbBean.groupItemSeparator}" />
+				 </a4j:commandLink>
+				 
+				 <a4j:commandLink value="Grid" reRender="bar">
+				 	<a4j:actionparam name="gs" value="grid" assignTo="#{tbBean.groupItemSeparator}" />
+				 </a4j:commandLink>
+
+				 <a4j:commandLink value="Disc" reRender="bar">
+				 	<a4j:actionparam name="gs" value="disc" assignTo="#{tbBean.groupItemSeparator}" />
+				 </a4j:commandLink>
+				 
+				 <a4j:commandLink value="Square" reRender="bar">
+				 	<a4j:actionparam name="gs" value="square" assignTo="#{tbBean.groupItemSeparator}" />
+				 </a4j:commandLink>
+				 
+				 <a4j:commandLink value="None" reRender="bar">
+				 	<a4j:actionparam name="gs" value="none" assignTo="#{tbBean.groupItemSeparator}" />
+				 </a4j:commandLink>
+				 </h:panelGrid>
+			</rich:panel>
+		</h:panelGrid>				
+	</h:form>	
+
+	<rich:toolBar id="bar" height="30" itemSeparator="#{tbBean.groupSeparator}">
+		<rich:toolBarGroup itemSeparator="#{tbBean.groupItemSeparator}">
+			<h:outputText value="Group1.1"></h:outputText>
+			<h:outputText value="Group1.2"></h:outputText>
+			<h:outputText value="Group1.3"></h:outputText>
+		</rich:toolBarGroup>
+		<rich:toolBarGroup itemSeparator="#{tbBean.groupItemSeparator}">
+			<h:outputText value="Group2.1"></h:outputText>
+			<h:outputText value="Group2.2"></h:outputText>
+		</rich:toolBarGroup>
+		<rich:toolBarGroup location="right"   itemSeparator="#{tbBean.groupItemSeparator}">
+			<h:outputText value="Group3.1"></h:outputText>
+			<h:outputText value="Group3.2"></h:outputText>
+		</rich:toolBarGroup>
+	</rich:toolBar>
+
+
+</ui:composition>

@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	<h:form>
+			<a4j:commandButton value="Show Screen Size" reRender="infoPanel">
+				<a4j:actionparam name="w" value="screen.width" 
+						assignTo="#{userBean.screenWidth}" noEscape="true" />
+				<a4j:actionparam name="h" value="screen.height"
+						assignTo="#{userBean.screenHeight}" noEscape="true" />
+			</a4j:commandButton>
+		<br />
+		<rich:spacer height="3" />
+		<rich:panel id="infoPanel" bodyClass="rich-laguna-panel-no-header">
+			<h:panelGrid columns="2">
+				<h:outputText value="Width:" />
+				<h:outputText value="#{userBean.screenWidth}"/>
+				<h:outputText value="Height:" />
+				<h:outputText value="#{userBean.screenHeight}"/>
+			</h:panelGrid>
+		</rich:panel>
+	</h:form>
+</ui:composition>

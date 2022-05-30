@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<style>
+		.col1, .col2 {
+			width:50%;
+			vertical-align:top;
+		}
+		.rich-table-cell, .rich-table{
+			border:none;
+		}
+		.indicatorPicture {
+			width: 80px;
+		}
+	</style>
+
+	<rich:dragIndicator id="indicator1" >
+		<f:facet name="single">
+        	<h:graphicImage  styleClass="indicatorPicture" value="/richfaces/jQuery/images/{draggedImage}" />
+    	</f:facet>
+	</rich:dragIndicator>
+	<rich:dragIndicator id="indicator2" />
+	<h:form>	
+		<h:panelGrid columns="2" width="100%" columnClasses="col1,col2">
+		 
+			<rich:tree ajaxKeys="#{null}" style="width:300px" nodeSelectListener="#{simpleTreeDndBean.processSelection}" 
+				reRender="selectedNode" ajaxSubmitSelection="true"  switchType="client" dragIndicator="indicator2"
+				value="#{simpleTreeDndBean.treeNode}" var="item" id="tree" treeNodeVar="treeNode"
+				dropListener="#{simpleTreeDndBean.dropListener}" nodeFace="#{treeNode.parent.parent == null ? 'node' : 'leaf'}">
+				<rich:treeNode type="node" acceptedTypes="pic" icon="#{treeNode.icon}" iconLeaf="#{treeNode.leafIcon}"> 
+					<h:outputText value="#{item}"/>
+				</rich:treeNode>
+				<rich:treeNode type="leaf" dragType="pic"> 
+					<rich:dndParam name="label" type="drag">#{item}</rich:dndParam>
+
+					<h:outputText value="#{item}"/>
+				</rich:treeNode>
+			</rich:tree>
+			<rich:panel id="selectedNode">
+				<rich:dataGrid id="selectedNodeGrid" style="display: #{!empty simpleTreeDndBean.selectedNodeChildren ? '' : 'none'}" value="#{simpleTreeDndBean.selectedNodeChildren}" var="item" columns="3" border="0">
+					<rich:dragSupport dragIndicator="indicator1" dragType="pic" dragValue="#{item}" reRender="selectedNodeGrid">
+						<rich:dndParam name="draggedImage" value="#{item.data}"/>
+					</rich:dragSupport>
+					<h:graphicImage value="/richfaces/jQuery/images/#{item.data}" />
+				</rich:dataGrid>
+			</rich:panel>
+		</h:panelGrid>
+
+	</h:form>
+
+</ui:composition>

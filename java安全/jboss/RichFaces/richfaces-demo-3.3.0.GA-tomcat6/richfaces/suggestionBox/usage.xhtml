@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/component-sample.xhtml">
+	<ui:define name="sample">
+
+
+
+		<p>RichFaces Suggestion Box component adds the autocomplete
+		capability to the existing input component such as h:inputText or
+		t:inputText. Use the attribute 'for', in order to ping to the necessary input component
+		to add the autocomplete capability to it.</p>
+		<p>Working with Suggestion Box is similar to the h:dataTable
+		component, but instead of the 'value' attribute it has a
+		suggestionAction attribute that points to the method that returns the
+		filtered collection. The 'fetch' attribute points to the data that
+		is inserted into the input field if a particular row is selected
+		or clicked from the suggested list.</p>
+
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">SuggestionBox example</legend>
+			<div class="sample-container">
+				<ui:include src="/richfaces/suggestionBox/examples/custom.xhtml"/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/suggestionBox/examples/custom.xhtml"/>
+					<ui:param name="openlabel" value="View Page Source" />
+				</ui:include>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/demo/capitals/CapitalsBean.java"/>
+					<ui:param name="sourcetype" value="java" />
+					<ui:param name="openlabel" value="View CapitalsBean.java Source" />
+				</ui:include>
+			</div>
+		</fieldset>
+
+		<p>
+			And below there is the second example of new JS API and Objects selection feature usage.
+		</p>
+		<p>
+			Just choose some state from suggestion and capital name property will be fetched 
+			using client side API (Some of the capitals could be fetched separated with coma). 
+			No requests are required anymore. You could just store needed 
+			properties in the same manner in hidden fields for example.
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Objects usage example</legend>
+			<div class="sample-container">
+				<ui:include src="/richfaces/suggestionBox/examples/objects.xhtml"/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/suggestionBox/examples/objects.xhtml"/>
+				</ui:include>
+			</div>
+		</fieldset>
+		
+	</ui:define>
+
+</ui:composition>
+</html>

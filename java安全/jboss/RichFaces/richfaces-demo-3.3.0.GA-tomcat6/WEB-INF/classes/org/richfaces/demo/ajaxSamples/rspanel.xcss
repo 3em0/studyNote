@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:template xmlns:f='http:/jsf.exadel.com/template'
+   xmlns:u='http:/jsf.exadel.com/template/util' 
+   xmlns="http://www.w3.org/1999/xhtml" >
+   
+<f:verbatim><![CDATA[
+
+.rsPanel {
+	border-width:1px;
+	border-style:solid;
+	padding:10px;
+	background-position : top left;
+	background-repeat : repeat-x;	
+	
+}
+.rsInput {
+	border-style:solid;
+	border-width:1px;
+}
+.rsButton {
+	border-width:2px;
+	border-style:outset;
+}
+.rsLabel {
+	font-size: 12px;
+}
+
+]]></f:verbatim>
+
+<u:selector name=".rsPanel">
+   	<u:style name="border-color" skin="panelBorderColor" />
+	<u:style name="background-color" skin="headerBackgroundColor" />
+	<u:style name="background-image" >
+    	   <f:resource f:key="org.richfaces.renderkit.html.GradientA"/>
+     </u:style>
+</u:selector>
+
+<u:selector name=".rsInput">
+   	<u:style name="background-color" skin="additionalBackgroundColor" />
+</u:selector>
+
+<u:selector name=".rsButton">
+   	<u:style name="background-image" value="none" />
+   	<u:style name="background-color" skin="additionalBackgroundColor" />
+   	<u:style name="border-color" skin="panelBorderColor" />
+</u:selector>
+
+<u:selector name=".rsLabel">
+	<u:style name="color" skin="headerTextColor" />
+</u:selector>
+
+
+	<u:style name="color" skin="headerTextColor" />
+
+
+</f:template>

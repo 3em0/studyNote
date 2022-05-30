@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/component-sample.xhtml">
+	<ui:define name="sample">
+
+
+		<p>The Paint2D component allows to create a graphic image using the
+		graphic2D features of JDK. The attribute <i>paint</i> should point to
+		a method of the bean that accept to parameters.</p>
+		<p>The first parameter has a Graphic2D type. I.e, it is a graphic
+		canvas you can draw on.</p>
+		<p>The second parameter is your custom data you can pass to a paint method using a data attribute of the paint2D component. The
+		Object type is using. So, you can use the bean of any type. The bean
+		should be serializable.</p>
+		<p>To improve the performance and avoid the extra unnecessary
+		traffic over the net, a generated image will be cached if the data
+		is not changed. You can turn this feature off with a cacheable attribute.</p>
+
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Paint2D demo</legend>
+			<div class="sample-container">
+				<ui:include src="/richfaces/paint2D/examples/painter.xhtml"/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/paint2D/examples/painter.xhtml"/>
+					<ui:param name="openlabel" value="View Source" />
+				</ui:include>
+
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/paint2D/examples/PaintBean.java"/>
+					<ui:param name="openlabel" value="View PaintBean.java Source" />
+					<ui:param name="sourcetype" value="java" />
+				</ui:include>
+
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/paint2D/examples/PaintData.java"/>
+					<ui:param name="openlabel" value="View PaintData.java Source" />
+					<ui:param name="sourcetype" value="java" />
+				</ui:include>
+			</div>
+		</fieldset>
+
+	</ui:define>
+
+</ui:composition>
+</html>

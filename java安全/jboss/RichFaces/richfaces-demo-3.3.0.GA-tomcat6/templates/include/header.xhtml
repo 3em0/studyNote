@@ -1,0 +1,176 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+<div class="page_brick"></div>
+<table class="top_navbar" cellpadding="0" cellspacing="0" border="0">
+<tbody>
+	<tr> 
+		<td>
+			<h:outputLink value="http://labs.jboss.com/portal/jbossrichfaces/downloads">Download</h:outputLink>
+		</td>
+		<td>
+			<h:outputLink value="http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261">Support</h:outputLink>
+		</td>
+		<td>
+			<h:outputLink value="http://labs.jboss.com/file-access/default/members/jbossrichfaces/freezone/docs/devguide/en/html/index.html">Developer Guide</h:outputLink>
+		</td>
+	</tr>
+</tbody>
+</table>
+<h:form>
+<table class="skin_chooser" cellpadding="0" cellspacing="0" border="0">
+<tbody>
+	<tr>
+		<td>
+			<strong>Skins:</strong>
+		</td>
+		<td>
+			<rich:togglePanel id="skin_chooser" value="#{skinBean.skinChooserState}" switchType="ajax" stateOrder="s,b">
+				<f:facet name="s">
+					<h:panelGroup>
+					<table class="skin_line" cellpadding="0" cellspacing="0" border="0">
+						<tbody>
+							<tr>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										BlueSky
+										<f:param value="blueSky" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Laguna
+										<f:param value="laguna" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Glass-X
+										<f:param value="glassX" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Dark-X
+										<f:param value="darkX" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Classic
+										<f:param value="classic" name="s"/>
+									</h:outputLink>
+								</td>
+								<td class="control">
+									<rich:toggleControl for="skin_chooser" value="more..." />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					</h:panelGroup> 
+				</f:facet>
+				<f:facet name="b">
+					<h:panelGroup>
+					<table class="skin_line" cellpadding="0" cellspacing="0" border="0">
+						<tbody>
+							<tr>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Laguna
+										<f:param value="laguna" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Glass-X
+										<f:param value="glassX" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Dark-X
+										<f:param value="darkX" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										BlueSky
+										<f:param value="blueSky" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Classic
+										<f:param value="classic" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Ruby
+										<f:param value="ruby" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Wine
+										<f:param value="wine" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										DeepMarine
+										<f:param value="deepMarine" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										EmeraldTown
+										<f:param value="emeraldTown" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Sakura
+										<f:param value="japanCherry" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Plain
+										<f:param value="plain" name="s"/>
+									</h:outputLink>
+								</td>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Default
+										<f:param value="DEFAULT" name="s"/>
+									</h:outputLink>
+								</td>
+								<ui:remove>
+								<td>
+									<h:outputLink value="#{componentNavigator.currentComponent.contextRelativeDemoLocation}">
+										Null
+										<f:param value="NULL" name="s"/>
+									</h:outputLink>
+								</td>
+								</ui:remove>
+								<td class="control">
+									<rich:toggleControl for="skin_chooser" value="...less" />
+								</td>
+							</tr>
+						</tbody>
+					</table> 
+					</h:panelGroup>
+				</f:facet>
+			</rich:togglePanel>
+		</td>
+	</tr>
+</tbody>
+</table>
+</h:form>
+</ui:composition>
+</html>

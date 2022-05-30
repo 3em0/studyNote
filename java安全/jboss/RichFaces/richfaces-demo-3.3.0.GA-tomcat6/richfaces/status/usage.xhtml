@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+	
+				<p>a4j:status is an indicator of an Ajax request. It has two states - start and stop. The start
+				state indicates that an Ajax request is in progress. When Ajax Response comes back,
+				the component switches to the stop stage.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Status Demo</legend>
+					<div class="sample-container" >
+				
+						<ui:include src="/richfaces/status/examples/simple.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/status/examples/simple.xhtml"/>
+						</ui:include>					
+					</div>
+			</fieldset>
+			
+			<p>
+				<b>startText</b> attribute defines the label that will be visible when the Ajax request
+				is in progress. You can use <b>startStyle</b> or <b>startStyleClass</b>  attribute  to
+				customize style for a start label. You can use <b>facet name="start"</b> to define more enhanced
+			    content for indication of the start state. If facet is defined, the value of startText
+				attribute becomes void.
+			</p>
+			<p>
+				<b>stopText</b> attribute defines the label that will be visible when the Ajax Response
+				comes back. You can use <b>stopStyle</b> or <b>stopStyleClass</b>  attribute  to
+				customize style for a stop label. You can use <b>facet name="stop"</b> to define more enhanced
+			    content for indication of the stop state. If facet is defined, the value of stopText
+				attribute becomes void.
+			</p>
+			<p>
+				In case of not stopText nor facet name="stop" are not defined, the stop stage will
+				not have a visual representation. You can use this option if you want to show only
+				"in progress" indicator. The following example show the graphic image to
+				the right of the input field during an Ajax request.
+			</p>
+		
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Status Demo</legend>
+					<div class="sample-container" >
+
+						<ui:include src="/richfaces/status/examples/pictured.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/status/examples/pictured.xhtml"/>
+						</ui:include>					
+
+					</div>
+			</fieldset>
+
+			<p>
+				By default, a4j:status works for each Ajax components inside the local region. This
+				means if you have not any region defined on the page (the whole view is a region) and
+				have only one a4j:status on the page, this a4j:status will be activated during
+				Ajax request sent by any of the Ajax component located on the page.
+			</p>
+			<p>
+				This client id of the a4j:status component is assigned based on the following pattern:
+				&lt;working region Id&gt;:status . <b>for</b> attribute defines the id of the region the
+				a4j:status will work for. If 'for' attribute is not defined, the working region will be the
+				region, the a4j:status located into. The root region has a "_viewRoot" name.
+			</p>
+			<p><b>forceId</b>  attribute allows to replace the ":status" postfix of the client id with the
+				defined 'id' attribute. If 'forceId' attribute is not defined, the defined 'id' attribute
+				will be ignored.
+			</p>
+
+			<p>
+				It is possible to have more than one a4j:status on the same page. In this case, you need
+				to wire status components with the Ajax component used for Ajax requests producing.
+			</p>
+			<p>
+				You do not have any additional attribute defined if you have a4j:status inside each region
+				and working for this given region. You can locate the a4j:status outside of the region if this is 
+				required by a page layout. In this case you have to define a 'for' attribute explicitly. The 'for'
+				attribute should point to the id of the region it should work for.
+			</p>
+			<p>
+				Use attribute 'status' of the Ajax component (such as a4j:commandButton, a4j:poll, etc.) should point to
+				the id of the a4j:status if you want to share it between the different Ajax component located in
+				different regions. The following example shows how to share the same a4j:status from the Ajax
+				component located in the different region:
+			</p>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Status Demo</legend>
+					<div class="sample-container" >
+						<ui:include src="/richfaces/status/examples/cleaner.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/status/examples/cleaner.xhtml"/>
+						</ui:include>						
+					</div>
+			</fieldset>
+			
+		</ui:define>
+
+	</ui:composition>
+</html>

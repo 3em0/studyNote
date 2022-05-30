@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/component-sample.xhtml">
+	<ui:define name="sample">
+		<style>
+			.viewsourcepanel1 {
+				 padding:10px;
+				 overflow:auto;
+				 border-width:0;
+			}
+			.viewsourcebody1 {
+				padding:0;
+			}
+</style>
+		<p>The &lt;a4j:push&gt; periodically perform AJAX request to
+		server, to simulate 'push' data.</p>
+		<p>The main difference between &lt;a4j:push&gt; and
+		&lt;a4j:poll&gt; components is that &lt;a4j:push&gt; makes request to
+		minimal code only (not to JSF tree) in order to check the presence of
+		messages in the queue. If the message exists the complete request will
+		be performed. The component doesn't poll registered beans but
+		registers EventListener which receives messages about events.</p>
+		<p>Attribute 'interval' is used as for poll component. It
+		specifies the interval in ms. for call push request. Simple example of
+		usage:</p>
+		<p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Page code:</legend> 
+			
+			<rich:panel styleClass="viewsourcepanel1" bodyClass="viewsourcebody1 rich-laguna-panel-no-header">
+				<rich:insert highlight="xhtml"
+					src="/richfaces/push/snippets/page.xhtml" />
+		</rich:panel></fieldset>
+		</p>
+		<p>
+		<fieldset class="demo_fieldset"><legend class="demo_legend">Code
+		for registration of listener:</legend> <rich:panel styleClass="viewsourcepanel1"
+			bodyClass="viewsourcebody1 rich-laguna-panel-no-header">
+			<rich:insert highlight="java"
+				src="/richfaces/push/snippets/listenerReg.java" />
+		</rich:panel></fieldset>
+		</p>
+		<p>
+		<fieldset class="demo_fieldset"><legend class="demo_legend">Component
+		can get message using current code:</legend> <rich:panel
+			styleClass="viewsourcepanel1" bodyClass="viewsourcebody1 rich-laguna-panel-no-header">
+			<rich:insert highlight="java"
+				src="/richfaces/push/snippets/listenermessage.java" />
+		</rich:panel></fieldset>
+		</p>
+		<p>Thus, component 'push' uses asynchronous model instead of
+		polls.</p>
+		<p>
+			There is simple <b>Push </b>example using <b>Runabble</b> interface.
+		</p>
+		<p>
+			When you hit <b>Start</b> button new Thread will be started and alive 
+			for a minute. It will generate random Uuid once in a ten seconds. 
+		</p>
+		<p>
+			Push component will fire the request after uuid generation event sent
+			and update the output field displaying new uuid value.
+		</p>
+			<fieldset class="demo_fieldset"><legend
+				class="demo_legend">Push Demo</legend>
+			<div class="sample-container"><ui:include
+				src="/richfaces/push/examples/push.xhtml" /> 
+			
+			<ui:include	src="/templates/include/sourceview.xhtml">
+				<ui:param name="sourcepath"
+					value="/richfaces/push/examples/push.xhtml" />
+				<ui:param name="openlabel" value="View Source" />
+			</ui:include>
+			<ui:include	src="/templates/include/sourceview.xhtml">
+				<ui:param name="sourcepath"
+					value="/richfaces/push/snippets/PushBean.java" />
+				<ui:param name="openlabel" value="View PushBean code" />
+				<ui:param name="sourcetype" value="java" />
+			</ui:include>
+			
+			</div>
+			</fieldset>
+
+	</ui:define>
+
+</ui:composition>
+</html>

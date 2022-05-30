@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/component-sample.xhtml">
+	<ui:define name="sample">
+
+
+		<p>RichFaces Modal Panel is a container that blocks an operation on the base page when the modal 
+		panel is shown.</p>
+		<p>
+			Modal Panel could be freely managed with <b>rich:componentControl</b> component.
+			Next example shows the code which should be used:
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Example 1</legend>
+			<div class="sample-container">
+				<ui:include src="/richfaces/componentControl/examples/mpusage.xhtml"/>
+				<br/><br/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/componentControl/examples/mpusage.xhtml"/>
+					<ui:param name="openlabel" value="View Source" />
+				</ui:include>
+			</div>
+		</fieldset>
+		<p>You can show the modal panel using the JS API <b>show</b> function (<f:verbatim>&#35;</f:verbatim>{rich:component('mp')}.show).</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Example 2</legend>
+			<div class="sample-container">
+			This line code invokes the modal panel:<br/> 
+			<a onclick="#{rich:component('mp')}.show()" href="#">
+			 <f:verbatim>&#35;</f:verbatim>{rich:component('mp')}.show()
+			 </a><br/><br/> 
+				<ui:include src="/richfaces/modalPanel/examples/simplePanel.xhtml"/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/modalPanel/examples/simplePanel.xhtml"/>
+					<ui:param name="openlabel" value="View Source" />
+				</ui:include>	
+			</div>
+		</fieldset>
+		<p><b>NOTE:</b> Old style panel calls will be also supported.</p>
+		<p>The modal panel has an absolute layout.There is no reason to put it on the page
+		where it is called.If you want to perform submits from this modal panel, you should have a separate form inside it.
+		In this case, the panel must be declared outside of the other form on the same page.
+		I.e. nested forms are not allowed.<br/>
+		Those requirements are applied because of the bug in earlier Internet Explorer versions, as
+		the dialog is moved to the top of the browser DOM tree just after it is rendered.</p>
+
+	</ui:define>
+
+</ui:composition>
+</html>

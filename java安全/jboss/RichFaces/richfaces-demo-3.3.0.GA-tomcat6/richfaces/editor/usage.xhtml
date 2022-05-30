@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<p>
+			<b>RichFaces Editor</b> component provides possibility to use <b>tinyMCE 
+			widget </b>as first class citizen within JSF environment.
+		</p>
+		<p>
+			It has almost all the properties and features of original widget
+			and adds next additional features:    
+		</p>
+		<ul>
+			<li>
+				Seam text supported out of the box using built-in converter.
+			</li>
+			<li>
+				RichFaces skinnability    
+			</li>
+			<li>
+				Manageable configurations mechanism implemented.
+			</li>
+		</ul>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Editor demo</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/editor/examples/editor.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/editor/examples/editor.xhtml"/>
+						<ui:param name="openlabel" value="View Source" />
+					</ui:include>
+				</div>
+			</fieldset>
+		</ui:define>
+	</ui:composition>
+</html>

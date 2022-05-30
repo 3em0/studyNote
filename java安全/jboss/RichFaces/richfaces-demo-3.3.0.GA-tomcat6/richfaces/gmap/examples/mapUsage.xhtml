@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+		
+	<style>
+		.optionList {
+		  height:30px;
+		}
+	</style>	
+	<h:panelGrid columns="2">
+		<rich:gmap  gmapVar="map" zoom="#{gmBean.zoom}"  style="width:400px;height:400px" gmapKey="#{gmBean.gmapkey}" id="gmap"/>
+		
+		<h:panelGroup>
+			<h:form>
+				<a4j:jsFunction name="showPlace"  data="#{gmBean.currentPlace}" reRender=":zoom"
+					oncomplete="map.setCenter(new GLatLng(data.lat, data.lng),data.zoom)">
+				  <a4j:actionparam name="id" assignTo="#{gmBean.currentId}"></a4j:actionparam>
+				</a4j:jsFunction>
+
+			<rich:tabPanel switchType="ajax" width="350" height="400">
+				<rich:tab label="Using Google Map API">
+					<h:panelGrid columns="2" columnClasses="optionList">
+						<h:outputText value="Controls:" />
+						<h:panelGroup>
+							<a href="javascript: void 0" onclick="map.hideControls()">Hide</a>
+							<a href="javascript: void 0" onclick="map.showControls()">Show</a><br/>
+						</h:panelGroup>
+	
+						<h:outputText value="Zoom:" />
+						<rich:inputNumberSlider id="zoom" showInput="false" minValue="1"  maxValue="18"
+								value="#{gmBean.zoom}" 	onchange="map.setZoom(this.value)"/>
+		
+	
+						<h:outputText value="Map Type:" />
+						<h:panelGroup>
+							<a href="javascript: void 0" onclick="map.setMapType(G_NORMAL_MAP)">Normal</a>
+							<a href="javascript: void 0" onclick="map.setMapType(G_SATELLITE_MAP)">Satellite</a>
+							<a href="javascript: void 0" onclick="map.setMapType(G_HYBRID_MAP)">Hybrid</a><br/>
+						</h:panelGroup>
+	
+					</h:panelGrid>
+				</rich:tab>
+				
+				<rich:tab label="Using Ajax with JSON">
+					<rich:dataGrid var="place" value="#{gmBean.point}" columns="2" >
+						<h:graphicImage onclick="showPlace('#{place.id}')" style="cursor:pointer" value="resource://#{place.pic}" />			
+					</rich:dataGrid>
+			
+				</rich:tab>
+	
+			
+			</rich:tabPanel>
+			</h:form>
+		</h:panelGroup>
+	</h:panelGrid>	
+</ui:composition>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource-config>
+
+	<resource >
+		<name>scriptaculous.scriptaculous.js</name>
+		<path>/org/richfaces/renderkit/html/scripts/scriptaculous-js-1.6.5/src/scriptaculous.js</path>
+		<renderer class="org.ajax4jsf.resource.ScriptRenderer"/>
+	</resource>
+	<resource >
+		<name>scriptaculous.effects.js</name>
+		<path>/org/richfaces/renderkit/html/scripts/scriptaculous-js-1.6.5/src/effects.js</path>
+		<renderer class="org.ajax4jsf.resource.ScriptRenderer"/>
+	</resource>
+
+</resource-config>

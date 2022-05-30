@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+			<p>rich:effect utilizes the set of effects provided by scriptaculous javascript library. It 
+			allows to attach effects to JSF components and html tags. For the reference of the available
+			effects and their parameters see the scriptaculous documentation and wiki.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Some of many possible effects available out-of-the-box</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/effect/examples/diffTypes.xhtml" />
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/effect/examples/diffTypes.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>			
+			<p>
+			It is possible to use rich:effect in two modes: 
+			<ul>
+			<li>attached to the JSF components or html tags and triggered by a particular event. Wiring 
+			effect with JSF components might occur on the server or the client. Wiring with html tag is
+			possible only on the client side</li>
+			<li>invoking from the javascript code by an effect name. During the rendering, rich:effect generates the javascript
+			function with a defined name. When the function is called, the effect is applied</li>
+			</ul>
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Typical variants of usage</legend>
+				<div class="sample-container">
+					<rich:insert src="/richfaces/effect/snippets/usecases.html" highlight="xhtml" />
+				</div>
+			</fieldset>
+
+		</ui:define>
+
+	</ui:composition>
+</html>

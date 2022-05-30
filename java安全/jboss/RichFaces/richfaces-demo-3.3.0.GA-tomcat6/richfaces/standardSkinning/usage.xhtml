@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/component-sample.xhtml">
+	<ui:define name="sample">
+		<style>
+			ul,ol {
+				font-size: 11px !important;
+			}
+			.viewsourcepanel {
+				 padding:10px;
+				 width:100%;
+				 overflow:auto;
+				 border-width:0;
+			}
+			.viewsourcebody {
+				padding:0;
+			}
+			ol{
+				font-size:11px !important; 
+			}
+		</style>
+		<p>
+			This section overviews main principles of standard components
+			skinning with the Rich Faces framework.
+		</p>
+		<p>
+			This feature provides styling for standard HTML form elements
+			in order to be highly compilant with RichFaces common look'n'feel. There
+			should be two ways of applying skins to elements:
+		</p>
+		<ul>
+			<li>
+				Skinning style classes are applied to elements by element
+				name and type attribute (where applicable). No additional steps
+				are required from an application developer. Application initialization
+				parameter serves for enabling/disabling the feature.
+			</li>
+			<li>
+				Several style classes are provided for different types of
+				elements. That style classes have predefined names. Application
+				developer should manually assign classes to controls that need
+				skinning or assign a class to an element that contains controls.
+			</li>
+		</ul>
+		<p>
+			Standard controls skinning feature provides 2 levels of skinning:
+		</p>
+		<ol>
+			<li>
+				<b>Standard</b> - customization of only	basic style properties.  
+			</li>
+			<li>
+				<b>Extended</b> - extends basic level introducing customizations 
+				of a broader number of style properties 
+			</li>
+		</ol>
+		<p>
+			Skinning level is calculated automatically at server side depending on user agent info.
+		</p>
+		<p class="note">
+			Extended skinning is not applied to browsers having rich 
+			visual styling for controls (e.g. Opera and Safari). 
+			Also advanced level of skinning requires support of CSS 2 attribute selectors 
+			either as implicit type attributes for button/textarea elements (e.g. IE7 
+			in standards compilant mode) or CSS 3 draft namespace selectors (e.g. Mozilla 
+			Firefox).
+		</p>
+		<a href="#" onclick="#{rich:component('panel')}.show()">Click here to call modal with an example.</a> 
+		<p>
+			There three ways of applying skinning to application:
+		</p>
+		<ul>
+			<li>
+				By default <b>org.richfaces.CONTROL_SKINNING</b> context param is set to <b>enable</b> 
+				and it means that all 
+				standard elements on the page will be skinned. (CSS style classes for 
+				elements based on their names and type attribute values will be applied).
+				You may redefine it to <b>disabled</b> in order to turn it off.  
+			</li>
+			<li>
+				By default <b>org.richfaces.CONTROL_SKINNING_CLASSES</b> context param is set to 
+				<b>enabled</b> and it 
+				means that basic elements nested to element having <i>rich-container</i> class
+				will be skinned. It could be also turned off using <b>disable</b> value.
+			</li>
+			<li>
+				RichFaces also provides predefined classes which can be applied by an end developer 
+				to elements need to be skinned separately. This classes added to the page also 
+				according to <b>org.richfaces.CONTROL_SKINNING_CLASSES</b> context-param. 
+			</li>
+		</ul> 
+		<p>
+			Using first way CSS with the next definitions will be automatically added to pages:  
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">CSS for standard elements snippet</legend>
+				<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+					<rich:insert src="/richfaces/standardSkinning/snippets/snippet1.css" highlight="xhtml"/>
+				</rich:panel>
+		</fieldset>
+		<p>
+			And using the second way the next CSS will influence corresponding elements:
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">CSS for standard elements inside rich container snippet</legend>
+				<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+					<rich:insert src="/richfaces/standardSkinning/snippets/snippet2.css" highlight="xhtml"/>
+				</rich:panel>
+		</fieldset>
+		<p>
+			And the last one  means that classes with names corresponding to elements names 
+			will be added to the application pages and possible to set manually:  
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Predefined rich classes</legend>
+				<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+					<rich:insert src="/richfaces/standardSkinning/snippets/snippet3.css" highlight="xhtml"/>
+				</rich:panel>
+		</fieldset>
+		<p class="note" style="height: 40px">
+			<b><i>Important Exception:</i></b> <b>a</b> elements have classes based on "link" 
+			and pseudo class name. <i>(e.g.: rich-link, rich-link-hover, rich-link-visited)</i>
+		</p>
+		<p>
+			One additional note. In the predefined rich classes css we provide not only classes 
+			for basic HTML elements but also classes for some complex elements creation.
+			There is a snippet with some of them for example:  
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Additional predefined rich classes</legend>
+				<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+					<rich:insert src="/richfaces/standardSkinning/snippets/snippet4.css" highlight="xhtml"/>
+				</rich:panel>
+		</fieldset>
+		<p>
+			To get a better idea of standard component skinning we recommend to explore CSS files located in ui/core/src/main/resources/org/richfaces/ folder of RichFaces svn.     
+		</p>
+		<rich:modalPanel id="panel" width="300" height="230">
+			<f:facet name="header">
+				Standard components skinning
+			</f:facet>
+			<i>
+				All the controls below is just standard JSF components skinned with Rich Faces:
+			</i>
+			<hr/>
+			<h:panelGrid columns="2">
+				<h:outputText value="Enter Name:"/>
+				<h:inputText/>
+				<h:outputText value="Enter you interests:"/>
+				<h:inputTextarea/>
+				<h:outputText value="Choose your favourite color"/>
+				<h:selectOneMenu>
+					<f:selectItem itemLabel="Red"/>
+					<f:selectItem itemLabel="Black"/>
+					<f:selectItem itemLabel="Green"/>
+					<f:selectItem itemLabel="White"/>
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<hr/>
+			<button type="button" onclick="#{rich:component('panel')}.hide()">Hide this example</button>
+		</rich:modalPanel>
+	</ui:define>
+</ui:composition>
+</html>

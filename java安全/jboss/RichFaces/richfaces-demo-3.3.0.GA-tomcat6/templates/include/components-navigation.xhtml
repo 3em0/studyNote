@@ -1,0 +1,183 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+<ui:composition>            
+<rich:panel styleClass="panel_menu" bodyClass="rich-laguna-panel-no-header">
+<rich:panelBar style="width: auto;" selectedPanel="#{componentNavigator.currentComponent.group}" height="670px" contentStyle="background:none;">
+	<rich:panelBarItem   id="ajaxSupport">
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Ajax Support" />
+					<ui:param name="isNew" value="#{componentNavigator.ajaxSupportHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.ajaxSupport}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem  id="ajaxResources">
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Resources/Beans Handling"/>
+					<ui:param name="isNew" value="#{componentNavigator.ajaxResourcesHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.ajaxResources}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richValidators"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Ajax Validators"/>
+					<ui:param name="isNew" value="#{componentNavigator.validatorsHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.validatorsComponents}" />
+ 		</ui:include> 
+	</rich:panelBarItem>
+	<rich:panelBarItem   styleClass="panel_menu_bar"  id="ajaxOutput"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Ajax Output"/>
+					<ui:param name="isNew" value="#{componentNavigator.ajaxOutputHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.ajaxOutput}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="ajaxMisc"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Ajax Miscellaneous"/>
+					<ui:param name="isNew" value="#{componentNavigator.ajaxMiscHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.ajaxMisc}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richDataIterators"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Data Iteration"/>
+					<ui:param name="isNew" value="#{componentNavigator.richDataIteratorsHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richDataIterators}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richDragDrop">
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Drag-Drop Support"/>
+					<ui:param name="isNew" value="#{componentNavigator.richDragDropHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richDragDropComponents}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richMenu"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Rich Menu"/>
+					<ui:param name="isNew" value="#{componentNavigator.richMenuHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richMenu}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richTree"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Rich Trees"/>
+					<ui:param name="isNew" value="#{componentNavigator.richTreeHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richTree}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richOutputs"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value= "Rich Output"/>
+					<ui:param name="isNew" value="#{componentNavigator.richOutputsHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richOutputs}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richInputs"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value= "Rich Input"/>
+					<ui:param name="isNew" value="#{componentNavigator.richInputsHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richInputs}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richSelect"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Rich Selects"/>
+					<ui:param name="isNew" value="#{componentNavigator.selectHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.selectComponents}" />
+ 		</ui:include>
+	</rich:panelBarItem> 
+	<rich:panelBarItem id="richMisc"> 
+		<f:facet name="label">
+			<h:panelGroup layout="block">
+				<ui:include src="/templates/include/navigationPanelHeader.xhtml" >
+					<ui:param name="label" value="Rich Miscellaneous"/>
+					<ui:param name="isNew" value="#{componentNavigator.richMiscHasNew}" />
+				</ui:include>
+			</h:panelGroup>
+		</f:facet>
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richMisc}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+</rich:panelBar>
+</rich:panel>
+</ui:composition>
+</html>
+

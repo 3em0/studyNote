@@ -1,0 +1,27 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"> 
+	<rich:modalPanel id="panel" width="350" height="100">
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:outputText value="Modal Panel"></h:outputText>
+			</h:panelGroup>
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="/images/modal/close.png" styleClass="hidelink" id="hidelink"/>
+				<rich:componentControl for="panel" attachTo="hidelink" operation="hide" event="onclick"/>
+			</h:panelGroup>
+		</f:facet>
+		<h:outputText value="This panel is called using Component Control Component"></h:outputText>
+		<br/>
+		<h:outputText value="Closure link (X) works also through Component Control"></h:outputText>
+	</rich:modalPanel>
+	<h:outputLink value="#" id="link">
+		Show Modal Panel 
+		<rich:componentControl for="panel" attachTo="link" operation="show" event="onclick"/>
+	</h:outputLink>
+</f:subview>

@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:form id="ajaxValidatorForm">
+		<rich:panel>
+			<f:facet name="header">
+				<h:outputText value="User Info:" />
+			</f:facet>
+			<h:panelGrid columns="3">
+				
+				<h:outputText value="Name:" />
+				<h:inputText value="#{userBean.name}" id="name" required="true">
+					<f:validateLength minimum="3" maximum="12"/>
+					<rich:ajaxValidator event="onblur"/>
+				</h:inputText>
+				<rich:message for="name" />
+				
+				<h:outputText value="Age:" />
+				<h:inputText value="#{userBean.age}" id="age" required="true">
+					<f:convertNumber integerOnly="true"/>
+					<f:validateLongRange minimum="18" maximum="99"/>
+					<rich:ajaxValidator event="onblur"/>
+				</h:inputText>
+				<rich:message for="age"/>
+				
+			</h:panelGrid>
+		</rich:panel>
+	</h:form>
+</ui:composition>

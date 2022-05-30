@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<p>
+			Separator is used to draw a horizontal line on a page. You may specify different types of a line, the possible values are "beveled" (default), "dotted", "dashed", "double" and "solid".
+			You also can specify width, height and alignment for the separator.
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Separator demo</legend>
+			<div class="sample-container">
+				<ui:include src="/richfaces/separator/examples/variants.xhtml"/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/separator/examples/variants.xhtml"/>
+				</ui:include>
+			</div>
+		</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

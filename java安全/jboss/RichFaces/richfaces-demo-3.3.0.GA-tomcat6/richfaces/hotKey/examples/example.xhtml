@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<ui:composition>
+		<a4j:loadScript src="/scripts/picturesUtils.js"/>
+		<h:form>
+			<a4j:jsFunction name="prev" action="#{slidesBean.previous}" reRender="slideContainer"/>
+			<a4j:jsFunction name="next" action="#{slidesBean.next}" reRender="slideContainer"/>
+		</h:form>
+		<rich:panel id="slideContainer">
+			<f:facet name="header">
+				<h:outputText value="Image #{slidesBean.currentIndex}"/>
+			</f:facet>
+			<h:graphicImage value="#{slidesBean.currentPicture}" id="pic"/>
+		</rich:panel>
+		<rich:hotKey key="ctrl+up" handler="enlarge('#{rich:clientId('pic')}');return false;"/>
+		<rich:hotKey key="ctrl+down" handler="decrease('#{rich:clientId('pic')}');return false;"/>
+		<rich:hotKey key="ctrl+left" handler="prev();return false;"/>
+		<rich:hotKey key="ctrl+right" handler="next();return false;"/>
+	</ui:composition>
+
+</html>

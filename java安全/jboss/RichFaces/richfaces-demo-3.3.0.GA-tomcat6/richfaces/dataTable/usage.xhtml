@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+
+			
+			<p>DataTable allows to show a tabular data. Additional to the standard &lt;h:dataTable&gt;, this component
+			enables row and column spans for columns, a flexible layout for a header and a footer. 
+			DataTable supports "master-detail" pattern and allows to show the combination 
+			of a master table and detail sub-tables.<br />
+			The following example shows the dataTable component in use:
+			</p>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">DataTable Column/ColumnGroup example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/dataTable/examples/report.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/dataTable/examples/report.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

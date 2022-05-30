@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<table  width="400">
+		<tbody>
+		<tr>
+			<td><span onmouseover="updateName('Alex')"  onmouseout="updateName('')">Alex</span></td>
+			<td><span onmouseover="updateName('Jonh')"  onmouseout="updateName('')">Jonh</span></td>
+			<td><span onmouseover="updateName('Roger')"  onmouseout="updateName('')">Roger</span></td>
+		</tr>
+		<rich:spacer height="10" />
+		<tr>
+			<td colspan="3">Name: <b><h:outputText id="showname" value="#{userBean.name}" /></b></td>
+		</tr>
+		</tbody>
+	</table>
+
+	<a4j:form>
+		<a4j:jsFunction name="updateName" reRender="showname">
+			<a4j:actionparam name="param1" assignTo="#{userBean.name}"	/>					
+		</a4j:jsFunction>
+	</a4j:form>
+
+	<br />
+</ui:composition>

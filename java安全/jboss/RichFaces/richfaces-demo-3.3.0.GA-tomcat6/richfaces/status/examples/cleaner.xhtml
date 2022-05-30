@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<a4j:region id="extr">
+		<h:form>
+			<h:outputText value="Status:" />
+			<a4j:status id="commonstatus" startText="In Progress...." stopText="" />
+
+			<a4j:region id="intr">
+				<h:panelGrid columns="2">
+					<h:outputText value="Name" />
+					<h:inputText id="name" value="#{userBean.name}">
+						<a4j:support event="onkeyup" reRender="out" status="commonstatus" />
+					</h:inputText>
+
+					<h:outputText value="Job" />
+					<h:inputText id="job" value="#{userBean.job}">
+						<a4j:support event="onkeyup" reRender="out" status="commonstatus" />
+					</h:inputText>
+
+					<h:panelGroup /> 
+
+				</h:panelGrid>
+			</a4j:region>
+			<a4j:region>
+				<br />
+				<rich:spacer height="5" />
+				<b><h:outputText id="out"
+					value="Name: #{userBean.name}, Job: #{userBean.job}" /></b>
+				<br />
+				<rich:spacer height="5" />
+				<br />
+				<a4j:commandButton ajaxSingle="true" value="Clean Up Form"
+					reRender="name, job, out" status="commonstatus">
+					<a4j:actionparam name="n" value="" assignTo="#{userBean.name}" />
+					<a4j:actionparam name="j" value="" assignTo="#{userBean.job}" />
+				</a4j:commandButton>
+			</a4j:region>
+
+		</h:form>
+	</a4j:region>
+	<br />
+</ui:composition>

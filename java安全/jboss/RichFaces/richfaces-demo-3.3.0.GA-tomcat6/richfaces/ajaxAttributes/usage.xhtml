@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<style>
+			.viewsourcepanel {
+				 padding:10px;
+				 overflow:auto;
+				 border-width:0;
+			}
+			.viewsourcebody {
+				padding:0;
+			}
+			ol{
+				font-size:11px !important; 
+			}
+		</style>
+
+			<p>This section overviews the attributes that are common for Ajax components
+			such as a4j:support, a4j:commandButton, a4j:jsFunction, a4j:poll, a4j:push and so
+			on. Also, most RichFaces components with built-in Ajax support have these
+			attributes for a similar purpose.
+			</p>
+			<p>
+			Ajax components attributes help RichFaces to expose its features.
+			Most of the attributes have default values. Thus, you can start working with RichFaces
+			without knowing the usage of these attribute. However, their usage allows to
+			tune the required Ajax behavior very smoothly. 
+			</p>
+			<h1 class="hsample">Re-Rendering</h1>
+			<p>
+			<b>reRender</b> is a key attribute. It allows to point to the area(s) on a page that
+			should be updated as a response on Ajax interaction. The value of the reRender
+			attribute is an id of the JSF component or an id list. This is a simple example:
+            </p>
+		
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Code Example</legend>
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert src="/richfaces/ajaxAttributes/snippets/reRender2.xhtml" highlight="xhtml"></rich:insert>
+					</rich:panel>
+			</fieldset>	 
+			<p>
+			reRender uses <a target="_blank" href="http://java.sun.com/javaee/javaserverfaces/1.2_MR1/docs/api/javax/faces/component/UIComponent.html#findComponent(java.lang.String)">
+			UIComponent.findComponent()</a> algorithm (with some additional exceptions)
+			to find the component in the component tree. As you see, the algorithm presumes
+			several steps. Each other step is used if the previous step is not successful.
+			Therefore, you can define how fast the component is
+			found mentioning it more precisely. The following example shows the difference
+			in approaches (both buttons will work successfully):
+            </p>
+            <fieldset class="demo_fieldset">
+				<legend class="demo_legend">Code Example</legend>
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert src="/richfaces/ajaxAttributes/snippets/reRender3.xhtml" highlight="xhtml"></rich:insert>
+					</rich:panel>
+			</fieldset>	 
+			<p>
+				You can use JSF EL expression as a value of the reRender attribute. It might be a property of
+				types Set, Collection, Array or simple String. The EL for reRender is resolved right before the
+				Render Response phase. Hence, you can calculate what should be re-rendered on any previous
+				phase during the Ajax request processing.
+			</p>
+			<p>Most common problem with using reRender is pointing it to the component that has a
+			'rendered' attribute. Note, that JSF does not mark the place in the browser DOM where the outcome
+			of the component should be placed in case the 'rendered' condition returns false.  Therefore,
+			after the component becomes rendered during the Ajax request, RichFaces delivers the rendered
+			code to the client, but does not update a page, because the place for update is unknown.
+			You need to point to one of the parent components that has no 'rendered' attribute. As an
+			alternative, you can wrap the component with a4j:outputPanel layout="none". 
+			</p>
+			<p>
+				<b>ajaxRendered</b> attribute of the a4j:outputPanel set to true allows to define the
+				area of the page that will be re-rendered even if it is not pointed in the reRender attribute
+				explicitly. It might be useful if you have an area on a page that should be updated as a
+				response on any Ajax request. For example, the following code allows to output error 
+				messages regardless of what Ajax request causes the Validation phase failed.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Code Example</legend>
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert src="/richfaces/ajaxAttributes/snippets/reRender1.xhtml" highlight="xhtml"></rich:insert>
+					</rich:panel>
+			</fieldset>	
+			<p>
+			<b>limitToList</b> attribute allows to dismiss the behavior of the a4j:outputPanel ajaxRendered
+			attribute. limitToList = "true" means to update only the area(s) that mentioned in the
+			reRender attribute explicitly. All output panels with ajaxRendered="true" will be ignored.
+			</p>
+			<h1 class="hsample">Queue and Traffic Flood Protection</h1>
+			<p>
+			<b>eventsQueue</b> attribute defines the name of the queue that will be used to order upcoming Ajax
+			requests. By default, RichFaces does not queue Ajax requests. If events are produced
+			simultaneously, they will come to the server simultaneously. JSF implementations 
+			(especially, the very first ones) does not guaranty that the request that comes first will be
+			served or passed into the JSF lifecycle first. The order how the server side data
+			will be modified in case of simultaneous request might be unpredictable. 
+			Usage of eventsQueue attribute allows to avoid possible mess. Define the queue name explicitly,
+			if you expect intensive Ajax traffic in your application.
+			</p>
+			<p>
+			The next request posted in the same queue will wait until the previos one is not 
+			processed and Ajax Response is returned back if the eventsQueue attribute is defined. In
+			addition, Richfaces starts to remove from the queue 'similar' requests. 'Similar' requests are
+			the requests produced by the same event. For example, according to the following code, 
+			only the newest request will be sent to the server if a user types very fast and has typed 
+			the several characters already before the previous Ajax Response is back.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Code Example</legend>
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert src="/richfaces/ajaxAttributes/snippets/eventqueue.xhtml" highlight="xhtml"></rich:insert>
+					</rich:panel>
+			</fieldset>	
+			<p><b>requestDelay</b> attribute defines the time (in ms.) that the request will be wait in
+			the queue before it is ready to send. When the delay time is over, the request will be 
+			sent to the server or removed if the newest 'similar' request is in a queue already .
+			</p>
+			<p><b>ignoreDupResponses</b> attribute orders to ignore the Ajax Response produced by the
+			request if the newest 'similar' request is in a queue already. ignoreDupResponses="true"
+			does not cancel the request while it is processed on the server, but just allows to
+			avoid unnecessary updates on the client side if the response loses the actuality.
+			</p>
+			<p>Defining the eventsQueue along with requestDelay allows to protect against unnecessary 
+			traffic flood and synchronizes Ajax requests order. If you have several sources of
+			Ajax requests, you can define the same queue name there. This might be very helpful if
+			you have Ajax components that invoke request asynchronously from the ones produced by 
+			events from users. For example a4j:poll or a4j:push. In case the requests from such
+			components modify the same data, the synchronization might be very helpful.</p>
+			
+			<h1 class="hsample">Data Processing Options</h1>
+			<p>RichFaces uses form based approach for Ajax request sending. This means each time, when a
+			user click an Ajax button or a4j:poll produces an asynchronous request, the data from the closest 
+			JSF form is submitted with the XMLHTTPRequest object. The form data contains the values
+			from the form input element and auxiliary information such as state saving data</p>
+			<p>
+				<b>ajaxSingle </b>- boolean attribute which provides possibility to limit JSF 
+				tree processing(decoding, conversion/validation, value applying) 
+				to the component which send the request only. 			
+			</p>
+			
+			<p>
+			In other words when <b>ajaxSingle</b> attribute is equal true, it orders to 
+			process only a value of the
+			current component (along with <i>f:param</i> or <i>a4j:actionparam</i> values if any). 
+			In case of a4j:support, it will be a value of the parent component.
+			</p>
+			<p>
+				<b>process</b> attribute allows you to define the components to be processed
+				additionally with the component which is marked as ajaxSingle or wrapped to a region.
+				Imagine you need to process only two fields in the different parts of view.
+				If you wrap the first to a region or make nested support component ajaxSingle - 
+				the second component will not be processed and if you do not define the first component
+				in this way - all the view will be processed. In this case the next simple constructions 
+				should be used: 
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Code Example</legend>
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert src="/richfaces/ajaxAttributes/snippets/process.xhtml" highlight="xhtml"></rich:insert>
+					</rich:panel>
+			</fieldset>	 
+			<p>
+				Here when the name field looses focus, Ajax request will be sent.
+				And only two fields (<i>name</i> and additionally <i>email</i>) will be processed
+				(decoding, conversion/validation, value applying will be executed). The same is
+				for the <i>email</i> field blur event.
+			</p>
+			<p><b>immediate</b> attribute has the same purpose as any other non-Ajax-JSF component.
+			The default ActionListener should be executed immediately (i.e. during the Apply Request
+			Values phase of a request processing lifecycle), rather than waiting until the
+			Invoke Application phase. Using immediate="true" is one of the ways to have some 
+			data model values updated when other cannot be updated because of a problem with
+			passing the Validation phase successfully. This might be important inside the 
+			h:dataTable like components where using a4j:region is impossible due to the
+			h:dataTable component architecture.
+			</p>
+			<p><b>bypassUpdates</b> attribute allows to bypass the Update Model phase. It 
+			might be useful if you need to check user input against the available validator,
+			but not to update the model with those data. Note, that an action will be invoked
+			at the end of the Validation phase only if the Validation phase is passed successfully.
+			The listeners of the Application phase will not be invoked in any case.
+			</p>
+			<h1 class="hsample">Action and Navigation</h1>
+			<p>Ajax component is similar to any other non-Ajax JSF component like h:commandButton. It
+			allows to submit the form. You can use action and actionListener attribute to invoke
+			the action method and define the action event.
+			</p>
+			<p>
+			<b>action</b> method must return null if you want to have an Ajax Response with a partual page
+			update. This is regular mode called "Ajax request generates Ajax Response". In case of
+			action does not return null, but the action outcome that matches one of navigation rules, RichFaces
+			starts to work in "Ajax request generates Non-Ajax Response" mode.
+			This mode might be helpful in two major cases:
+            </p>
+            <ol>
+			<li>RichFaces allows to organize a page flow inside the a4j:include component. This is a typical
+			scenario for Wizard like behavior. The new content is rendered inside the a4j:include area. The
+			content is taken from the navigation rule of the faces configuration file (usually, the faces-config.xml).
+			Note, that the content of the "wizard" is not isolated from the rest of the page. The included 
+			page should not have own f:view (it does not matter if you use facelets). You need to have an
+			Ajax component inside the a4j:include to navigate between the wizard pages. Otherwize, the whole 
+			page update will be performed.
+			</li>
+			<li>If you want to involve the server side validators and navigate to the next page only if
+			the Validation phase is passed successfully, you can replace h:commandButton with a4j:commandButton
+			and point to the action method that navigates to the next page. If Validation process fails, 
+			the partial page update will occur and a user will see an error message. Otherwize, the application
+			proceeds to the next page. Make sure, you define &lt;redirect /&gt; option for the navigation rule to
+			avoid memory leaks.
+			</li>
+			</ol>
+		    <h1 class="hsample">Javascript Interactions</h1>
+            <p>
+                RichFaces allows writing Ajax-enabled JSF application without writing any Javascript code.
+				However, you can still invoke the javascript code if you need. There are several ajax
+				attributes that helps to do it.
+			</p>
+			<p>
+				<b>onsubmit</b> attribute allows to invoke javascript code before an Ajax request is
+				sent. If 'onsubmit' returns false, the Ajax request is canceled. The code of 'onsubmit'
+				is inserted before the RichFaces Ajax call. Hence, the 'onsubmit' should not has a 'return'
+				statement if you want the Ajax request to be sent. If you are going to invoke a javscript
+				function that returns true or false, use the conditional statement to return something only
+				when you need to cancel the request. For example, onsubmit="if (mynosendfunct()==false){return false}".
+			</p>
+			<p>
+				<b>onclick</b> attribute is similar to the 'onsubmit', but for clickable components such
+				as a4j:commandLink and a4j:commandButton. If it returns false, the Ajax request is canceled also.
+			</p>
+			<p>
+				<b>oncomplete</b> attribute allows to invoke the javascript code right after the
+				Ajax Response is returned back and the DOM tree of the browser is updated. Richfaces
+				registers the code for further invocation of XMLHTTP request object before an Ajax
+				request is sent. This means the code will not be changed during processing of
+				the request on the server if you use JSF EL value binding. Also, you cannot use
+				'this' inside the code, because it will not point the component where Ajax request
+				was initiated.
+			</p>
+			<p>
+				<b>data</b> attribute allows to get the additional data from the server during an
+				Ajax call. You can use JSF EL to point the property of the managed bean and its value
+				will be serialized in JSON format and be available on the client side. You can refer
+				to it using the 'data' variable. For example:
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Code Example</legend>
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert src="/richfaces/ajaxAttributes/snippets/data.xhtml" highlight="xhtml"></rich:insert>
+					</rich:panel>
+			</fieldset>	 
+			<p>
+				Richfaces allows to serialize not only primitive types into JSON format, but also complex
+				types including arrays and collections. The beans should be serializable to be refered
+				with 'data'.
+			</p>
+
+
+		</ui:define>
+		<ui:define name="sources">
+			<span style="display:none"/>
+		</ui:define>
+	</ui:composition>
+</html>

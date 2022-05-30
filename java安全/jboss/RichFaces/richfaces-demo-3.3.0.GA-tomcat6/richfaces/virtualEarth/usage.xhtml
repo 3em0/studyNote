@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+			<p>rich:virtualEarth presents a dynamically generated map based on the 
+			Microsoft Virtual Earth API. API is a pure Javascript library. So, you do not need
+			to have any external program or plugin installed to make it working. The component
+			allows to place the map on a page and define the initial parameters for it. You
+			can use the Virtual Earth SDK to manipulate with the map after that. The following links
+			helps you to be familiar to this technology:
+			<ul>
+				<li> <a href="http://dev.live.com/virtualearth/sdk/" target="_blank">
+						Virtual Earth Interactive SDK
+					 </a>
+				</li>
+				<li> <a href="http://msdn2.microsoft.com/en-us/library/bb429619.aspx" target="_blank">
+						MSDN, Virtual Earth Map Control 5.0
+					 </a>
+				</li>
+			</ul>
+			</p>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">VirtualEarth example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/virtualEarth/examples/placeToGo.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/virtualEarth/examples/placeToGo.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+
+			<p>
+			<b>var</b> attribute define a javascript variable you can use then as a reference to the
+			map from your custom javascript.
+			</p>
+			<p>
+			<b>lat</b> and <b>lng</b> attributes define the initial latitude and longitude of the
+			center of the map.
+			</p>
+			<p>
+			<b>zoom</b> attributes define the initial zoom. The available range from 1 to
+			19 (close look). The maximum might depend of the location.
+			</p>
+			<p>
+			<b>mapStyle</b> attributes define the initial map style. The available values for this 
+			attribute are "Road","Aerial","Hybrid","Birdseye". "Birdseye", they are available for the limited
+			number of locations only.
+			</p>
+			<p>
+			Use <b>style</b> attribute to define the size of the map. For example, style="width:600px;height:400px".
+			</p>
+			<p>
+				Virtual Earth does not support xhtml format of the page. Thus, if you use Facelets
+				and JSF 1.2, do not forget &lt;f:view contentType="text/html"&gt; somewhere on the 
+				page. To avoid re-initialization, do not re-render the component during Ajax
+				updates.
+			</p>
+			
+		</ui:define>
+
+	</ui:composition>
+</html>

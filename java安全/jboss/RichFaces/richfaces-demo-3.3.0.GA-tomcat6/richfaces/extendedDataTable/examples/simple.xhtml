@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<ui:composition>
+		<h:form>
+		<h:panelGrid columns="2" columnClasses="top,top">
+		<rich:extendedDataTable value="#{extendedTableBean.capitalsDataModel}" var="cap" id="table" 
+			width="580px" height="400px" sortMode="#{extendedTableBean.sortMode}" 
+				selectionMode="#{extendedTableBean.selectionMode}">
+			<rich:column sortable="false" label="Flag">  
+				<f:facet name="header">
+					<h:outputText value="Flag"/>
+				</f:facet>
+				<h:graphicImage value="#{cap.stateFlag}"/>
+			</rich:column> 
+			<rich:column sortable="true" sortBy="#{cap.state}" filterBy="#{cap.state}" filterEvent="onkeyup" width="170px" label="State Name">
+				<f:facet name="header">
+					<h:outputText value="State Name"/>
+				</f:facet>
+				<h:outputText value="#{cap.state}"/>
+			</rich:column> 
+			<rich:column sortable="true" sortBy="#{cap.name}" filterBy="#{cap.name}" filterEvent="onkeyup" width="170px" label="State Capital">
+				<f:facet name="header">
+					<h:outputText value="State Capital"/>
+				</f:facet>
+				<h:outputText value="#{cap.name}"/>
+			</rich:column> 
+			<rich:column sortable="false" label="Time Zone">
+				<f:facet name="header">
+					<h:outputText value="Time Zone"/>
+				</f:facet>
+				<h:outputText value="#{cap.timeZone}"/>
+			</rich:column>
+		</rich:extendedDataTable>
+		<rich:panel>
+			<f:facet name="header">
+				<h:outputText value="Sort/Selection modes changing"/>
+			</f:facet>
+			<h:panelGrid columns="2">
+				<h:outputText value="Sort Mode:"/>
+				<h:selectOneMenu value="#{extendedTableBean.sortMode}">
+					<f:selectItem itemLabel="Single" itemValue="single"/>
+					<f:selectItem itemLabel="Multi" itemValue="multi"/>
+					<a4j:support event="onchange" ajaxSingle="true" reRender="table"/>
+				</h:selectOneMenu>
+				<h:outputText value="Selection Mode:"/>
+				<h:selectOneMenu value="#{extendedTableBean.selectionMode}">
+					<a4j:support ajaxSingle="true" event="onchange" reRender="table"/>
+					<f:selectItem itemLabel="Single" itemValue="single"/>
+					<f:selectItem itemLabel="Multi" itemValue="multi"/>
+					<f:selectItem itemLabel="None" itemValue="none"/>
+				</h:selectOneMenu>
+			</h:panelGrid>
+		</rich:panel>	
+		</h:panelGrid>
+		</h:form>
+	</ui:composition>
+
+</html>

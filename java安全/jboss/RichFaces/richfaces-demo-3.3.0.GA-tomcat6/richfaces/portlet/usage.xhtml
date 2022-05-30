@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<p>
+			The  &lt;a4j:portlet&gt; should be used in a portal environment. The main 
+			component purpose is implementation of possibility to create several instances 
+			for the same portlet on one page.	
+		</p>
+		<p>
+			Portal page can include some instances of the same portlet but clientId of 
+			elements should be different for each window. In that case 'namespace' is used 
+			for each portlet. The &lt;a4j:portlet&gt; implemets NaimingContainer interface and 
+			adds a namespace to all components on a page. All portlet content should be 
+			wrapped by &lt;a4j:portlet&gt; for resolving the problems mentioned before. 
+ 		</p>	
+		<p>
+			More info about portal environments support can be found on the users forums.
+		</p>
+		<p>
+			Portlet Sample could be checked out from JBoss SVN:
+			<a href="http://anonsvn.jboss.org/repos/ajax4jsf/trunk/samples/portal-echo/">
+				portal-echo application
+			</a>
+		</p>
+		<p>
+			Usage instructions for this demo could be found at the corresponding:
+			<a href="http://www.jboss.com/index.html?module=bb&amp;op=viewtopic&amp;t=107325">
+				JBoss forum topic
+			</a>
+		</p>
+		<ui:remove>
+		<div class="sample-container">
+			<ui:include src="/richfaces/push/examples/push.xhtml"/>
+			<ui:include src="/templates/include/sourceview.xhtml">
+				<ui:param name="sourcepath" value="/richfaces/push/examples/push.xhtml"/>
+				<ui:param name="openlabel" value="View Source" />
+			</ui:include>	
+		</div>
+		</ui:remove>
+		</ui:define>
+
+	</ui:composition>
+</html>

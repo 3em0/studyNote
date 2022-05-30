@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="tomcat-jdbc">
+    <CLASSES>
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/tomcat-jdbc.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/annotations-api.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/catalina-ant.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/catalina-ha.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/catalina-storeconfig.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/catalina-tribes.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/catalina.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/ecj-4.6.3.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/el-api.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/jasper-el.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/jasper.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/jaspic-api.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/jsp-api.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/servlet-api.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/tomcat-api.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/tomcat-coyote.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/tomcat-dbcp.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/tomcat-jni.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/tomcat-util-scan.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/tomcat-util.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/tomcat-websocket.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77/lib/websocket-api.jar!/" />
+      <root url="jar://D:/software/tomcat/apache-tomcat-8.5.77-deployer/lib/tomcat-juli.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://D:/software/tomcat/apache-tomcat-8.5.77-src/java" />
+    </SOURCES>
+  </library>
+</component>

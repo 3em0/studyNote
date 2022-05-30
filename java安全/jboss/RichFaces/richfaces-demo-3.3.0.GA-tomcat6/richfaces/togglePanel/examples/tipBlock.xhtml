@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+
+
+	<f:subview>
+	<h:panelGrid  styleClass="infopanel"  cellpadding="0" cellspacing="0" columnClasses="col"  
+		rowClasses="row1, row2,row3" border="0" columns="1">
+	
+		<h:outputText value="#{tip}" />
+		
+		<rich:separator height="1" />
+		
+		<h:panelGrid columns="3">
+			<rich:toggleControl value="x Close" switchToState="closed" />
+			<rich:toggleControl switchToState="#{previous}" value="#{empty previous? '': '&#171; Previous'}" />
+			<rich:toggleControl switchToState="#{next}" value="#{empty next? '': 'Next &#187;'}" />
+		</h:panelGrid>
+	
+	</h:panelGrid>
+	</f:subview>
+
+
+</ui:composition>

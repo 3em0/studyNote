@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<style>
+		.inplace{
+			border: none;
+			cursor:pointer; 
+		}
+		.hover {
+			color: #{a4jSkin.generalTextColor};
+			background-color :#{a4jSkin.tipBorderColor};
+		}		
+	</style> 
+	
+	<h:panelGroup style="width:200px;" layout="block">
+		<rich:inplaceSelect value="#{inplaceComponentsBean.inputValue}"
+			defaultLabel="Double Click to edit" openOnEdit="true"
+			showControls="true" editEvent="ondblclick" layout="block"
+			viewClass="inplace" changedClass="inplace"
+			changedHoverClass="hover" viewHoverClass="hover">
+			<f:selectItems value="#{capitalsBean.capitalsOptions}" />
+		</rich:inplaceSelect>
+	</h:panelGroup>
+	<rich:spacer width="100%" height="20px" />
+</ui:composition>

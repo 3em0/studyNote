@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	<style>
+	.rich-tab-inactive {
+		cursor: pointer;
+	}
+	.rich-tabpanel-content {
+		border-width: 1px 1px 1px 1px;
+		background-color: transparent;
+	}
+	</style>
+	<p>
+	Here is an example of default tab panel with 3 tabs.
+	<rich:tabPanel headerAlignment="right" switchType="client">
+		<rich:tab label="First">
+			Here is tab #1
+		</rich:tab>
+		<rich:tab label="Second">
+			Here is tab #2
+		</rich:tab>
+		<rich:tab label="Third">
+			Here is tab #3
+		</rich:tab>
+	</rich:tabPanel>
+	</p>
+
+</ui:composition>

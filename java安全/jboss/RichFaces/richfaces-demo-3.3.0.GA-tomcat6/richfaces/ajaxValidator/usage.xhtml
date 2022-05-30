@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+			<p>
+				rich:ajaxValidator is a component designed to provide ajax validation 
+				inside the inputs. It is designed like an a4j:support component but skips all JSF processing
+				except validation. 
+			</p>
+			<p>
+				Look to the first simple example. This component should be added as a child component
+				to input  that should be validated and specify validation event. The component 
+				is ajaxSingle by default so only the current field will be validated.  
+			</p>	
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Title</legend>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/ajaxValidator/examples/jsfValidation.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/ajaxValidator/examples/jsfValidation.xhtml"/>
+					</ui:include>			
+				</div>
+			</fieldset>
+			<p>
+				The component also provides a possibility to use Hibernate Validation for the target fields. 
+			</p>
+			<p>
+				Look to the next example which is modified in order to use Hibernate Validators:
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Title</legend>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/ajaxValidator/examples/hibernateValidation.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/ajaxValidator/examples/hibernateValidation.xhtml"/>
+						<ui:param name="openlabel" value="View Source" />
+					</ui:include>		
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="openlabel" value="Validation Bean Code" />
+						<ui:param name="sourcetype" value="java" />
+						<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/demo/validation/ValidationBean.java" />
+					</ui:include>			
+				</div>
+			</fieldset>
+		</ui:define>
+	</ui:composition>
+</html>

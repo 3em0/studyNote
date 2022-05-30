@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich">
+	<ui:composition>
+		<p>
+			In order to use Rich Faces State Manager API you should perform next steps:
+		</p>
+		<ul>
+			<li>
+				Register state manager El resolver and navigation handler in faces config:
+				<p>
+					<rich:insert src="/richfaces/stateAPI/snippets/app.xml" highlight="xml"/>
+				</p> 
+			</li>
+			<li>
+				Register additional application-factory in faces-config:
+				<p>
+					<rich:insert src="/richfaces/stateAPI/snippets/appfact.xml" highlight="xml"/>
+				</p> 
+			</li>
+			<li>
+				Register two managed beans. One should define and store states itself. 
+				And the other should define bean with type <i>org.richfaces.ui.model.States</i>
+				and have managed property <i>states</i> bound to the bean which defines states.
+				(Will be changed to xml declarations in future releases)
+				<p>
+					<rich:insert src="/richfaces/stateAPI/snippets/beans.xml" highlight="xml"/>
+				</p> 
+			</li>
+			<li>
+				Define states in Config class. (full code example on the <i>Usage</i> tab)
+			</li>
+			<li>
+				Use <b>state</b> bindings on the pages. 
+			</li>
+		</ul>
+	</ui:composition>
+</html>

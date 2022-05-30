@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+			<p>RichFaces Context menu is a component that allows to organize the hierarchical context menus
+			similar to one that almost every desktop application has.
+			</p>
+			 <p>Context Menu can contain a set of Menu Items, Menu Groups and Menu Separators.
+			 Usage of these components are similar to usage in RichFaces Drop Down Menu.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Example</legend>
+
+				<div class="sample-container">
+					To call the menu - perform the right click on the picture<br/><br/>
+					<ui:include src="/richfaces/contextMenu/example/menu.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/contextMenu/example/menu.xhtml"/>
+					</ui:include>
+
+				</div>
+			</fieldset>			
+			<p>
+				In this example menu is just defined as nested to <b>panelGroup</b> with "picture" Id.
+				You should be careful with such definitions, because on the client menu component 
+				searches for the DOM element with the client Id of the parent component on the server.
+				If the component doesn't encode id on the client, it will be not found by the menu and menu
+				will be attached to its closest parent in a DOM tree. For example you should not define the menu as a child 
+				for images components. 
+			</p>
+			<p>Context menu itself is an invisible panel
+			 that appears after a particular client side event (onmouseover, onclick etc) occured on a parent component. 
+			 The event is defined with an <b>event</b> attribute.</p>
+			 <p class="note">
+				<i><b>Note:</b> As you can see from the first example the component could use "oncontextmenu" event to call the Menu on right click event.
+				But in this case the component should be called via <b>componentControl</b> component (as it is shown at the second example) rather than using a4j:support style. 
+				If a4j:support style is used then many of the components don't encode this event and also in case of support-like definition the component will not work properly. 
+				</i>			 
+			 </p>
+			 <p>
+			 	Other usefull attributes are:
+			 	<ul> 
+			 		<li>
+			 			<b>disableDefaultMenu</b> - if it is true, the event defined on the menu
+			 			will not be handled by other client handlers except context menu handler. You 
+			 			may see on the first example that a standard browser menu isn't called
+			 			after right click.    
+			 		</li>
+			 		<li>
+			 			<b>attached</b> - if it is true, the menu is attached to parent component. In other case
+			 			it should be called via JS API (using componentControl)
+			 		</li>
+			 	</ul>
+			 </p>
+			 <p>
+			 	Unlike dropDownMenu, contextMenu has no representation element, and has strong right-click
+			 	support.
+			 </p>
+			 <p>
+			 	And the main difference from drop down menu is that a context menu could be defined once on the page 
+			 	and used by different components. Single instance of the menu will be created and shared between the components.
+			 </p>
+			 <p>
+			 	To customize shared menu for every component, macrosubstitutions could be used.
+			 	<b>ComponentControl</b> component could be used to call the instance of the menu for 
+			 	the particular component. <b>f:param</b> components could be used to add parameters to menu.
+			 </p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Example</legend>
+				<div class="sample-container">
+					To call the menu - click any car row.<br/><br/>	        
+					<ui:include src="/richfaces/componentControl/examples/cmenuusage.xhtml" />
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/componentControl/examples/cmenuusage.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+			<p>
+				Pay your attention to the source code. Inside the table you may see component control that calls the menu.
+				Menu recreated after every call on the client and new <b>{car}</b> and <b>{model}</b> values are inserted into the menu. 
+			</p>
+			<p>Look through componentControl demo page for more information.</p>
+		</ui:define>
+
+	</ui:composition>
+</html>

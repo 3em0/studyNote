@@ -1,0 +1,69 @@
+<rich:tree adviseNodeOpened="#{treeModelBean.adviseNodeOpened}" switchType="client">
+	<rich:treeNodesAdaptor id="project" nodes="#{loaderBean.projects}" var="project">
+		<rich:treeNode>
+	    	<h:commandLink action="#{project.click}" value="Project: #{project.name}" />
+	    </rich:treeNode>
+
+		<rich:treeNodesAdaptor id="srcDir" var="srcDir" nodes="#{project.srcDirs}">
+			<rich:treeNode>
+				<h:commandLink action="#{srcDir.click}" value="Source directory: #{srcDir.name}" />
+			</rich:treeNode>
+
+			<rich:treeNodesAdaptor id="pkg" var="pkg" nodes="#{srcDir.packages}">
+				<rich:treeNode>
+					<h:commandLink action="#{pkg.click}" value="Package: #{pkg.name}" />
+				</rich:treeNode>
+
+				<rich:treeNodesAdaptor id="class" var="class" nodes="#{pkg.classes}">
+					<rich:treeNode>
+						<h:commandLink action="#{class.click}" value="Class: #{class.name}" />
+					</rich:treeNode>
+				</rich:treeNodesAdaptor>
+			</rich:treeNodesAdaptor>
+
+			<rich:treeNodesAdaptor id="pkg1" var="pkg" nodes="#{srcDir.packages}">
+				<rich:treeNode>
+					<h:commandLink action="#{pkg.click}" value="Package1: #{pkg.name}" />
+				</rich:treeNode>
+
+				<rich:treeNodesAdaptor id="class1" var="class" nodes="#{pkg.classes}">
+					<rich:treeNode>
+						<h:commandLink action="#{class.click}" value="Class1: #{class.name}" />
+					</rich:treeNode>
+				</rich:treeNodesAdaptor>
+			</rich:treeNodesAdaptor>
+		</rich:treeNodesAdaptor>
+		
+		<rich:recursiveTreeNodesAdaptor id="dir" var="dir"
+			roots="#{project.dirs}" nodes="#{dir.directories}">
+			<rich:treeNode>
+				<h:commandLink action="#{dir.click}" value="Directory: #{dir.name}" />
+			</rich:treeNode>
+			
+			<rich:treeNodesAdaptor id="file" var="file" nodes="#{dir.files}">
+				<rich:treeNode>
+					<h:commandLink action="#{file.click}" value="File: #{file.name}" />
+				</rich:treeNode>
+			</rich:treeNodesAdaptor>
+			
+			<rich:treeNodesAdaptor id="file1" var="file" nodes="#{dir.files}">
+				<rich:treeNode>
+					<h:commandLink action="#{file.click}" value="File1: #{file.name}" />
+				</rich:treeNode>
+			</rich:treeNodesAdaptor>
+
+			<rich:recursiveTreeNodesAdaptor id="archiveEntry" var="archiveEntry"
+				roots="#{dir.files}" nodes="#{archiveEntry.archiveEntries}" 
+				includedRoot="#{archiveEntry.class.simpleName == 'ArchiveFile'}"
+				includedNode="#{archiveEntry.class.simpleName == 'ArchiveEntry'}">
+			
+				<rich:treeNode id="archiveEntryNode">
+					<h:commandLink action="#{archiveEntry.click}" value="Archive entry: #{archiveEntry.name}" />
+				</rich:treeNode>
+
+			</rich:recursiveTreeNodesAdaptor>
+
+		</rich:recursiveTreeNodesAdaptor>
+
+	</rich:treeNodesAdaptor>
+</rich:tree>

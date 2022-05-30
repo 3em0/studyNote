@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+			
+	<rich:panel style="padding:0" headerClass="outpanelHeader">
+		<f:facet name="header">
+			<rich:spacer height="4" />
+		</f:facet>
+		<h2 align="center"><h:outputText value="Benefits of Using Ajax4jsf" /></h2>
+		<h:panelGrid columns="2" columnClasses="gridContent">
+			<rich:panel bodyClass="inpanelBody">
+				<f:facet name="header">
+					For Application Developers
+				</f:facet>
+					<ul>
+				    <li>Production quality Open Source</li>
+				    <li>Does  Open Source and has an Open Architecture</li>
+				    <li>Compatible with any JSF Implementation - MyFaces, JSF1.1, JSF1.2</li>
+					<li>Allows to Ajaxify JSF application without writing Javascript</li>
+				    <li>Works with standard and third party components</li>
+				    <li>Adds the Ajax capability to existing non-Ajax components</li>
+					</ul>
+			</rich:panel>
+			<rich:panel  bodyClass="inpanelBody">
+				<f:facet name="header" >
+					For Component Developers
+				</f:facet>
+				 	<ul>
+					<li>Ajax4jsf is Open Source and has an Open Architecture</li>
+					<li>Gives an API to create components with built-in Ajax support</li>
+					<li>Has a Component Development Kit for rapid development</li>
+					<li>Allows to skin the look-n-feel using both CSS and set of skin-parameters</li>
+					<li>Automatically generates the unit test-cases for developing components</li>
+					<li>Allows to pack javascript code, images, css inside the final jar</li>
+					</ul>
+			</rich:panel>
+		</h:panelGrid>
+	</rich:panel>
+
+</ui:composition>

@@ -1,0 +1,1 @@
+cd E:\\blog\\study-note && e: &&git add . && git commit -m "update" && git push origin master

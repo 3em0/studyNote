@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<p>
+			Log component allows you to inspect client side activities 
+			during an Ajax request. It shows reuqest data, response data, DOM
+			tree changes on update and other useful debug information.  
+		</p>
+		<p>
+			Debug info can be rendered on the main page or as a separate popup window.
+			There you can explore debug info for Simple Repeater example:
+		</p>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Log demo</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/log/examples/log.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/log/examples/log.xhtml"/>
+						<ui:param name="openlabel" value="View Source" />
+					</ui:include>
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

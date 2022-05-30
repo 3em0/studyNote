@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 2.1.2
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>usage.xhtml</title>
+<link rel="stylesheet" href="../../../css\xhtml-source.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="normal">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+<span class="keyword">&lt;html</span><span class="normal"> </span><span class="type">xmlns</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://www.w3.org/1999/xhtml</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:ui</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://java.sun.com/jsf/facelets</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:h</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://java.sun.com/jsf/html</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:f</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://java.sun.com/jsf/core</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:a4j</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://richfaces.org/a4j</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:rich</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://richfaces.ajax4jsf.org/rich</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">	</span><span class="keyword">&lt;ui:composition</span><span class="normal"> </span><span class="type">template</span><span class="symbol">=</span><span class="string">"</span><span class="string">/templates/component-sample.xhtml</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;ui:define</span><span class="normal"> </span><span class="type">name</span><span class="symbol">=</span><span class="string">"</span><span class="string">sample</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">			</span>
+<span class="normal">			</span><span class="keyword">&lt;p&gt;</span><span class="normal">a4j:loadBundle allows to use reference to bundle messages during the Ajax re-rendering.</span>
+<span class="normal">			a4j:loadBundle is a substitute for the f:loadBundle in JSF 1.1 which is not a JSF component originally.</span>
+<span class="normal">			f:loadBundle is a jsp tag that load the bundle messages into the request scope when page is</span>
+<span class="normal">			rendered. As soon as each Ajax request works in own request scope, the bundles loaded with</span>
+<span class="normal">			f:loadBundle are unavailable.</span>
+<span class="normal">			</span><span class="keyword">&lt;/p&gt;</span>
+<span class="normal">			</span><span class="keyword">&lt;p&gt;</span><span class="normal">Instead of f:loadBundle that might be located anywhere on the page, the a4j:loadBundle </span>
+<span class="normal">			should be declared inside the f:view (this does not matter in case on using Facelets)</span>
+<span class="normal">			</span><span class="keyword">&lt;/p&gt;</span>
+
+<span class="normal">			</span><span class="keyword">&lt;p&gt;</span><span class="normal">JSF 1.2 introduces the bundle registered in the faces-config.xml. This fixed the problem</span>
+<span class="normal">			 with f:loadBundle. Therefore, you can use this JSF 1.2 way to declare your bundles.</span>
+<span class="normal">			</span><span class="keyword">&lt;/p&gt;</span>
+<span class="normal">			</span>
+<span class="normal">		</span><span class="keyword">&lt;/ui:define&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;ui:define</span><span class="normal"> </span><span class="type">name</span><span class="symbol">=</span><span class="string">"</span><span class="string">sources</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">			</span><span class="keyword">&lt;h:panelGroup</span><span class="normal"> </span><span class="keyword">/&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;/ui:define&gt;</span>
+<span class="normal">	</span><span class="keyword">&lt;/ui:composition&gt;</span>
+<span class="keyword">&lt;/html&gt;</span>
+</tt></pre>
+</body>
+</html>

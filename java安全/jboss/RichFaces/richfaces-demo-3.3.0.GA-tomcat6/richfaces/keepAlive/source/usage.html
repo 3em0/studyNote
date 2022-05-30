@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 2.1.2
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>usage.xhtml</title>
+<link rel="stylesheet" href="..\..\..\css\xhtml-source.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="keyword">&lt;h:panelGroup&gt;</span>
+<span class="normal">	</span><span class="keyword">&lt;a4j:keepAlive</span><span class="normal"> </span><span class="type">beanName</span><span class="symbol">=</span><span class="string">"</span><span class="string">rsBean2</span><span class="string">"</span><span class="normal"> </span><span class="keyword">/&gt;</span>
+<span class="normal">	</span><span class="keyword">&lt;h:form&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;h:inputText</span><span class="normal"> </span><span class="type">size</span><span class="symbol">=</span><span class="string">"</span><span class="string">4</span><span class="string">"</span><span class="normal"> </span><span class="type">label</span><span class="symbol">=</span><span class="string">"</span><span class="string">First Addent</span><span class="string">"</span><span class="normal"> </span><span class="type">value</span><span class="symbol">=</span><span class="string">"</span><span class="string">#{rsBean2.addent1}</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">			</span><span class="keyword">&lt;a4j:support</span><span class="normal"> </span><span class="type">event</span><span class="symbol">=</span><span class="string">"</span><span class="string">onkeyup</span><span class="string">"</span><span class="normal"> </span><span class="type">reRender</span><span class="symbol">=</span><span class="string">"</span><span class="string">btn2</span><span class="string">"</span><span class="normal"> </span><span class="keyword">/&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;/h:inputText&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;h:outputText</span><span class="normal"> </span><span class="type">value</span><span class="symbol">=</span><span class="string">"</span><span class="string">+</span><span class="string">"</span><span class="keyword">/&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;h:inputText</span><span class="normal">   </span><span class="type">size</span><span class="symbol">=</span><span class="string">"</span><span class="string">4</span><span class="string">"</span><span class="normal"> </span><span class="type">label</span><span class="symbol">=</span><span class="string">"</span><span class="string">Second Addent</span><span class="string">"</span><span class="normal">  </span><span class="type">value</span><span class="symbol">=</span><span class="string">"</span><span class="string">#{rsBean2.addent2}</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">				</span><span class="keyword">&lt;a4j:support</span><span class="normal"> </span><span class="type">event</span><span class="symbol">=</span><span class="string">"</span><span class="string">onkeyup</span><span class="string">"</span><span class="normal"> </span><span class="type">reRender</span><span class="symbol">=</span><span class="string">"</span><span class="string">btn2</span><span class="string">"</span><span class="normal"> </span><span class="keyword">/&gt;</span><span class="normal">						</span>
+<span class="normal">		</span><span class="keyword">&lt;/h:inputText&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;a4j:commandButton</span><span class="normal"> </span><span class="type">style</span><span class="symbol">=</span><span class="string">"</span><span class="string">margin:0 5px</span><span class="string">"</span><span class="normal"> </span><span class="type">id</span><span class="symbol">=</span><span class="string">"</span><span class="string">btn2</span><span class="string">"</span><span class="normal"> </span><span class="type">action</span><span class="symbol">=</span><span class="string">"</span><span class="string">#{rsBean2.doSum}</span><span class="string">"</span><span class="normal"> </span>
+<span class="normal">			 </span><span class="type">value</span><span class="symbol">=</span><span class="string">"</span><span class="string">=</span><span class="string">"</span><span class="normal"> </span><span class="type">reRender</span><span class="symbol">=</span><span class="string">"</span><span class="string">sum2</span><span class="string">"</span>
+<span class="normal">			 </span><span class="type">disabled</span><span class="symbol">=</span><span class="string">"</span><span class="string">#{rsBean2.addent1 == null or rsBean2.addent2==null}</span><span class="string">"</span><span class="keyword">/&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;h:outputText</span><span class="normal"> </span><span class="type">id</span><span class="symbol">=</span><span class="string">"</span><span class="string">sum2</span><span class="string">"</span><span class="normal"> </span><span class="type">value</span><span class="symbol">=</span><span class="string">"</span><span class="string">#{rsBean2.sum}</span><span class="string">"</span><span class="normal"> </span><span class="keyword">/&gt;</span>
+<span class="normal">	</span><span class="keyword">&lt;/h:form&gt;</span>
+<span class="normal">	</span><span class="keyword">&lt;a4j:outputPanel</span><span class="normal"> </span><span class="type">ajaxRendered</span><span class="symbol">=</span><span class="string">"</span><span class="string">true</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;h:messages</span><span class="normal"> </span><span class="keyword">/&gt;</span>
+<span class="normal">	</span><span class="keyword">&lt;/a4j:outputPanel&gt;</span>
+<span class="keyword">&lt;/h:panelGroup&gt;</span>
+
+<span class="normal">...</span>
+
+<span class="normal">package org.richfaces.demo.ajaxSamples;</span>
+
+<span class="normal">public class rsBean {</span>
+<span class="normal">	private Integer addent1;</span>
+<span class="normal">	private Integer addent2;</span>
+<span class="normal">	private Integer sum;</span>
+<span class="normal">	</span>
+<span class="normal">	public String doSum() {</span>
+<span class="normal">		sum = new Integer((addent1 != null ? addent1.intValue() : 0) + (addent2 != null ? addent2.intValue() : 0));</span>
+<span class="normal">		return null;</span>
+<span class="normal">	}</span>
+<span class="normal">	</span>
+<span class="normal">	//getters and setters skipped</span>
+<span class="normal">}</span></tt></pre>
+</body>
+</html>

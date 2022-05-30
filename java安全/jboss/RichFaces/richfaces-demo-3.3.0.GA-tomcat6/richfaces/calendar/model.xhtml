@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/component-sample.xhtml">
+	<ui:define name="sample">
+
+		<p>Calendar may use a special Data Model to provide data for
+		element rendering. You can re-define the default Calendar Model using
+		the <b>dataModel</b> attribute pointed to the object that implements
+		CalendarDataModel interface.</p>
+		<p>CalendarDataModel has the following methods:
+		<ul>
+			<li><b>CalendarDataModelItem[] getData(Date[]) </b> is called
+			every time when components need the next block of CalendarDataItems.
+			That may happens when the calendar is rendered, or when you navigate to the
+			next/previous month or in any other case when the calendar is rendered. This
+			method is called in an Ajax mode when the calendar renders a new page.</li>
+			<li><b>Object getToolTip(Date)</b> is used when tool tips are
+			displayed in "single" mode.</li>
+		</ul>
+		</p>
+		<p>CalendarDataModelItem provides the following methods:
+		<ul>
+			<li><b>Boolean isEnabled()</b> returns true if date is
+			"selectable" on the calendar, the default implementation returns true</li>
+			<li><b>String getStyleClass()</b> returns String that is
+			appended to a style class for the date span. For example it may be
+			"relevant holiday" that mean a class lools like "rich-cal-day
+			relevant holiday". The default implementation returns an empty string.</li>
+			<li><b>Object getData()</b> returns any additional payload that
+			must be a JSON-serializable object. It may be used in the custom date
+			representation on the calendar (inside the custom facet).</li>
+			<li><b>Boolean hasToolTip()</b> returns true if the given date has
+			an associated one with it tooltip data. The default implementation returns
+			false.</li>
+			<li><b>Object getToolTip()</b> returns tool tip data that is used in a "batch" tooltip loading mode.</li>
+		</ul>
+		</p>
+		<p>
+			<b>Note: </b><i>Tooltips and date disablement isn't supported in the current implementation on the client side. It will be implemented in the next releases.</i>
+		</p>
+
+
+	</ui:define>
+
+</ui:composition>
+</html>

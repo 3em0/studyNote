@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<p>
+			There you could explore <b>optimization </b>parameters of the <b>queue
+			</b>and learn how them influence the <b>Ajax requests</b>. This example 
+			is a good start to learn about Ajax requests flood protection. 
+		</p>
+
+		<p>
+			Pay attention to some points in the example:
+		</p>
+		<ul>
+		  <li>
+		  	Setting ignoreDupResponces to true - will reduce the count of DOM updates on typing inside input.
+		  	(in initial state - count of updates will be equals to count of requests)
+		  </li>
+		  <li>
+		  	Disabling the queue will causes fully asynchronous updates. Note
+		  	that updates could appears not in the right order and you could get
+		  	wrong string in the result.   
+		  </li>
+		  <li>
+		  	Setting request delay to greater value will reduce the requests count
+		  	on fast typing. (More similar requests will be combined in the result)   
+		  </li>
+		</ul>
+		<p><i>
+		
+			Also pay your attention to the queue definition. As it mentioned in
+			our documentation such definition (inside some form without name)
+			means that the queue becomes global for the form.		
+		</i></p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Queue demo</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/queue/examples/repeater.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/queue/examples/repeater.xhtml"/>
+						<ui:param name="openlabel" value="View Source" />
+					</ui:include>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/demo/queue/QueueBean.java"/>
+						<ui:param name="openlabel" value="View QueueBean.java code" />
+						<ui:param name="sourcetype" value="java" />
+					</ui:include>
+				</div>
+			</fieldset>
+		<h:form>
+		<p>
+			<b>Queue</b> provides subset of common <b>Ajax requests optimization attributes</b> 
+			(<i>requestDelay, ignoreDupResponse and timeout</i>)
+			which you could explore at <h:commandLink value="Queue and Traffic Flood Protection" immediate="true" action="ajaxOptimization"/> section.
+			These attributes defined within the queue will be used for all the request
+			in case concrete components do not override them. 			   
+		</p> 
+		</h:form>
+		<p>The queue component also provides some additional attributes in order to
+			control queue itself:
+		</p> 
+		<ul>
+			<li>
+				<b>name</b> attribute which defines name for the queue.
+			</li>
+			<li>
+				<b>disabled</b> - attribute which allows to disable the queue.
+				Could be used in order to disable the global queue for particular
+				views or in order to switch between same named queues with different 
+				parameters. 
+			</li>
+			<li>
+				<b>size</b> - Defines the count of requests which could be queued
+				at the moment. -1 value means that queue has no size limit.
+			</li>
+			<li>
+				<b>sizeExceededBehavior</b> - defines the behavior for the queue
+				if size already exceeded and new request tried to be added to 
+				the queue. (dropNew, dropNext, fireNew, fireNext values allowed) 
+			</li>
+			<li>
+				<b>status</b> - attribute which allows to point status component
+				to all the requests from the particular queue.
+			</li> 
+		</ul>
+		<p>
+			Full attributes table and usage ways you could explore at our 
+			queue documentation.
+		</p>
+		<p><i>
+		
+			Also pay your attention to the queue definition. As it mentioned in
+			our documentation such definition (inside some form without name)
+			means that the queue becomes global for the form.		
+		</i></p>
+		<p class="note">
+			<i><b>Note:</b></i> queue component could get its parameters from
+			EL bindings. But the component isn't designed to be updated via
+			ajax requests. (There are no useful cases where the developers 
+			need to change the timeouts or request delays on the fly). So
+			as you could see the example below uses <b>h:commandButton</b> in order to
+			reebuild all the view and reinitialize the queue with new parameter
+			values.
+		</p>			
+		</ui:define>
+
+	</ui:composition>
+</html>

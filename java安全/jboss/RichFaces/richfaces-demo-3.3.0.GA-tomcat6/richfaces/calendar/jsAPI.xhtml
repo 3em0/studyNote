@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+	<p>
+	Calendar object JavaScript API supports the following calls:
+	<ul>
+		<li>
+			<b>getCurrentDate()</b>	returns the full date currently being viewed
+		</li>
+		<li>
+			<b>getCurrentMonth(asMonthLabel)</b> returns a number of the month currently being viewed(for <b>asMonthLabel</b> true - returns month as its label)
+		</li>
+		<li>
+			<b>getCurrentYear()</b>	returns a number of the year currently being viewed
+		</li>
+		<li>
+			<b>changeCurrentDate(yearOffset, monthOffset)</b> sets a new current month to be displayed.
+		</li>
+		<li>
+			<b>doCollapse(), doExpand()</b> collapse or expand the calendar in a popup mode.
+		</li>
+		<li>
+			<b>doSwitch()</b> inverts a state for the popup calendar.
+		</li>
+		<li>
+			<b>getNextMonth(asMonthLabel), getPreviousMonth(asMonthLabel)</b> returns the previous and next month for the currently being viewed one.
+		</li>
+		<li>
+			<b>getNextYear, getPreviousYear</b> returns the previous and next years for the currently being viewed one.
+		</li>
+		<li>
+			<b>getSelectedDate(), getSelectedDateString(pattern)</b> returns the currently selected date as date or as String. In case of empty pattern, it is returned in the current locale pattern.  
+		</li>
+		<li>
+			<b>nextMonth()</b>	navigates to the next month
+		</li>
+		<li>
+			<b>nextYear()</b>	navigates to the next year
+		</li>
+		<li>
+			<b>prevMonth()</b>	navigates to the previous month 
+		</li>
+		<li>
+			<b>prevYear()</b>	navigates to the previous year
+		</li>
+		<li>
+			<b>render(), renderFooter(), renderOptionalFooter(), renderHeader(), renderOptionalHeader()</b> - functions to initiate cliend side rendering of the calendar or additional elements.
+			
+		</li>
+		<li>
+			<b>resetSelectedDate()</b> - clears a selected day value.
+		</li>
+		<li>
+			<b>selectDate(date, noUpdate, eventData)</b>	selects the date specified.  If the date isn't in the current
+		 month, performs a request to select some. if noUpdate is true, a request isn't fired for data, only client side rendering is invoked.  
+		 </li>
+		 <li>
+		 	<b>showSelectedDate()</b> switch calendar to show currently selected date.
+		 </li>
+		 <li>
+		 	<b>today(noUpdate, noHighlight)</b> switch calendar to todayDate. If parameters - true, request will not be fired to switch, and additional highlighting will be off.  
+		 </li>
+	</ul>
+	</p>
+	<p>
+		You can access the calendar object using <code>$(calendar_client_id).component</code>
+		call from 		any place outside of the component itself.
+	</p>
+		
+	<p>	 <dl><dt>If you develop the macrodefinition for the calendar object, you can use:</dt>
+		<dd><code>Richfaces.getComponent('calendar',element).api_function_name(parameters)</code></dd>
+		<dt>For example, the following call is
+		used on the "Next Year" button on the popup calendar panel:</dt>
+		<dd><code>Richfaces.getComponent('calendar',this).nextYear(); </code></dd>
+		 The second parameter 
+		is an element inside the calendar. Richfaces.invokeOnComponent tries to find
+		the component in the parents hierarchy with type specified with the first parameter and
+		invokes the function defined with the third parameter.
+		</dl>
+	</p>					
+						
+		</ui:define>
+
+	</ui:composition>
+</html>

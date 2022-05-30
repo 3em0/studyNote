@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+				<style>
+					.top{
+						vertical-align:top;
+					}
+				
+				</style>
+
+				<p><b>
+					Rich Data Table</b> has columns <b>sorting feature</b> built-in. The simplest way to add sorting
+					capability is to define <b>sortBy </b>attribute at column you need to be sortable.
+				</p>
+				<p>
+					In this attribute you should define iterable object property which should be
+					used when sorting performed. 
+				</p>
+				<p>
+					In this example you could see that two first columns are sorted after a click on the corresponding
+					header.
+				</p>
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Sorting DataTable example</legend>
+					<div  class="sample-container">
+						<h:panelGrid columns="2" columnClasses="top"> 
+							<h:panelGroup>
+								<ui:include src="/richfaces/sortingFeature/examples/simpleSingleSorting.xhtml"/>
+							</h:panelGroup>
+							<h:panelGroup layout="block" style="padding-left: 20px">
+									<b>Details of usage</b>
+									<p>
+										Next attributes could be defined to manage simple built-in sorting:
+									</p>
+									<ul>
+										<li>
+											<b>sortMode</b> - attribute of <b>rich:dataTable</b> which could be defined as
+											"single"(Default) and "multiple". If multiple sorting defined - 
+											previous sorting will not be reset. Column will be sorted 
+										</li>
+										<li><b>sortOrder</b> - attribute of  <b>rich:column</b>
+											allows to set initial sorting on the column.
+											(Additional ways of usage to customize sorting described at "External
+											Sorting" tab). Possible values are "ASCENDING", "DESCENDING" and
+											"UNSORTED"(default)
+										</li>
+										<li>
+											<b>selfSorted</b> attribute of <b>rich:column</b> which defines 
+											if the table will make a header clickable and if click on the 
+											header will call sorting request.
+											Default value is "true". In order to use custom sorting mechanism
+											use value "false" for this attribute.   
+										</li>
+									</ul>
+							</h:panelGroup>
+						</h:panelGrid>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/sortingFeature/examples/simpleSingleSorting.xhtml"/>
+						</ui:include>
+						
+					</div>
+				</fieldset>
+		</ui:define>
+	</ui:composition>
+</html>

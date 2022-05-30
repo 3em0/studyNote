@@ -1,0 +1,25 @@
+body {
+    color: green;
+	background: #FFFFE7;
+	font-family: monospace
+}
+
+.comment {
+    color: gray;
+    font-style: italic;
+}
+
+.keyword {
+    color: blue;
+    font-weight: normal;
+}
+
+.string {
+    color: maroon;
+    font-weight: bold
+}
+
+.type {
+    color: black;
+    text-decoration: none;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<style>
+		 .tpanels {
+		   width:33%;
+		   padding: 2px;
+		   vertical-align:top; 
+		 }
+		</style>
+			<p>SimpleTogglePanel represents a panel with a base text label at the top and additional 
+			content that can be shown or hidden. Additional content is shown or hidden 
+			using the simpleTogglePanel control located to the right of the base text label by default.<br />
+			This is an example of the component with default look-n-feel:
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Simple Toggle Panel example</legend>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/simpleTogglePanel/examples/basic.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/simpleTogglePanel/examples/basic.xhtml"/>
+					</ui:include>							
+				</div>
+			</fieldset>
+			<br/><br/>
+			<p>The switchType attribute allows to select a toggle approach that can be 'client',
+			'server' or 'ajax'. The 'server' and 'ajax' types require to be surrounded with a form element such as &lt;h:form&gt; or &lt;a4j:form&gt;.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Switch types example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/simpleTogglePanel/examples/difftypes.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/simpleTogglePanel/examples/difftypes.xhtml"/>
+					</ui:include>							
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

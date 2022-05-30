@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:form id="beanValidatorForm">
+		<rich:panel>
+			<f:facet name="header">
+				<h:outputText value="#{validationBean.progressString}" id="progress"/>
+			</f:facet>
+			<h:panelGrid columns="3">
+				<h:outputText value="Name:" />
+				<h:inputText value="#{validationBean.name}" id="name">
+					<rich:beanValidator summary="Invalid name"/>
+				</h:inputText>
+				<rich:message for="name" />
+				<h:outputText value="Email:" />
+				<h:inputText value="#{validationBean.email}" id="email">
+					<rich:beanValidator summary="Invalid email"/>
+				</h:inputText>
+				<rich:message for="email" />
+				<h:outputText value="Age:" />
+				<h:inputText value="#{validationBean.age}" id="age">
+					<rich:beanValidator summary="Wrong age"/>
+				</h:inputText>
+				<rich:message for="age" />
+				<f:facet name="footer">
+					<a4j:commandButton value="Submit" action="#{validationBean.success}" reRender="progress"/>
+				</f:facet>
+			</h:panelGrid>
+		</rich:panel>
+	</h:form>
+</ui:composition>

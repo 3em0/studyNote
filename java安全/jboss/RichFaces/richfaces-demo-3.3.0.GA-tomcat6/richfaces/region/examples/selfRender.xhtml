@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+			
+	<style>
+		.outergridselfcolumn {
+			padding: 0px 30px 10px 0px;
+			width : 300px;
+			vertical-align: top;
+		}
+		.innergridselfcolumn1 {
+			padding-left: 10px;
+			font-weight: bold;
+		}
+		.innergridselfcolumn2 {
+			padding-left: 10px;
+		}
+	</style>
+
+	<h:panelGrid columns="2" columnClasses="outergridselfcolumn">
+
+		<a4j:region selfRendered="true">
+			<h:panelGroup>
+				<h:form>
+					<h:panelGrid columns="2" columnClasses="innergridselfcolumn1,innergridselfcolumn2">
+						<h:outputText value="Name" />
+						<h:inputText value="#{userBean.name}">
+							<a4j:support event="onkeyup" reRender="out3,outname2" />
+						</h:inputText>
+					</h:panelGrid>
+				</h:form>
+				<rich:spacer height="5" />
+				<br />
+				<h:panelGroup id="out3">
+					This text will disappear during the partial update of this panel.
+					The text appears again only after the whole page refresh or a partial
+					update from the region with selfRendered="false" (default value).
+				</h:panelGroup>
+			</h:panelGroup>
+		</a4j:region>
+
+		<a4j:region selfRendered="true">
+			<h:panelGroup>
+				<h:form>
+					<h:panelGrid columns="2" columnClasses="innergridselfcolumn1,innergridselfcolumn2">
+						<h:outputText value="Name" />
+						<h:inputText value="#{userBean.name}">
+							<a4j:support event="onkeyup" reRender="out4,outname2" />
+						</h:inputText>
+					</h:panelGrid>
+				</h:form>
+				<rich:spacer height="5" />
+				<br />
+				<h:panelGroup id="out4">
+					<h:outputText value="The text of the similar panel will 
+						not disappear because it is printed with h:outputText" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</a4j:region>
+
+	</h:panelGrid>
+	<h:outputText 	id="outname2" style="font-weight:bold"
+					value="Typed Name: #{userBean.name}" />
+	<br />
+
+</ui:composition>

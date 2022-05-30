@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/templates/component-sample.xhtml">
+	<ui:define name="sample">
+		<style>
+			ul,ol {
+				font-size: 11px !important;
+			}
+			.viewsourcepanel {
+				 padding:10px;
+				 width:100%;
+				 overflow:auto;
+				 border-width:0;
+			}
+			.viewsourcebody {
+				padding:0;
+			}
+		</style>
+		<p>
+			Plug-n-Skin feature is designed to freely extend and override one of base 
+			RichFaces skins. It allows to redefine the look of a set of components 
+			by taking the base skin as basis and plugging-in custom styles.
+		</p>
+		<p>
+			You may freely create your own pluggable skin in the next way: 
+		</p>
+		<ul>
+			<li>
+				<b>Create your new pluggable skins project with CDK</b> using
+					<i>mvn archetype:create -DarchetypeGroupId=org.richfaces.cdk
+            		-DarchetypeArtifactId=maven-archetype-plug-n-skin
+            		-DarchetypeVersion=*RF-VERSION* -DartifactId=*ARTIFACT-ID*
+            		-DgroupId=*GROUP-ID* -Dversion=*VERSION*</i> command from the 
+            		root folder of richfaces.
+			</li>
+			<li>
+				<b>Create new pluggable skin inside the project</b> using 
+				<i>mvn cdk:add-skin -Dname=*SKIN-NAME* -Dpackage=*SKIN-PACKAGE*</i>
+				from the folder created on the previous step.
+			</li>
+		</ul>
+		<p>
+			In the result you'll get a new skin project.
+		</p>
+		<p class="note">
+			In order to check some other optional parameters for CDK commands and
+			more info about the feature in general - visit the corresponding 
+			developer guide section
+			and explore <b>Laguna</b> skin project in richfaces/samples svn. 
+		</p>
+		<p>
+			Main files in the created pluggable skin project
+			<i>(createdSkinName\src\main\resources\META-INF\skins\ folder)</i> are:
+		</p>
+		<ul>
+			<li>
+				<b>&lt;createdSkinName&gt;.skin.properties</b> which 
+				should contains base parameters for the skin such as 
+				<i>baseSkin</i>,
+				<i>generalStyleSheet</i>, <i>gradientType</i> and some others 
+				and could contain skin parameters redefinitions for the skin.
+			</li>
+			<li>
+				<b>&lt;createdSkinName&gt;.xcss</b> which defines all the components 
+				xcss imports.
+			</li>
+			<li>
+				<b>&lt;createdSkinName&gt;-ext.xcss</b> defines imports for standard skinning xcss files.
+			</li>
+		</ul>
+		<p>
+			All classes for all the components and standard skinning classes are already
+			listed in corresponding imported xcss files. Thus you'll only need to fill them 
+			with the properties you need.
+		</p>
+		<p>
+			Check for example classes defined in panel component xcss for Laguna skin:
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">panel.xcss from laguna skin</legend>
+				<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+					<rich:insert src="/richfaces/plugnskin/snippets/panel.xcss" highlight="xhtml"/>
+				</rich:panel>
+		</fieldset>
+	</ui:define>
+</ui:composition>
+</html>

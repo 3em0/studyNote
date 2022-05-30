@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+			
+		<script>
+		 function getRightTop(ref) {
+		   var position = new Object();
+		   position.top = 0; //ref.offsetTop;
+		   position.left =0; // ref.offsetLeft+ref.clientWidth+6;
+		   return position;
+		 }
+		</script>
+		<rich:modalPanel  id="mp" minHeight="200" minWidth="450" 
+			height="200" width="500">
+			<f:facet name="header">
+				<h:outputText value="Modal Panel Title" />
+			</f:facet>
+			<f:facet name="controls">
+			</f:facet>
+				<p>Any JSF content might be inside the panel. In case of using 
+				Facelets or JSF 1.2, it might be any mixed content.</p> 
+				
+				<p>The RichFaces modal panel is good with &lt;a4j:include&gt; to create
+				a wizard like behavior.</p>
+				<p>The model panel is open and closed from the javascript function
+				on <i>Richfaces</i> object. The following code 
+				<a href="#" onclick="#{rich:component('mp')}.hide()">hide this panel</a>:
+				<f:verbatim>&#35;</f:verbatim>{rich:component('mp')}.hide()</p>
+		</rich:modalPanel>
+</ui:composition>

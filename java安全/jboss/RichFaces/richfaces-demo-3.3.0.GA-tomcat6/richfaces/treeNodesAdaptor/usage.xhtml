@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+				<p>
+					Both recursiveTreeNodesAdaptor &amp; treeNodesAdaptor (model adaptor components further in the text)
+					components allow defining data model declaratively and binding treeNode components to tree model nodes.
+					treeNodesAdaptor has a "nodes" attribute that's used to define a collection of elements to iterate through.
+					Collections are allowed to include: lists, arrays, maps, XML NodeList &amp; NamedNodeMap either as single
+					object. The current collection element is accessible via a request-scoped variable named as "var"
+					attribute value. 
+				</p>
+ 				<p>recursiveTreeNodesAdaptor is an extension of a treeNodesAdaptor component that allows you to define two
+ 				 different value expressions: the first, assigned by "roots" attribute is used at the top of recursion,
+ 				 the second "nodes" is used on another recursion levels (the second level and deeper). 
+				 </p>
+				 
+				 <fieldset class="demo_fieldset">
+					<legend class="demo_legend">Example</legend>
+
+				<h:panelGroup rendered="#{not empty fileSystemBean.sourceRoots}">
+					<div class="sample-container" >
+						<ui:include src="/richfaces/treeNodesAdaptor/examples/recursiveAdaptor.xhtml"/>
+						<br/><br/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/treeNodesAdaptor/examples/recursiveAdaptor.xhtml"/>
+						</ui:include>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/treemodeladaptor/FileSystemBean.java"/>
+							<ui:param name="openlabel" value="View FileSystemBean.java Source" />
+							<ui:param name="sourcetype" value="java" />
+						</ui:include>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/treemodeladaptor/FileSystemNode.java"/>
+							<ui:param name="openlabel" value="View FileSystemNode.java Source" />
+							<ui:param name="sourcetype" value="java" />
+						</ui:include>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/treemodeladaptor/PostbackPhaseListener.java"/>
+							<ui:param name="openlabel" value="View PostbackPhaseListener.java Source" />
+							<ui:param name="sourcetype" value="java" />
+						</ui:include>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/treemodeladaptor/TreeDemoStateAdvisor.java"/>
+							<ui:param name="openlabel" value="View TreeDemoStateAdvisor.java Source" />
+							<ui:param name="sourcetype" value="java" />
+						</ui:include>		
+					</div>
+				</h:panelGroup>
+				<f:verbatim rendered="#{empty fileSystemBean.sourceRoots}">
+					The information for this demo is generated and incorporated in the richfaces-demo.war
+					file with Maven process. Demo artifacts are located under /WEB-INF/src folder.<br/>
+					As soon as you read this text, you have no such folder in your run-time enviroment
+					right now.<br/>
+					If you use Jetty to run, use 'mvn jetty:run-war' command.
+				</f:verbatim>
+				</fieldset><br/><br/>
+				 <p>Model adaptor components can be nested without any limitations. The following code-snippet 
+				 shows an example of using Nodes Adapter along with rich:tree</p>
+				 <fieldset class="demo_fieldset">
+					<legend class="demo_legend">Code</legend>
+
+				 	<div  class="sample-container">
+						<rich:insert src="/richfaces/treeNodesAdaptor/snippets/sample.xhtml" highlight="xhtml" />
+					 </div>				 
+				 </fieldset>				  			 
+				 <p>Data model nodes are wired to treeNode components by nesting treeNode components with a "type"
+				  attribute not defined inside model adaptor components. The first rendered one is used, or the default
+				  one if all treeNode components are non-rendered.
+				</p>
+				
+
+		</ui:define>
+		
+
+	</ui:composition>
+</html>

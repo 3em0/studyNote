@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+      			
+      			<style type="text/css">
+	      			.rich-message-label {
+	      				color:red;
+	      			}
+      				.col1 {
+      					width:240px;
+      				}
+      				.col2 {
+      					width:80px;
+      				}
+      				.col4 {
+      					width:80px;
+      				}
+      			</style>
+      			
+      			
+      			
+      			
+				<h:form>
+				<rich:datascroller for="auction" maxPages="5"/>
+				<rich:spacer height="30" />				
+				<rich:messages style="color:red"></rich:messages>
+				<rich:dataTable id="auction" value="#{auctionDataModel}" columnClasses="col1,col2,col3,col4"
+										var="item" rows="10" width="100%"> 
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Description"/>
+						</f:facet>
+						<h:outputText value="#{item.description}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Highest Bid"/>
+						</f:facet>
+						<h:outputText id="highestBid" value="#{item.highestBid}">
+							<f:convertNumber pattern="$#,##0.00"/>
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Your Bid"/>
+						</f:facet>
+						
+						<rich:message for="bid" /><br/>
+						<h:inputText id="bid" value="#{item.bid}" label="Bid">
+							<f:validateDoubleRange minimum="0" maximum="1000000"/>
+						</h:inputText>
+						<a4j:commandLink id="bid_link" actionListener="#{item.placeBid}" value="Place a bid!" reRender="bid,amount,highestBid" />
+
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Amount"/>
+						</f:facet>
+						<h:outputText id="amount" value="#{item.amount}" >
+							<f:convertNumber pattern="$#,##0.00"/>
+						</h:outputText>
+					</rich:column>
+				</rich:dataTable> 
+				<rich:messages style="color:red"></rich:messages>
+				</h:form>
+</ui:composition>

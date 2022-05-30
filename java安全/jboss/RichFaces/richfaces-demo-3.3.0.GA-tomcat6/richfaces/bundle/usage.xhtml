@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+			<p>a4j:loadBundle allows to use reference to bundle messages during the Ajax re-rendering.
+			a4j:loadBundle is a substitution for the f:loadBundle in JSF 1.1 which is not originally a JSF component.
+			f:loadBundle is a jsp tag that loads the bundle messages into the request scope when page is
+			rendered. As soon as each Ajax request works in own request scope, the bundles loaded with
+			f:loadBundle are unavailable.
+			</p>
+			<p>Instead of f:loadBundle that might be located anywhere on the page, the a4j:loadBundle 
+			should be declared inside the f:view (this does not matter in case of using Facelets)
+			</p>
+
+			<p>JSF 1.2 introduces the bundle registered in the faces-config.xml. This fixes the problem
+			 with f:loadBundle. Therefore, you can use this JSF 1.2 way to declare your bundles.
+			</p>
+			
+		</ui:define>
+		<ui:define name="sources">
+			<h:panelGroup />
+		</ui:define>
+	</ui:composition>
+</html>

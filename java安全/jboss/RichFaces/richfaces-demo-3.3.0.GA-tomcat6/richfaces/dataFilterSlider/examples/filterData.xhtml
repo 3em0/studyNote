@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<style>
+.rich-table-firstrow  .rich-table-cell {
+	border-top-width: 0px;
+}
+</style>
+
+	<h:form id="form1">
+
+		<rich:dataFilterSlider sliderListener="#{dfsBean.doSlide}"
+			binding="#{inventoryList.dataFilterSlider}" for="carList"
+			forValRef="inventoryList.carInventory" filterBy="getMileage"
+			manualInput="true" onSlide="true" onChange="true" storeResults="true"
+			width="200px" startRange="10000" endRange="60000" increment="10000"
+			trailer="true" handleValue="60000"/>
+
+		<rich:spacer height="15" />
+
+		<h:dataTable id="carIndex" rows="10"
+			binding="#{inventoryList.carMakeIndexUIData}"
+			value="#{inventoryList.carMakeIndex}" var="category"
+			styleClass="list-table1" columnClasses="column-index"
+			rowClasses="list-row3">
+
+			<h:column>
+				<a4j:commandLink actionListener="#{inventoryList.filterCarList}"
+					reRender="carList">
+					<h:outputText value="#{category}" />
+					<f:attribute name="filterRule" value="showTable" />
+
+				</a4j:commandLink>
+			</h:column>
+
+		</h:dataTable>
+		<rich:spacer height="15" />
+
+		<rich:dataTable width="300" id="carList" rows="10"
+			value="#{inventoryList.carInventory}" var="category">
+			<f:facet name="header">
+				<rich:columnGroup>
+					<h:column>
+						<h:outputText styleClass="headerText" value="Make" />
+					</h:column>
+					<h:column>
+						<h:outputText styleClass="headerText" value="Model" />
+					</h:column>
+					<h:column>
+						<h:outputText styleClass="headerText" value="Price" />
+					</h:column>
+					<h:column>
+						<h:outputText styleClass="headerText" value="Mileage" />
+					</h:column>
+				</rich:columnGroup>
+			</f:facet>
+
+			<h:column>
+				<h:outputText value="#{category.make}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{category.model}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{category.price}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{category.mileage}" />
+			</h:column>
+
+		</rich:dataTable>
+
+		<rich:spacer height="15" />
+
+	</h:form>
+
+</ui:composition>

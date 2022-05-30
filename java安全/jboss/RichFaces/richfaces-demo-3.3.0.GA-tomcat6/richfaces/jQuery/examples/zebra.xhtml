@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+			
+	<style  type="text/css">
+		.odd-row {
+			background-color: #ECF3FE;
+		}
+		.even-row {
+			background-color: #FCFFFE;
+		}
+		.active-row {
+			background-color: #FFEBDA;
+		}
+		
+	</style>
+		<br/>
+			<rich:dataTable width="483" id="carList" rows="15"
+				value="#{dataTableScrollerBean.allCars}" var="category">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<h:column><h:outputText value="Make" /></h:column>
+						<h:column><h:outputText value="Model" /></h:column>
+						<h:column><h:outputText value="Price" /></h:column>
+						<h:column><h:outputText value="Mileage" /></h:column>
+					</rich:columnGroup>
+				</f:facet>
+
+				<h:column>
+					<h:outputText value="#{category.make}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{category.model}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{category.price}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{category.mileage}" />
+				</h:column>
+
+			</rich:dataTable>
+			
+			<rich:jQuery selector="#carList tr:odd" query="addClass('odd-row')" />
+			<rich:jQuery selector="#carList tr:even" query="addClass('even-row')" />
+			<rich:jQuery selector="#carList tr" 
+				query="mouseover(function(){jQuery(this).addClass('active-row')})"/>
+			<rich:jQuery selector="#carList tr" 
+				query="mouseout(function(){jQuery(this).removeClass('active-row')})"/>
+		<br/>
+</ui:composition>

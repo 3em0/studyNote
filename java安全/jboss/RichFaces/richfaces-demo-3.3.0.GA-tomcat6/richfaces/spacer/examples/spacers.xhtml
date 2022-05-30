@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<style>
+		.div_near_spacer {
+				border-top-width: 0px;
+				border-left-width: 0px;
+				font-size: 0px;
+				border-bottom-width: 0px;
+				height: 2px;
+				background-color: #{a4jSkin.panelBorderColor};
+				border-right-width: 0px
+		}
+	</style>		
+
+	<p>
+		There is a spacer 100x10<rich:spacer width="100" height="10" title="Here is a spacer..."/>before this.
+	</p>
+	<p>
+		There is 1x5 spacer between two lines below:
+		<div class="div_near_spacer" />
+		<rich:spacer width="1" height="5" title="Here is a spacer..."/>
+		<div class="div_near_spacer" />
+	</p>
+</ui:composition>

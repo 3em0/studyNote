@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS ENTITY="JSFProcess">
+ <PROCESS-ITEM ENTITY="JSFProcessGroup"
+  NAME="rules:#richfaces#include#examples#wstep1.xhtml"
+  PATH="/richfaces/include/examples/wstep1.xhtml" SHAPE="32,17,0,0">
+  <PROCESS-ITEM ENTITY="JSFProcessItem"
+   ID="rules:#richfaces#include#examples#wstep1.xhtml:0" NAME="item" PATH="/richfaces/include/examples/wstep1.xhtml">
+   <PROCESS-ITEM-OUTPUT ENTITY="JSFProcessItemOutput"
+    ID="next::#richfaces#include#examples#wstep2.xhtml" NAME="output"
+    PATH="/richfaces/include/examples/wstep2.xhtml"
+    TARGET="rules:#richfaces#include#examples#wstep2.xhtml" TITLE="next"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="JSFProcessGroup"
+  NAME="rules:#richfaces#include#examples#wstep2.xhtml"
+  PATH="/richfaces/include/examples/wstep2.xhtml" SHAPE="256,33,0,0">
+  <PROCESS-ITEM ENTITY="JSFProcessItem"
+   ID="rules:#richfaces#include#examples#wstep2.xhtml:0" NAME="item" PATH="/richfaces/include/examples/wstep2.xhtml">
+   <PROCESS-ITEM-OUTPUT ENTITY="JSFProcessItemOutput"
+    ID="previous::#richfaces#include#examples#wstep1.xhtml"
+    NAME="output" PATH="/richfaces/include/examples/wstep1.xhtml"
+    TARGET="rules:#richfaces#include#examples#wstep1.xhtml" TITLE="previous"/>
+   <PROCESS-ITEM-OUTPUT ENTITY="JSFProcessItemOutput"
+    ID="next::#richfaces#include#examples#finalStep.xhtml"
+    NAME="output1" PATH="/richfaces/include/examples/finalStep.xhtml"
+    TARGET="rules:#richfaces#include#examples#finalStep.xhtml" TITLE="next"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ENTITY="JSFProcessGroup"
+  NAME="rules:#richfaces#include#examples#finalStep.xhtml"
+  PATH="/richfaces/include/examples/finalStep.xhtml" SHAPE="480,17,0,0">
+  <PROCESS-ITEM ENTITY="JSFProcessItem"
+   ID="rules:#richfaces#include#examples#finalStep.xhtml:0" NAME="item" PATH="/richfaces/include/examples/finalStep.xhtml">
+   <PROCESS-ITEM-OUTPUT ENTITY="JSFProcessItemOutput"
+    ID="previous::#richfaces#include#examples#wstep2.xhtml"
+    NAME="output" PATH="/richfaces/include/examples/wstep2.xhtml"
+    TARGET="rules:#richfaces#include#examples#wstep2.xhtml" TITLE="previous"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

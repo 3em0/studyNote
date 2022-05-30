@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+<style>
+	.pic{
+		margin-bottom: -4px;
+		margin-right: 2px;
+}
+
+</style>
+
+	<rich:toolBar height="26" itemSeparator="grid">
+	  <rich:toolBarGroup>
+		  <h:graphicImage value="/images/icons/create_doc.gif" styleClass="pic"/>
+		  <h:graphicImage value="/images/icons/create_folder.gif" styleClass="pic"/>
+		  <h:graphicImage value="/images/icons/copy.gif" styleClass="pic"/>
+	  </rich:toolBarGroup>
+	  <rich:toolBarGroup>
+		  <h:graphicImage value="/images/icons/save.gif" styleClass="pic"/>
+		  <h:graphicImage value="/images/icons/save_as.gif" styleClass="pic"/>
+		  <h:graphicImage value="/images/icons/save_all.gif" styleClass="pic"/>
+	  </rich:toolBarGroup>
+	  <rich:toolBarGroup location="right">
+		  <h:graphicImage value="/images/icons/find.gif" styleClass="pic"/>
+		  <h:graphicImage value="/images/icons/filter.gif" styleClass="pic"/>
+	  </rich:toolBarGroup>
+	</rich:toolBar>
+
+</ui:composition>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<p>
+				Toggle Panel renders sequence of states that can be switched (toggled) by a
+				component called Toggle Control. rich:togglePanel has no default appearance.
+				You can define it using the set of facets with any given content inside.
+			</p>
+			<p>
+			<b>switchType</b> attribute defines the strategy of switching. The possible values for this attributes
+			are:
+			<ul>
+				<li>client - switching happens on the client without any request to the server. 
+				The jsf form is not required in this mode</li>
+				<li>ajax - when states are switched, the content of new states comes from the server in Ajax way.</li>
+				<li>server - the whole page is reloaded when states are switched</li>
+			</ul>
+			</p>
+			<p>
+				<b>stateOrder</b> attribute defines the order of the states, if "switchToState" isn't explicitly defined on the 
+				rich:toggleControl. The following example shows tips panel that has one closed state and
+				three states for tips.
+			</p>
+				
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Toggle Panel example</legend>
+				<div class="sample-container">
+
+					<ui:include src="/richfaces/togglePanel/examples/tipsPanel.xhtml"/>
+					<br/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/togglePanel/examples/tipsPanel.xhtml"/>
+						<ui:param name="openlabel" value="View Source"/>
+					</ui:include>
+
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/togglePanel/examples/tipBlock.xhtml"/>
+						<ui:param name="openlabel" value="View TipBlock.xhtml Source"/>
+					</ui:include>
+				</div>
+			</fieldset>
+
+		</ui:define>
+	</ui:composition>
+</html>

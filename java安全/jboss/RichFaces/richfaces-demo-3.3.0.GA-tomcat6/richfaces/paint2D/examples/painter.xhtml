@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<br/>
+
+		<h:form>
+			<h:panelGrid columns="3" width="100%">
+
+				<h:panelGroup>
+					<br/>
+					<h:inputText value="#{paintData.text}">
+						<a4j:support event="onkeyup" reRender=":painter" />
+					</h:inputText>
+				</h:panelGroup>
+
+				<h:panelGroup>
+						Color:
+						<rich:inputNumberSlider showInput="false"
+						showBoundaryValues="false" showToolTip="false"
+						value="#{paintData.color}" step="255" minValue="0"
+						maxValue="16000000">
+						<f:convertNumber groupingUsed="false" /> 
+						<a4j:support event="onchange" reRender=":painter" />
+					</rich:inputNumberSlider>
+
+				</h:panelGroup>
+
+				<h:panelGroup>
+						Shadow:
+					<rich:inputNumberSlider showInput="false"
+						showBoundaryValues="false" showToolTip="false"
+						value="#{paintData.scale}" step="0.5" minValue="0" maxValue="3">
+						<a4j:support event="onchange" reRender=":painter" />
+					</rich:inputNumberSlider>
+					 
+				</h:panelGroup>
+
+			</h:panelGrid>
+		</h:form> 
+		<rich:paint2D id="painter" width="300" height="120"
+			data="#{paintData}" format="png" paint="#{paintBean.paint}" />
+
+	<br/>
+
+</ui:composition>

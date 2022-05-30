@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	
+	<a4j:region id="rb">
+		<h:panelGrid columns="2">
+
+			<h:form>
+				  <a4j:commandButton eventsQueue="foo2"  value="Ajax Request 2"/>
+			</h:form>
+
+			<a4j:status>
+				<f:facet name="start">
+					<h:graphicImage  value="/images/ajax/ajax_process.gif"/>
+				</f:facet>
+			</a4j:status>
+
+		</h:panelGrid>
+	</a4j:region>
+	<br />		
+				
+</ui:composition>

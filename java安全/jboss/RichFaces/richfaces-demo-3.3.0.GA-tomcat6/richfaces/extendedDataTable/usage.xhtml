@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<style>
+				.top{
+					vertical-align:top;
+				}
+			</style>
+			<p>
+				This is <b>dataTable extension component</b> contributed to the Rich Faces from 
+				the community. It adds the next features to the rich:dataTable component:
+			</p>
+			<ul>
+				<li><b>Scrolling data</b> on the client and usage scrolling together with pagination</li>
+				<li><b>Selection of rows</b> with management of the selection on server via simple binding</li>
+				<li>Management of  the <b>modes of the selection</b> (none, single line or multiple lines)</li>
+				<li><b>Columns reordering</b> using drag and drop of the headers</li>
+				<li><b>Showing/hiding columns </b>via built-in context menu</li>
+				<li><b>State saving </b>via value binding</li>
+				<li><b>Grouping rows </b>by any column</li>
+			</ul>
+			<p>
+				<b>Note</b><i>: This component is in a preview state for 3.2.2 release cause it was 
+				not fully tested/reviewed by the RF team.</i>
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Extended DataTable example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/extendedDataTable/examples/simple.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/extendedDataTable/examples/simple.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

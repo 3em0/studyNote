@@ -1,0 +1,36 @@
+<h:panelGroup>
+	<a4j:keepAlive beanName="rsBean2" />
+	<h:form>
+		<h:inputText size="4" label="First Addent" value="#{rsBean2.addent1}">
+			<a4j:support event="onkeyup" reRender="btn2" />
+		</h:inputText>
+		<h:outputText value="+"/>
+		<h:inputText   size="4" label="Second Addent"  value="#{rsBean2.addent2}">
+				<a4j:support event="onkeyup" reRender="btn2" />						
+		</h:inputText>
+		<a4j:commandButton style="margin:0 5px" id="btn2" action="#{rsBean2.doSum}" 
+			 value="=" reRender="sum2"
+			 disabled="#{rsBean2.addent1 == null or rsBean2.addent2==null}"/>
+		<h:outputText id="sum2" value="#{rsBean2.sum}" />
+	</h:form>
+	<a4j:outputPanel ajaxRendered="true">
+		<h:messages />
+	</a4j:outputPanel>
+</h:panelGroup>
+
+...
+
+package org.richfaces.demo.ajaxSamples;
+
+public class rsBean {
+	private Integer addent1;
+	private Integer addent2;
+	private Integer sum;
+	
+	public String doSum() {
+		sum = new Integer((addent1 != null ? addent1.intValue() : 0) + (addent2 != null ? addent2.intValue() : 0));
+		return null;
+	}
+	
+	//getters and setters skipped
+}

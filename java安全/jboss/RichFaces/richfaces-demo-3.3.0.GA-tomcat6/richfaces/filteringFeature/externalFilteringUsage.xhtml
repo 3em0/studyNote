@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+				<p>
+					In order to use <b>Filtering Feature</b> of <b>rich:dataTable</b> with some custom filtering
+					functions and controls you should use the next available attributes on columns: 
+				</p>
+				<ul>
+					<li>
+						<b>filterExpression</b> - Attribute which allows to define expression
+						evaluated to boolean value. This expression should check whether the object 
+						satisfies filtering condition or not.    
+					</li>
+					<li>
+						<b>filterMethod</b> - Attribute which should be defined with method binding.
+							This method should accept on Object parameter and return a boolean value.
+							Thus, this method also should be used to check whether the object satisfies 
+							filtering condition or not.     
+					</li>
+				</ul>
+				<p>
+					In the next simple example we use <b>filterMethod</b> and <b>filterExpression</b> for the first
+					and second columns filtering correspondingly.  
+				</p>
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Filtering DataTable example</legend>
+					<div  class="sample-container">
+						<ui:include src="/richfaces/filteringFeature/examples/externalFiltering.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="openlabel" value="View Source" />
+							<ui:param name="sourcepath" value="/richfaces/filteringFeature/examples/externalFiltering.xhtml"/>
+						</ui:include>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/filteringFeature/examples/FilteringBean.java"/>
+							<ui:param name="openlabel" value="View FilteringBean.java Source" />
+							<ui:param name="sourcetype" value="java" />
+						</ui:include>
+					</div>
+				</fieldset>
+				<p>
+					DESCRIPTION
+				</p>
+
+		</ui:define>
+ 
+	</ui:composition>
+</html>

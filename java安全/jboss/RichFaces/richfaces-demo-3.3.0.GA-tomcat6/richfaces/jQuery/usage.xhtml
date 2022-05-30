@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+			<p>rich:jQuery integrates jQuery javascript framework into the JavaServer
+			 Faces application. The component allows to apply the styles and behavior
+			 to the DOM elements dynamically, including the result of JSF components rendering. 
+			 For more information about jQuery framework and its features,
+			 you can read <a href="http://jquery.com/">http://jquery.com</a>
+			</p>
+			<p>Integrated jQuery works without conflicts with prototype.js library that is used
+			 widely in the RichFaces library. This means that $() function is delegated
+			 back to the prototype.js. Use jQuery() function instead to refer to
+			 jQuery objects if necessary. Read more about jQuery usage with other libraries
+			 at <a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries">
+			 http://docs.jquery.com/Using_jQuery_with_Other_Libraries</a>
+			</p>
+
+
+			<p>This demo shows how just four rich:jQuery queries allow to
+			add zebra-style to a table and highlight rows under the mouse cursor.</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Zebra-styled table with rich:jQuery example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/jQuery/examples/zebra.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/jQuery/examples/zebra.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+			<p>
+				rich:jQuery can be used in two major modes:
+				<ul>
+					<li>	as a once time query applied immediately or on document ready event</li>
+					<li>	as a javascript function that can be invoked from the custom javascript</li>
+				</ul>
+				The mode is chosen with timing attribute that can have the following options:
+				<ul>
+					<li>immediate - applying the query immediately </li>
+					<li>onload  - applying the query when the document is loaded.</li>
+					<li>onJScall - applying the query by invoked the javascript function defined with the name attribute</li>
+				</ul>
+			</p>
+			<p>
+				Defining "name" attribute is mandatory when timing="onJScall".
+				If "name" attribute is defined when timing equals to "immediate" or "onload",
+				the query is applied according to this value, but you still have an
+				opportunity to invoke it by a function name.<br/>
+				The selector attribute defines an object or list of objects, the query
+				defined with the query attribute will be applied to.
+			</p>
+			<p>This demo shows how to attach the mouseover/mouseout events to the
+			DOM objects. However the images below show how to make them enlarged.</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Fisheye effect with rich:jQuery example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/jQuery/examples/fishEye.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/jQuery/examples/fishEye.xhtml"/>
+					</ui:include>						
+				</div>
+			</fieldset>
+
+		</ui:define>
+
+	</ui:composition>
+</html>

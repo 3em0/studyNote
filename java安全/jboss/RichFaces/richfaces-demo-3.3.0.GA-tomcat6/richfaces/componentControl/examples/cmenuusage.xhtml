@@ -1,0 +1,76 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich" id="subview"> 
+	<style>
+	.cur{
+		cursor: pointer; 
+	}
+	.top{
+		vertical-align: top;
+	}
+	</style>
+	<h:form id="form">
+		
+		<rich:contextMenu attached="false" id="menu" submitMode="ajax">
+			<rich:menuItem ajaxSingle="true">
+				<b>{car} {model}</b> details
+				<a4j:actionparam name="det" assignTo="#{ddmenu.current}" value="{car} {model} details"/>
+			</rich:menuItem>
+			<rich:menuGroup value="Actions">  
+				<rich:menuItem ajaxSingle="true">
+					Put <b>{car} {model}</b> To Basket
+					<a4j:actionparam name="bask" assignTo="#{ddmenu.current}" value="Put {car} {model} To Basket"/>
+				</rich:menuItem>
+				<rich:menuItem value="Read Comments" ajaxSingle="true">
+					<a4j:actionparam name="bask" assignTo="#{ddmenu.current}" value="Read Comments"/>
+				</rich:menuItem>				
+				<rich:menuItem ajaxSingle="true">
+					Go to <b>{car}</b> site
+					<a4j:actionparam name="bask" assignTo="#{ddmenu.current}" value="Go to {car} site"/>
+				</rich:menuItem>
+			</rich:menuGroup>
+		</rich:contextMenu> 
+
+		<h:panelGrid columns="2" columnClasses="top, top">
+
+		<rich:dataTable value="#{dataTableScrollerBean.tenRandomCars}" var="car" id="table"
+		onRowMouseOver="this.style.backgroundColor='#F8F8F8'"
+		onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'" rowClasses="cur">
+			<rich:column>
+				<f:facet name="header">
+					Make
+				</f:facet>
+					<h:outputText value="#{car.make}"/>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					Model
+				</f:facet>
+					<h:outputText value="#{car.model}"/>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					Price
+				</f:facet>
+					<h:outputText value="#{car.price}" />
+			</rich:column>
+
+			<rich:componentControl event="onRowClick" for="menu" operation="show">
+				<f:param value="#{car.model}" name="model"/>
+				<f:param value="#{car.make}" name="car"/>
+			</rich:componentControl>
+
+		</rich:dataTable>
+	
+		<a4j:outputPanel ajaxRendered="true">
+			<rich:panel>
+				<f:facet name="header">Last Menu Action</f:facet>
+				<h:outputText value="#{ddmenu.current}"></h:outputText>
+			</rich:panel>		
+		</a4j:outputPanel>
+		</h:panelGrid>
+	</h:form>			
+</f:subview>

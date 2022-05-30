@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<style type="text/css">
+			.viewsourcepanel {
+				 padding: 10px;
+				 width: 100%;
+				 overflow: auto;
+				 border-width: 0;
+			}
+
+			.viewsourcebody {
+				padding: 0;
+			}
+
+			input[type="button"], input[type="submit"] {
+			 	background-color:#{a4jSkin.trimColor};
+			}
+			</style>		
+		<p>
+			<b>&lt;a4j:page&gt;</b>  is a deprecated component used for solving of incompatibility 
+			problems in early Ajax4jsf and MyFaces versions. 
+		</p>
+		<p>
+			The component could be used to encode the 
+			full html page structure. Header facet provided to insert html header content 
+			to the page markup.
+		</p>
+		<p>
+			This component should be defined as a child component for  &lt;f:view&gt; For example:  
+		</p>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">AjaxPage usage example</legend>
+				<div class="sample-container">
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert src="/richfaces/page/snippets/page.xhtml" highlight="xhtml"></rich:insert>
+					</rich:panel>
+					<p> 
+						<b>Will be rendered as:</b>
+					</p>
+					<rich:panel styleClass="viewsourcepanel" bodyClass="viewsourcebody rich-laguna-panel-no-header">
+						<rich:insert src="/richfaces/page/snippets/gen.xhtml" highlight="xhtml"></rich:insert>
+					</rich:panel>
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

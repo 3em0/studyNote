@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 2.1.2
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>usage.xhtml</title>
+<link rel="stylesheet" href="../../../css\xhtml-source.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="normal">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+<span class="keyword">&lt;html</span><span class="normal"> </span><span class="type">xmlns</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://www.w3.org/1999/xhtml</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:ui</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://java.sun.com/jsf/facelets</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:h</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://java.sun.com/jsf/html</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:f</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://java.sun.com/jsf/core</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:a4j</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://richfaces.org/a4j</span><span class="string">"</span>
+<span class="normal">	</span><span class="type">xmlns:rich</span><span class="symbol">=</span><span class="string">"</span><span class="string">http://richfaces.ajax4jsf.org/rich</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">	</span><span class="keyword">&lt;ui:composition</span><span class="normal"> </span><span class="type">template</span><span class="symbol">=</span><span class="string">"</span><span class="string">/templates/component-sample.xhtml</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">		</span><span class="keyword">&lt;ui:define</span><span class="normal"> </span><span class="type">name</span><span class="symbol">=</span><span class="string">"</span><span class="string">sample</span><span class="string">"</span><span class="keyword">&gt;</span>
+<span class="normal">			</span><span class="keyword">&lt;p&gt;</span>
+<span class="normal">				Additionally to the listeners provided by JSF specification, RichFaces add one more:</span>
+<span class="normal">				Ajax Listener (a4j:ajaxListener). Ajax Listener is invoked before the Render Response</span>
+<span class="normal">				phase. Instead of Action Listener of Value Change Listener which are not invoked when</span>
+<span class="normal">				Validation of Update Model phases failed, Ajax Listener is guarantied to be invoked</span>
+<span class="normal">				for each Ajax response. Hence, it is a good place to update the list of re-rendered</span>
+<span class="normal">				components, for example.</span>
+<span class="normal">			</span><span class="keyword">&lt;/p&gt;</span>
+<span class="normal">			</span><span class="keyword">&lt;p&gt;</span>
+<span class="normal">				Ajax Listener is not invoked for a non-Ajax request and when RichFaces works in</span>
+<span class="normal">				"Ajax Request generates Non-Ajax Response" mode. Therefore, Ajax Listener invocation</span>
+<span class="normal">				is a good indicator that Ajax response is going to be processed.</span>
+<span class="normal">			</span><span class="keyword">&lt;/p&gt;</span>
+<span class="normal">			</span>
+<span class="normal">			</span><span class="keyword">&lt;p&gt;</span>
+<span class="normal">				</span><span class="keyword">&lt;b&gt;</span><span class="normal">type</span><span class="keyword">&lt;/b&gt;</span><span class="normal"> attribute defines the fully qualified Java class name for listener. This</span>
+<span class="normal">				class should implement org.ajax4jsf.events.AjaxListener interface. You can access to</span>
+<span class="normal">				the source of the event (Ajax component) using event.getSource() call.</span>
+<span class="normal">			</span><span class="keyword">&lt;/p&gt;</span>
+<span class="normal">			</span>
+
+<span class="normal">			</span>
+<span class="normal">		</span><span class="keyword">&lt;/ui:define&gt;</span>
+
+<span class="normal">	</span><span class="keyword">&lt;/ui:composition&gt;</span>
+<span class="keyword">&lt;/html&gt;</span>
+</tt></pre>
+</body>
+</html>

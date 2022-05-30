@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	 
+	<style>
+
+		.infopanel 	{ border:2px solid #{richSkin.panelBorderColor}; }
+		.row1 		{	height:60px; }
+		.row1 .col 	{ padding:10px; }
+		.row2 		{	height:2px;	}
+		.row3 		{	height:20px; }
+		.row3 .col 	{text-align:left; }
+		.col 		{ }
+	</style>
+
+	<rich:togglePanel value="#{toggleBean.skinChooserState1}" switchType="client"
+	 stateOrder="closed,tip1, tip2,tip3">
+
+	 <f:facet name="closed">
+	 		<rich:toggleControl>
+			 	<h:graphicImage id="pic" style="border-width:0" value="/richfaces/togglePanel/picture/clickme.gif" />
+		 	</rich:toggleControl>
+	 </f:facet>
+
+	<f:facet name="tip1">
+		<ui:include src="/richfaces/togglePanel/examples/tipBlock.xhtml">
+			<ui:param name="tip" value="rich:toggleControl might bre located inside of outside
+			 of the rich:toogleControl it works for. In case of outside location, the control
+			 attribute 'for' should refer to the toggle panel id."/>				 
+			<ui:param name="next" value="tip2"/>
+		</ui:include>	
+	</f:facet>	 
+	 
+	 <f:facet name="tip2">
+		<ui:include src="/richfaces/togglePanel/examples/tipBlock.xhtml">
+			<ui:param name="tip" value="Attribute initialState defines the first state appear
+			 when the page is loaded. If this attribute is not specified, the first state
+			 mentioned in the attribute stateOrder will be the first"/>				 
+			<ui:param name="previous" value="tip1"/>
+			<ui:param name="next" value="tip3"/>
+		</ui:include>	
+	 </f:facet>
+	 
+	 <f:facet name="tip3">
+		<ui:include src="/richfaces/togglePanel/examples/tipBlock.xhtml">
+			<ui:param name="tip" value="Note that rich:toggleControl similar to
+			h:commandLink for 'server' mode and smilar to a4j:commandLink for 'ajax' mode.
+			Set immediate attribute to true if jsf form has other input field that might
+			cause the validation error. Otherwize, the state switched will not perform"/>				 
+			<ui:param name="previous" value="tip2"/>
+		</ui:include>	
+	 </f:facet>
+	 
+	 </rich:togglePanel>		
+
+
+</ui:composition>

@@ -1,0 +1,21 @@
+<!-- attaching by event  -->
+<rich:panel>
+	<rich:effect event="onmouseout" type="Opacity" params="duration:0.8,from:1.0,to:0.3" />
+    .... panel content ....
+</rich:panel>
+...
+
+<!--  invoking from javascript -->
+<div id="contentDiv">
+  ..... div content ......
+</div>
+
+<input type="button" onclick="hideDiv({duration:0.7})" value="Hide" />
+<input type="button" onclick="showDiv()" value="Show" />
+
+<rich:effect  name="hideDiv"  for="contentDiv" type="Fade" />
+<rich:effect  name="showDiv"  for="contentDiv" type="Appear" />
+
+<!-- attaching to window on load and applying on particular page element -->
+<rich:effect for="window" event="onload" 
+    type="Appear" params="targetId:'contentDiv',duration:0.8,from:0.3,to:1.0" />

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+			<p>
+				Graph validator component also allows to register Hibernate Validators for the 
+				input components. As opposite to beanValidator that should be 
+				a child component for the input to be validated this component should wrap
+				some subtree with inputs. As a result validator for every input in this 
+				subtree will be added to the component.  
+			</p>
+			<p>
+				Look through the next simple example:
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Title</legend>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/graphValidator/examples/hibernateValidation.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/graphValidator/examples/hibernateValidation.xhtml"/>
+					</ui:include>			
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="openlabel" value="Validation Bean Code" />
+						<ui:param name="sourcetype" value="java" />
+						<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/demo/validation/ValidationBean.java" />
+					</ui:include>			
+				</div>
+			</fieldset>
+			<p>
+				There is one additional useful feature in Graph Validator component.
+				Value attribute could be defined with some value binding to bean. And the
+				bean properties will be validated again <b>after</b> model update.     
+			</p>
+			<p>
+				Simple example of such kind of usage is shown below. Just write some activities of the day
+				and the time you spend on each one in a day.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Title</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/graphValidator/examples/additionalValidation.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/graphValidator/examples/additionalValidation.xhtml"/>
+					</ui:include>			
+				</div>
+			</fieldset>
+			<p>
+				In this case only properties of each passTime(values of the inputs) is validated 
+				at validation phase.
+				But after the model is updated (Each explicit passtime was validated ok) all the
+				properties including "TotalTime" are validated again. And total validation could
+				fail if the sum of the hours in a day more than 24.  
+			</p>
+		</ui:define>
+
+	</ui:composition>
+</html>

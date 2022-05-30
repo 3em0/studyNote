@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<h:form id="form">
+		<a4j:queue requestDelay="#{queueBean.requestDelay}"
+			ignoreDupResponses="#{queueBean.ignoreDupResponces}"
+			disabled="#{queueBean.disabled}" size="#{queueBean.size}"
+			sizeExceededBehavior="#{queueBean.sizeExceededBehavior}"
+			onsubmit="addRequest();" />
+		<h:panelGrid columns="1" width="100%">
+			<rich:panel>
+				<h:panelGrid columns="2">
+					<h:outputText value="Type here:" />
+					<h:inputText id="myinput" value="#{queueBean.text}"
+						disabled="#{not (facesContext.maximumSeverity==null)}">
+						<a4j:support event="onkeyup" reRender="outtext"
+							onsubmit="addEvent();" ajaxSingle="true"
+							oncomplete="printCounts()" onbeforedomupdate="addUpdate()" />
+					</h:inputText>
+					<h:outputText value="Repeated text:" />
+					<h:outputText value="#{queueBean.text}" id="outtext"
+						style="font-weight:bold;" />
+					<h:outputText value="Events count:" />
+					<h:outputText value="0" id="events" />
+					<h:outputText value="Requests count:" />
+					<h:outputText value="0" id="requests" />
+					<h:outputText value="DOM updates count:" />
+					<h:outputText value="0" id="updates" />
+				</h:panelGrid>
+			</rich:panel>
+			<rich:panel>
+				<rich:message for="form:delay" style="color:red;" />
+				<h:panelGrid columns="2">
+					<h:outputText value="Request delay:" />
+					<h:inputText value="#{queueBean.requestDelay}" id="delay"
+						converterMessage="Delay field should be a number (Demo input disabled till this resolved)">
+						<f:convertNumber integerOnly="true"/>
+					</h:inputText>
+					<h:outputText value="Ignore Duplicated Responces" />
+					<h:selectBooleanCheckbox value="#{queueBean.ignoreDupResponces}" />
+					<h:outputText value="Disable Queue" />
+					<h:selectBooleanCheckbox value="#{queueBean.disabled}" />
+					<f:facet name="footer">
+						<h:commandButton value="Apply" action="#{queueBean.resetText}" />
+					</f:facet>
+				</h:panelGrid>
+			</rich:panel>
+		</h:panelGrid>
+	</h:form>
+	<script type="text/javascript">
+		var events=0;
+		var updates=0;
+		var outEvents=document.getElementById('form:events');
+		var outUpdates=document.getElementById('form:updates');
+		var outRequests=document.getElementById('form:requests');
+		
+		var requests=0;
+		function addEvent(){
+			events++;
+		}
+		function addUpdate(){
+			updates++;
+		}
+		function addRequest(){
+			requests++;
+		}
+
+		function printCounts(){
+			outEvents.innerHTML=events;
+			outUpdates.innerHTML=updates;
+			outRequests.innerHTML=requests;
+		}
+	</script>
+</ui:composition>
+

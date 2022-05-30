@@ -1,0 +1,219 @@
+tester:
+  title: Binding Tests
+  description: |-
+    'Performs tests for the bind, rebind and unbind operations.'
+
+  id: '002-002'
+  groups:
+    - bind
+  id_pattern: '002-002-{:03}'
+
+
+variables:
+  bound-name: jdk9-binding-test
+
+
+tests:
+  - title: Bind Call
+    description: |-
+      'Performs a bind operation.'
+
+    command:
+      - rmg
+      - bind
+      - ${TARGET}
+      - '127.0.0.1:8000'
+      - ${bound-name}
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - rejected bind call
+            - --localhost-bypass
+
+
+  - title: Bind Call (localhost bypass)
+    description: |-
+      'Performs a bind operation with --localhost-bypass.'
+
+    command:
+      - rmg
+      - bind
+      - ${TARGET}
+      - '127.0.0.1:8000'
+      - ${bound-name}
+      - --localhost-bypass
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - no Exception
+            - probably successful
+
+
+  - title: Verify Bind
+    description: |-
+      'Verifies the previous bind operation.'
+
+    command:
+      - rmg
+      - enum
+      - ${TARGET}
+      - ${OPTIONS}
+    validators:
+      - error: False
+      - contains:
+          values:
+            - ${bound-name}
+            - javax.management.remote.rmi.RMIServerImpl_Stub
+
+
+  - title: Bind Call (Bound Name Exists)
+    description: |-
+      'Attempts to bind an already existing bound name.'
+
+    command:
+      - rmg
+      - bind
+      - ${TARGET}
+      - '127.0.0.1:8000'
+      - ${bound-name}
+      - --localhost-bypass
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          ignore_case: True
+          values:
+            - was accepted
+            - already bound
+            - rebind
+
+
+  - title: Rebind Call
+    description: |-
+      'Performs a rebind operation.'
+    
+    command:
+      - rmg
+      - rebind
+      - ${TARGET}
+      - '127.0.0.1:8000'
+      - ${bound-name}
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          ignore_case: True
+          values:
+            - rejected rebind call
+            - --localhost-bypass
+
+
+  - title: Rebind Call (localhost bypass)
+    description: |-
+      'Performs a rebind operation with --localhost-bypass.'
+    
+    command:
+      - rmg
+      - rebind
+      - ${TARGET}
+      - '127.0.0.1:8000'
+      - ${bound-name}
+      - --localhost-bypass
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          ignore_case: True
+          values:
+            - no Exception
+            - probably successful
+
+
+  - title: Unbind Call
+    description: |-
+      'Performs an unbind operation.'
+    
+    command:
+      - rmg
+      - unbind
+      - ${TARGET}
+      - ${bound-name}
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          ignore_case: True
+          values:
+            - rejected unbind call
+            - --localhost-bypass
+
+
+  - title: Unbind Call (localhost bypass)
+    description: |-
+      'Performs an unbind operation with --localhost-bypass.'
+    
+    command:
+      - rmg
+      - unbind
+      - ${TARGET}
+      - ${bound-name}
+      - --localhost-bypass
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          ignore_case: True
+          values:
+            - no Exception
+            - probably successful
+
+
+  - title: Verify Unbind
+    description: |-
+      'Verifies the previous unbind operation.'
+
+    command:
+      - rmg
+      - enum
+      - ${TARGET}
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          invert:
+            - ${bound-name}
+            - javax.management.remote.rmi.RMIServerImpl_Stub
+
+
+  - title: Unbind Call (Not Bound)
+    description: |-
+      'Performs an unbind operation with --localhost-bypass'
+      'on a non existing bound name.'
+    
+    command:
+      - rmg
+      - unbind
+      - ${TARGET}
+      - not-bound
+      - --localhost-bypass
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          ignore_case: True
+          values:
+            - NotBoundException
+            - seems not to be bound

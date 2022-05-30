@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+			<p>a4j:loadStyle is similar to the standard style tag with src attribute, but it allows
+			to load a style sheet file from alternative sources like a jar file.
+			</p>
+			<p>
+			<b>src</b> attribute defines the context relative path to the style sheet file. Instead of html
+			 style tag it's not required to have a prefix in your application. The leading slash in 
+			 the path means the root of the web context.
+			</p>
+			<p>
+				You can use "resource://" prefix to access the file using
+				RichFaces resource framework. For example, if your css file is located inside the
+				jar file and has a full path there: /org/mycompany/assets/css/common.css, you can
+				point to it with:
+			</p>
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Code</legend>
+					<div id="padding" style="padding: 20px">
+						<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">a4j:loadStyle</span><span class="xml_plain"> </span><span class="xml_attribute_name">src</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">"resource:///org/mycompany/assets/css/common.css"</span><span class="xml_plain"> </span><span class="xml_tag_symbols">/&gt;</span><span class="xml_plain"/>
+					</div>
+				</fieldset>
+			<p>
+				Richfaces allows to have a dynamically generated css file based on RichFaces 
+				skinnability feature. xcss is an XML formated css with some additional extensions.
+				The following example shows how the look-n-feel of non-RichFaces components might
+				be changed based on the selected skin. The panel with the form elements consists 
+				only of non-Richfaces component, but it is sensitive to the current skin.
+			</p>
+			
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Style demo</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/style/examples/skinedPanel.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/style/examples/skinedPanel.xhtml"/>
+					</ui:include>	
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/WEB-INF/classes/org/richfaces/demo/ajaxSamples/rspanel.xcss"/>
+						<ui:param name="openlabel" value="View rspanel.xcss file" />
+					</ui:include>	
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

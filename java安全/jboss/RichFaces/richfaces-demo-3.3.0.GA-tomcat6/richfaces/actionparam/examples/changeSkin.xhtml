@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	<h:form>
+		<rich:panel>
+			<f:facet name="header">
+				<h:outputText value="Change Demo Appplication Skin To: "/>
+			</f:facet>
+			<h:commandLink value="DeepMarine">
+				<a4j:actionparam name="skin" value="deepMarine" assignTo="#{skinBean.skin}"/>
+			</h:commandLink>
+			<rich:spacer width="20" />
+			<h:commandLink value="BlueSky" >
+				<a4j:actionparam name="skin" value="blueSky" assignTo="#{skinBean.skin}"/>
+			</h:commandLink>
+		</rich:panel>
+	</h:form>
+</ui:composition>

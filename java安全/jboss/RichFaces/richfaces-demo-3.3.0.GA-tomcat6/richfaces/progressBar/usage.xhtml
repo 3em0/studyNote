@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+				<p><b>
+					rich:progressBar</b> is a component which could be used to display progress of
+					any client or server side process.
+				</p>
+				
+				<p>
+					In order to display progress of some server side process(<b>mode="ajax"</b>) component
+					uses polling method. It just polls server to get the <b>value </b>which should be 
+					updated by server side process.  
+				</p>
+				<p>Next simple example shows you progress bar which polls server every two second to get new progress value</p>
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Server Side</legend>
+					<div  class="sample-container" >
+						<ui:include src="/richfaces/progressBar/examples/polling.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/progressBar/examples/polling.xhtml"/>
+						</ui:include>
+					</div>
+				</fieldset>
+				<p>
+					In order to customize progressBar next main attributes used:
+				</p>
+				<ul>
+				  <li><b>minValue, maxValue</b> - defines boundary values for progress bar</li> 
+				  <li><b>value</b> - value binding to property which kept process progress</li>
+				  <li><b>enabled</b> - boolean attribute. If false progress stops polling</li>
+				</ul>
+				<p>
+					Also next two facets could be defined for states customization: 
+				</p>
+				<ul>
+				  <li><b>initial</b> rendered before progress started</li>
+				  <li><b>complete</b> rendered after process complete</li>
+				</ul>
+				<p>
+					Next example shows client side progress bar. Progress Bar JS API should be 
+					used to update progress value from client side process.
+				</p>
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Client Side</legend>
+					<div  class="sample-container" >
+						<ui:include src="/richfaces/progressBar/examples/client.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/progressBar/examples/client.xhtml"/>
+						</ui:include>
+					</div>
+				</fieldset>
+				<p>
+					Next JS API functions should be used to update progress: 
+				</p>
+				<ul>
+				  <li><b>enable()</b> </li>
+				  <li><b>disable()</b> </li>
+				  <li><b>setValue(newValue)</b> </li>
+				  <li><b>setLabel(newLabel)</b> </li>
+				</ul>
+
+		</ui:define>
+
+	</ui:composition>
+</html>

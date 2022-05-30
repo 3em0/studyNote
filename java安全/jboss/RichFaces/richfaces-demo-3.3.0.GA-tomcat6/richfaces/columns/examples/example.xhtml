@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<h:form>
+		<rich:dataTable value="#{dataTableScrollerBean.model}" var="model" width="750">
+
+			<f:facet name="header">
+				<h:outputText value="Cars Available"></h:outputText>
+			</f:facet>
+			
+			<rich:columns value="#{dataTableScrollerBean.columns}" var="columns"
+				index="ind" sortBy="#{model[ind].price}">
+				 
+				<f:facet name="header">
+					<h:outputText value="#{columns.header}" />
+				</f:facet>
+			
+				<h:outputText value="#{model[ind].model} " />
+				<h:outputText value="#{model[ind].mileage} miles " />
+				<h:outputText value="#{model[ind].price}$"
+					style="font-style:italic;" />
+					
+			</rich:columns>
+			
+		</rich:dataTable>
+	</h:form>
+</ui:composition>

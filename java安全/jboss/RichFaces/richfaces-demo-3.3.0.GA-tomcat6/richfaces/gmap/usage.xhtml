@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+			
+			<p>The 
+				Richfaces Gmap component is a wrapper for the standard Google Map widgets. You can use the whole set of
+				functionality Google Map API provides for you. 
+				See <a target="_blank" href="http://www.google.com/apis/maps/documentation/">
+				Google Maps API Version 2 Documentation</a> for Google Map API features.
+			</p>
+			<p>
+				Gmap has built-in Ajax capability. You do not need to uptade the component using reRender to see
+				the changes. RichFaces Gmap component is good together with Ajax4jsf jsFunction
+				component that allows to invoke the server side data and convert it into a JSON format.
+				
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">GoogleMap example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/gmap/examples/mapUsage.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/gmap/examples/mapUsage.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>		
+		</ui:define>
+
+	</ui:composition>
+</html>

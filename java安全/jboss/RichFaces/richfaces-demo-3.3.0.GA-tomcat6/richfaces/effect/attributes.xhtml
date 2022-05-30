@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+
+			<p>
+			<b>name</b> attribute defines the name of the javascript function will be generated
+			on the page when the component is rendered. You can invoke this function to activate
+			the effect. The function access one parameter. It is a set of effect options in JSON
+			format.
+			</p>
+			<p>
+			<b>type</b> attribute defines the type of effect. For example, "Fade", "Blind",
+			"Opacity". Take a look at scriptaculous documentation for set of available effect.
+			</p>
+
+			<p>
+			<b>for</b> attribute defines the id of the component or html tag, the effect will
+			be attached to. Richfaces converts the 'for' attribute value to the client id
+			of the component if such component is found. If not, the value is left as is for 
+			possible wiring with on the DOM element's id on the client side.<br/>
+			By default, the target of the effect is the same element that effect pointed to.
+			However, the target element is might be overridden with 'targetId' option passed
+			with 'params' attribute of with function paramenter.
+			</p>
+			<p>
+			<b>params</b> attribute allows to define the set of options possible for 
+			particurar effect. For example, 'duration', 'delay', 'from', 'to'. Additionally to
+			the options used by the effect itself, there are two option that might override the
+			rich:effect attribute. Those are:
+			<ul>
+				<li><b>targetId</b> allows to re-define the target of effect. The option
+				is overrire the value of 'for' attribute</li>
+				<li><b>type</b> defines the effect type. The option
+				is overrire the value of 'type' attribute</li>
+			</ul>
+			</p>
+
+
+		</ui:define>
+
+	</ui:composition>
+</html>

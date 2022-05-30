@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+			<p>
+				The tag allows <b>dynamic columns</b> functionality in a <i>rich:dataTable</i>. It is used like a 
+				UIData component which iterates through a data model to create columns.			
+			</p>
+			<p>
+				The component uses a standard <b>value/var</b> pair of attributes to provide 
+				binding to data model and request scoped variable for iteration through 
+				this data model.
+			</p>
+			<p>
+				The next simple example shows you a simple use-case where ten types of cars are created
+				and a list of models with prices is generated for each type of car. In the dataTable
+				cars are grouped by type in a separate columns. 
+			</p>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">DataTable Columns example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/columns/examples/example.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/columns/examples/example.xhtml"/>
+					</ui:include>			
+				</div>
+			</fieldset>
+			<h:form>
+				<p>
+					Additionally as you see 
+						<h:commandLink value="Sorting Feature" immediate="true" action="sortingFeature"/> 
+					could be added to this component 
+					in the same way as for simple rich:column. 
+				</p>	
+				<p>
+					In this example every column provides sorting by car prices
+				</p> 
+			</h:form>		
+		</ui:define>
+
+	</ui:composition>
+</html>

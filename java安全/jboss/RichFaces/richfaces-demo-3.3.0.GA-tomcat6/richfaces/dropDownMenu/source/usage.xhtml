@@ -1,0 +1,90 @@
+<div class="sample-container">
+	<h:form>
+
+		<rich:toolBar>
+			<rich:dropDownMenu value="File">
+			
+				<rich:menuItem submitMode="ajax" value="New" action="#{ddmenu.doNew}">
+				</rich:menuItem>
+				<rich:menuItem   submitMode="ajax"  value="Open" action="#{ddmenu.doOpen}"/>
+				<rich:menuGroup value="Save As...">
+					<rich:menuItem   submitMode="ajax" value="Text File"  action="#{ddmenu.doSaveText}"/>
+					<rich:menuItem   submitMode="ajax" value="PDF File"  action="#{ddmenu.doPDF}"/>
+				</rich:menuGroup>
+				<rich:menuItem  submitMode="ajax" value="Close" action="#{ddmenu.doClose}"/>
+				<rich:menuSeparator id="menuSeparator11"/>
+				<rich:menuItem  submitMode="ajax" value="Exit"  action="#{ddmenu.doExit}"/>
+			
+			</rich:dropDownMenu>
+			
+			<rich:dropDownMenu>
+
+				<f:facet name="label">
+					<h:panelGrid cellpadding="0" cellspacing="0" columns="2" style="vertical-align:middle">
+						<h:graphicImage value="/richfaces/toolBar/images/yellow_lamp.gif"/>
+						<h:outputText value="Links" />
+					</h:panelGrid>
+				</f:facet>
+
+				<rich:menuItem submitMode="none" onclick="document.location.href='http://labs.jboss.com/jbossrichfaces/'">
+					<f:facet name="icon">
+						<h:graphicImage value="/richfaces/toolBar/images/webapp_welcome.gif" />
+					</f:facet>
+					<h:outputLink value="http://labs.jboss.com/jbossrichfaces/">
+						<h:outputText value="RichFaces Home Page"></h:outputText>
+					</h:outputLink>
+				</rich:menuItem>
+
+				<rich:menuItem submitMode="none" onclick="document.location.href='http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261'">
+					<f:facet name="icon">
+						<h:graphicImage value="/richfaces/toolBar/images/timer_task.gif" />
+					</f:facet>
+					<h:outputLink value="http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261">
+						<h:outputText value="RichFaces Forum"></h:outputText>
+					</h:outputLink>
+				</rich:menuItem>
+
+			</rich:dropDownMenu>
+		</rich:toolBar>
+	</h:form>					
+	<a4j:outputPanel ajaxRendered="true">
+		<h:outputText value="Current Selection: "></h:outputText>
+		<h:outputText style="font-weight:bold" value="#{ddmenu.current}"></h:outputText>
+	</a4j:outputPanel>
+</div>			
+...
+...
+<div class="sample-container">
+	<h:form>
+
+		<h:panelGrid class="vertical-menu-cell" columns="1" cellspacing="0" cellpadding="0">
+			<rich:dropDownMenu style="border:1px solid #{a4jSkin.panelBorderColor}" value="Option1" direction="bottom-right" jointPoint="tr">
+				<rich:menuItem value="Suboption1-1" />
+				<rich:menuItem value="Suboption1-2">
+					<f:facet name="icon">
+					<h:graphicImage value="/richfaces/toolBar/images/print.gif" />
+					</f:facet>
+				
+				</rich:menuItem>
+				<rich:menuItem value="Suboption1-3" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu style="border:1px solid #{a4jSkin.panelBorderColor}" value="Option2"  direction="bottom-right"  jointPoint="tr">
+				<rich:menuItem value="Suboption2-1" />
+				<rich:menuItem value="Suboption2-2" />
+				<rich:menuGroup value="Group2" direction="#{bean.groupDirection}">
+					<rich:menuItem value="SuboptionG2-2-1" />
+					<rich:menuItem value="SuboptionG2-2-2" />
+				</rich:menuGroup>
+				
+				<rich:menuItem value="Suboption2-3" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu style="border:1px solid #{a4jSkin.panelBorderColor}" value="Option3"  direction="bottom-right"  jointPoint="tr">
+				<rich:menuItem value="Suboption3-1" />
+				<rich:menuItem value="Suboption3-2" />
+				<rich:menuItem value="Suboption3-3" />
+			</rich:dropDownMenu>
+		 
+		</h:panelGrid>
+	</h:form>	
+
+</div>

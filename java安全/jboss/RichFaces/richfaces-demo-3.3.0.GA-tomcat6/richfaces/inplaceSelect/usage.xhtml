@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<style>
+		.rich-inplace-select-item{
+			font-size: #{a4jSkin.generalSizeFont};
+			color: #{a4jSkin.generalTextColor};
+			}
+		.rich-inplace-select-view, .rich-inplace-select-changed{
+			font-size: #{a4jSkin.generalSizeFont};
+			color: #{a4jSkin.generalTextColor};
+		}	
+		</style>
+			
+			<p>
+				<b>Inplace Select</b>is a simple input component which displays current value as 
+				<i>outputText </i>and switches to <i>Select </i>based representation after a defined event
+				to allow editing this value.  
+			</p>
+ 
+			<p>
+				You could try  the simplest example below. Just click on a label 
+				to edit the value and click somewhere outside the component to store this value(Or just press ENTER button).       
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/inplaceSelect/examples/simple.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/inplaceSelect/examples/simple.xhtml"/>
+					</ui:include>			
+				</div>
+			</fieldset>
+			<p>
+				In this example <i>f:selectItems</i> tag is used to define a list of items to use. 
+				Additionally the next useful attributes are used:  
+			</p>			
+			<ul>
+				<li>Controls "save" and "cancel" are turned on with <b>showControls</b> attribute</li>
+				<li><b>Layout</b> attribute is defined as <b>block</b> and inplace is rendered as <i>div</i> an element instead of<i> span </i></li>
+				
+				<li>
+					<b>openOnEdit</b> with true value defines that a select popup list will be opened 
+					automatically after edit state is activated.
+				</li>
+				<li> Classes customization is used</li>
+			</ul>
+			<p><b>Double click to edit value</b> <i>(editEvent set as ondblclick)</i>.</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Example</legend>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/inplaceSelect/examples/selectItems.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/inplaceSelect/examples/selectItems.xhtml"/>
+					</ui:include>			
+				</div>
+			</fieldset>
+			<p>
+				And the last example shows how to save the simplest value via Ajax request and
+				how customize controls using <b>controls</b> facet.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/inplaceSelect/examples/controlsCustomization.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/inplaceSelect/examples/controlsCustomization.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

@@ -1,0 +1,144 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<script type="text/javascript">//<![CDATA[
+		function processObjectsChange(suggestionBox) {
+			var items = suggestionBox.getSelectedItems();
+			if (items && items.length > 0) {
+				var html = "<table cellspaing='8'><thead>" + 
+					"<tr><td>State</td><td>1st City</td><td>2nd City</td><td>3rd City</td></tr>" + 
+					"</thead><tbody>";
+
+				for ( var i = 0; i < items.length; i++) {
+					html += "<tr>";
+
+					html += "<td>";
+					html += items[i].state;
+					html += "</td>";
+
+					var dataItems = items[i].data.items;
+					for ( var j = 0; j < dataItems.length; j++) {
+						html += "<td>";
+						html += dataItems[j];
+						html += "</td>";
+					}
+						
+					html += "</tr>";
+				}
+
+				html += "</tbody></table>"
+				
+				$('myDiv').innerHTML = html;				
+			} else {
+				$('myDiv').innerHTML = "";				
+			}
+		}
+	//]]></script>
+	
+	<style type="text/css">
+		.sb_test_column1 {
+			vertical-align: top;
+			text-align: left;
+			padding-right: 5px;
+		}
+		.sb_test_column2 {
+			vertical-align: middle;			
+			text-align: center;
+			padding-left: 5px;
+		}
+	</style>
+	
+	<h:form id="suggestionbox_form">
+		<p>Suggestion Box will suggest you states capitals names. Comma
+				and square brackets could be used as suggestions separators."</p>
+	
+		<h:panelGrid columns="2" columnClasses="sb_test_column1,sb_test_column2" width="100%">
+			<h:panelGroup>
+				<h:inputText value="#{capitalsBean.capital}" id="text" />
+				<rich:suggestionbox id="suggestionBoxId" for="text" tokens=",[]"
+					rules="#{suggestionBox.rules}"
+					suggestionAction="#{capitalsBean.autocomplete}" var="result"
+					fetchValue="#{result.name}" rows="#{suggestionBox.intRows}"
+					first="#{suggestionBox.intFirst}"
+					minChars="#{suggestionBox.minchars}"
+					shadowOpacity="#{suggestionBox.shadowOpacity}"
+					border="#{suggestionBox.border}" width="#{suggestionBox.width}"
+					height="#{suggestionBox.height}"
+					shadowDepth="#{suggestionBox.shadowDepth}"
+					cellpadding="#{suggestionBox.cellpadding}"
+					nothingLabel="No capitals found" columnClasses="center"
+					usingSuggestObjects="true"
+					onobjectchange="processObjectsChange(suggestion)">
+					
+					<h:column>
+						<h:graphicImage value="#{result.stateFlag}" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{result.name}" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{result.state}" style="font-style:italic" />
+					</h:column>
+				</rich:suggestionbox>
+
+				<rich:spacer height="30px" />
+
+				<h:panelGrid columns="2" border="0">
+
+					<h:outputText value="Border" />
+
+					<rich:inputNumberSlider minValue="1" maxValue="5"
+						value="#{suggestionBox.border}">
+						<a4j:support event="onchange" reRender="suggestionBoxId" />
+					</rich:inputNumberSlider>
+
+					<h:outputText value="Width" />
+
+					<rich:inputNumberSlider minValue="150" maxValue="350" step="50"
+						value="#{suggestionBox.width}">
+						<a4j:support event="onchange" reRender="suggestionBoxId" />
+					</rich:inputNumberSlider>
+
+
+					<h:outputText value="Height" />
+
+					<rich:inputNumberSlider minValue="100" maxValue="300" step="50"
+						value="#{suggestionBox.height}">
+						<a4j:support event="onchange" reRender="suggestionBoxId" />
+					</rich:inputNumberSlider>
+
+					<h:outputText value="Shadow Depth" />
+
+					<rich:inputNumberSlider minValue="3" maxValue="6"
+						value="#{suggestionBox.shadowDepth}">
+						<a4j:support event="onchange" reRender="suggestionBoxId" />
+					</rich:inputNumberSlider>
+
+
+					<h:outputText value="Shadow Opacity" />
+
+					<rich:inputNumberSlider minValue="1" maxValue="9"
+						value="#{suggestionBox.shadowOpacity}">
+						<a4j:support event="onchange" reRender="suggestionBoxId" />
+					</rich:inputNumberSlider>
+
+					<h:outputText value="Cellpadding" />
+
+					<rich:inputNumberSlider minValue="1" maxValue="20"
+						value="#{suggestionBox.cellpadding}">
+						<a4j:support event="onchange" reRender="suggestionBoxId" />
+					</rich:inputNumberSlider>
+				</h:panelGrid>
+
+			</h:panelGroup>
+			<h:panelGroup>
+				<div id="myDiv"></div>
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+
+</ui:composition>

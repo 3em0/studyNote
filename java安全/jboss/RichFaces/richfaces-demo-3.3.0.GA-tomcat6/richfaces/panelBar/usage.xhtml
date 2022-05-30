@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+				<p>
+					The Richfaces Panel Bar is a set of panels when one panel is expanded,
+					but other ones are collapsed. The following demo shows the example
+					of usage for the Panel Bar
+				</p>
+
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Panel Bar demo</legend>
+					<div  class="sample-container" >
+						<ui:include src="/richfaces/panelBar/examples/example.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/panelBar/examples/example.xhtml"/>
+						</ui:include>
+					</div>
+				</fieldset>
+
+		</ui:define>
+		
+
+	</ui:composition>
+</html>

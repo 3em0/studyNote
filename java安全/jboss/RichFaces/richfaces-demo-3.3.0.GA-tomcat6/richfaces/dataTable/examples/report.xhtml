@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+			
+				<rich:dataTable 
+					onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+					onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+					cellpadding="0" cellspacing="0" 
+					width="700" border="0" var="record" value="#{report.expReport.records}">
+				
+					<f:facet name="header">
+						<rich:columnGroup>
+							<rich:column rowspan="2">
+								<rich:spacer />
+							</rich:column>
+							<rich:column colspan="3">
+								<h:outputText value="Expenses" />
+							</rich:column>
+							<rich:column rowspan="2">
+								<h:outputText value="subtotals" />
+							</rich:column>
+							<rich:column breakBefore="true">
+								<h:outputText value="Meals" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="Hotels" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="Transport" />
+							</rich:column>
+						</rich:columnGroup>
+					</f:facet>
+	
+					<rich:column  colspan="5">
+					<h:outputText value="#{record.city}" /></rich:column>
+					
+					
+					<rich:subTable
+						onRowMouseOver="this.style.backgroundColor='#F8F8F8'"
+						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+						var="expense" value="#{record.items}">
+						<rich:column>
+							<h:outputText value="#{expense.day}"></h:outputText>
+							<f:facet name="footer">
+								<rich:spacer />
+							</f:facet>
+						</rich:column>
+						<rich:column>
+							<h:outputText value="#{expense.meals}"><f:convertNumber   pattern="$####.00"  /></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="#{record.totalMeals}"><f:convertNumber  pattern="$####.00" /></h:outputText>
+							</f:facet>
+						</rich:column>
+						<rich:column>
+							<h:outputText value="#{expense.hotels}"><f:convertNumber  pattern="$####.00"  /></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="#{record.totalHotels}"><f:convertNumber   pattern="$####.00"  /></h:outputText>
+							</f:facet>
+						</rich:column>
+						<rich:column>
+							<h:outputText value="#{expense.transport}"><f:convertNumber   pattern="$####.00"  /></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="#{record.totalTransport}"><f:convertNumber   pattern="$####.00"  /></h:outputText>
+							</f:facet>
+						</rich:column>
+						<rich:column>
+							<rich:spacer></rich:spacer>
+							<f:facet name="footer">
+								<h:outputText value="#{record.total}"><f:convertNumber   pattern="$####.00"    /></h:outputText>
+							</f:facet>
+						</rich:column>					
+						
+					</rich:subTable>
+		
+					<f:facet name="footer">
+				
+						<rich:columnGroup>
+							<rich:column>Totals</rich:column>
+							<rich:column>
+								<h:outputText value="#{report.expReport.totalMeals}"><f:convertNumber   pattern="$####.00"  /></h:outputText>
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{report.expReport.totalHotels}"><f:convertNumber   pattern="$####.00"  /></h:outputText>
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{report.expReport.totalTransport}"><f:convertNumber   pattern="$####.00"  /></h:outputText>
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{report.expReport.grandTotal}"><f:convertNumber   pattern="$####.00"  /></h:outputText>
+							</rich:column>
+						</rich:columnGroup>
+					</f:facet>
+		
+				</rich:dataTable>
+
+</ui:composition>

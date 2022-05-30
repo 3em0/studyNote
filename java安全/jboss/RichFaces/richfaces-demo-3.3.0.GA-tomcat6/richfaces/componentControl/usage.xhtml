@@ -1,0 +1,87 @@
+<ui:composition template="/templates/component-sample.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+		<ui:define name="sample">
+ 			
+	<style>
+	.atop{
+		vertical-align:top;
+	}
+	</style>
+		<p>RichFaces Component Control is a universal component that allows to call JS API functions on the
+		components after defined events. 
+		</p>
+		<p>
+			In this simple example <b>componentControl</b> components are used to open and close modal panel.
+			The component is attached to links and calls "show" and "hide" functions on Modal Panel. 
+		</p>
+
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Component Control with modal panel example</legend>
+			<div class="sample-container">
+				<ui:include src="/richfaces/componentControl/examples/mpusage.xhtml"/>
+				<br/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/componentControl/examples/mpusage.xhtml"/>
+				</ui:include>
+			</div>
+		</fieldset>
+		<p>
+			<b>Main component attributes:</b>
+		</p>
+			<ul>
+				<li><b>for</b> - specifies client identifier of the target component.</li>
+				<li><b>attachTo</b> - specifies client identifier of the component or id of the existing DOM element that is a source
+					for a given event. If <b>attachTo</b> is not defined, the event is attached on the server to the closest in the
+					component tree parent component.</li>
+				<li><b>event</b> - is used to trigger the <b>operation</b> on the target component 
+				<br/><i><b>Note:</b> the component could use "oncontextmenu" event to call the JS API on right click event.
+				But in this case this component should be defined via <b>for</b> attribute rather than using a4j:support style. 
+				In case of support-like definition, the component will not work properly, as many of the components don't encode this event.
+				</i>
+				
+				</li>
+				<li><b>operation</b> - name of the javascript function that will be invoked on a target component. The API method
+					is attached to the 'component' property of the root DOM element that represents
+					the target component. The function has two parameters - <b>event</b> and <b>params</b>.</li>
+				<li><b>params</b> - a set of parameters passed to the function of Javascript API that will be invoked. 
+				The JSON syntax is used to define the parameters, but without open and closed curve 
+				bracket.
+				As an alternative, a set of f:param can be used to define the parameters passed to the 
+				API function. </li>  
+			</ul>
+		<p>
+			Thus, one of the main features is that Component Control component allows to transfer 
+			parameters to managed components. 
+		</p>
+		<p>
+			You may put <b>f:param</b> components as nested to component control component (instead of <b>params</b> attribute usage) 
+			and all the parameters that are defined will be available from target component.
+		</p>
+		<p>
+			In the next example, component control is used inside <b>rich:dataTable</b> component. 
+			Component control is defined with two parameters which have the current row values.
+			Hence the <b>rich:contextMenu</b> component that called by this Component Control
+			will take this parameters and will be able to display them in its items values.  
+		</p>
+		<p>
+			Click at any table row to see the context menu that generated individually for
+			every row using parameters.
+		</p>
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Component Control with rich:dataTable example</legend>
+			<div class="sample-container">
+				<ui:include src="/richfaces/componentControl/examples/cmenuusage.xhtml"/>
+				<br/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/componentControl/examples/cmenuusage.xhtml"/>
+				</ui:include>
+			</div>
+		</fieldset>
+		</ui:define>
+
+</ui:composition>

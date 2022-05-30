@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition>
+	<script type="text/javascript">
+			function printObjectsSelected(output, sgcomponent){
+				output.innerHTML=sgcomponent.getSelectedItems().pluck('state');
+			}
+		</script>
+
+	<h:form id="form">
+		<h:panelGrid columns="2">
+			<h:outputText value="Input with states names suggestions" />
+			<h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0">
+				<h:inputText style="margin:0px;" id="statesinput" />
+				<h:graphicImage value="/images/icons/arrow.png"
+					onclick="#{rich:component('suggestion')}.callSuggestion(true)"
+					alt="" />
+			</h:panelGrid>
+			<h:outputText value="States capitals for suggested capitals" />
+			<h:outputText id="objects" style="font-weight:bold" />
+		</h:panelGrid>
+		<rich:suggestionbox height="200" width="200"
+			usingSuggestObjects="true"
+			onobjectchange="printObjectsSelected(#{rich:element('objects')}, #{rich:component('suggestion')});"
+			suggestionAction="#{capitalsBean.autocomplete}" var="cap"
+			for="statesinput" fetchValue="#{cap.name}" id="suggestion" tokens=",">
+			<h:column>
+				<h:graphicImage value="#{cap.stateFlag}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{cap.name}" />
+			</h:column>
+		</rich:suggestionbox>
+	</h:form>
+</ui:composition>
+
+</html>

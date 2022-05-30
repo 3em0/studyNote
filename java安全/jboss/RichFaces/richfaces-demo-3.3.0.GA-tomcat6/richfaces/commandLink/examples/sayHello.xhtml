@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+			
+	<style>
+		.gridhello {
+			border-collapse : collapse;
+		}
+		.gridhellocolumn {
+			padding-left : 0;
+		}
+		.outhello {
+			font-weight: bold;
+		}
+	</style>
+	
+	<a4j:form>
+		<h:panelGrid columns="3" styleClass="gridhello" columnClasses="gridhellocolumn">
+			<h:outputText value="Name:" />
+			<h:inputText value="#{userBean.name}" />
+			<a4j:commandLink reRender="out">
+				<h:outputText value="Say Hello" /> 
+			</a4j:commandLink>
+		</h:panelGrid>
+	</a4j:form>
+	<rich:spacer height="7"/>
+	<br />
+	<h:panelGroup id="out">
+		<h:outputText value="Hello " rendered="#{not empty userBean.name}" styleClass="outhello" />
+		<h:outputText value="#{userBean.name}" styleClass="outhello" />
+		<h:outputText value="!" rendered="#{not empty userBean.name}" styleClass="outhello" />
+	</h:panelGroup>
+	
+	<br />
+</ui:composition>

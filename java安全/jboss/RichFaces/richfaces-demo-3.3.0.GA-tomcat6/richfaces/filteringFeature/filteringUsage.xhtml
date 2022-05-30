@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<style>
+				.top{
+					vertical-align:top;
+				}
+			</style>
+				<p><b>
+					Rich Data Table</b> has columns <b>filtering feature</b> built-in. The simplest way to add filtering
+					capability is to define <b>filterBy </b>attribute at a column you need to be filterable.
+				</p>
+				<p>
+					In this attribute you should define iterable object property which should be
+					used when filetring performed. 
+				</p>
+				<p>
+					In this example you could see that two first columns filtered after the corresponding
+					input is changed.
+				</p>
+
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Filtering DataTable example</legend>
+			<div  class="sample-container">
+				<h:panelGrid columns="2" columnClasses="top">
+					<h:panelGroup>
+						<ui:include src="/richfaces/filteringFeature/examples/simpleFiltering.xhtml"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<div style="padding-left: 20px">
+							<b>Details of usage</b>
+							<p>
+								In order to change filter event you should change <b>filterEvent</b> attribute 
+								on a column (<i>e.g. filterEvent = "onblur"</i>)
+							</p>
+							<p>
+								In order to get or change current filtering value <b>filterValue </b>attribute is
+								provided. It should be defined with initial filtering value on the page
+								or as value binding to get/change it on server.     
+							</p>
+							<p>
+								This is built-in feature. It uses "<b>startsWith</b>" function to make filtering.
+							</p>
+							<p>  
+								If <b>filterBy </b>attribute is set, a column will render default inputs with
+								default filtering behaviour 
+							</p>
+							<p>
+								In order to change default filtering behaviour another definition is used.
+								See the example shown at the second tab("External Filtering") 
+							</p>
+						</div>
+					</h:panelGroup>
+				</h:panelGrid>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/filteringFeature/examples/simpleFiltering.xhtml"/>
+				</ui:include>
+			</div>
+		</fieldset>
+		</ui:define>
+ 
+	</ui:composition>
+</html>

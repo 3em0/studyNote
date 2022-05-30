@@ -1,0 +1,4 @@
+com\demo\vuln\Shiro\MainRealm.class
+com\demo\vuln\Controller\UserController.class
+com\demo\vuln\VulnApplication.class
+com\demo\vuln\Shiro\ShiroConfig.class

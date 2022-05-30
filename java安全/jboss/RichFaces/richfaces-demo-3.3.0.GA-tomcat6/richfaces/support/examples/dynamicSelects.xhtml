@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Choose the produce type:"/>
+			<rich:inplaceSelect value="#{selectsBean.currentType}" valueChangeListener="#{selectsBean.valueChanged}" defaultLabel="Click here to select">
+				<f:selectItems value="#{selectsBean.firstList}"/>
+				<a4j:support event="onchange" reRender="items, label" ajaxSingle="true"/>
+			</rich:inplaceSelect>
+			<a4j:outputPanel id="label">
+				<h:outputText value="Choose concrete product:" rendered="#{!empty selectsBean.secondList}"/>
+			</a4j:outputPanel> 	
+			<a4j:outputPanel id="items">
+				<rich:inplaceSelect value="#{selectsBean.currentItem}" rendered="#{!empty selectsBean.secondList}" defaultLabel="Click here to select">
+					<f:selectItems value="#{selectsBean.secondList}"/>
+				</rich:inplaceSelect>
+			</a4j:outputPanel>
+		</h:panelGrid>
+	</h:form>
+</ui:composition>

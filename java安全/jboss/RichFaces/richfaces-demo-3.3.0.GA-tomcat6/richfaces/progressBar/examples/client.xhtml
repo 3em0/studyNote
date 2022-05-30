@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+      
+      <script>
+//<![CDATA[
+		var counter = 1;
+		var intervalID;
+    	 	function updateProgress(i) {
+    	 		$('form:progressBar').component.setValue(counter*5);
+    	 		if ((counter++)>20){
+    	 			clearInterval(intervalID);
+	    	 		document.getElementById('button').disabled=false;
+   	 			}
+    	 	}
+    	 	
+    	 	function startProgress(){
+    	 		counter=1;
+    	 		document.getElementById('button').disabled=true;
+      			$('form:progressBar').component.enable();
+      			$('form:progressBar').component.setValue(1);
+    			intervalID = setInterval(updateProgress,5000);
+      		}
+//]]> 
+	  </script>
+	<h:form id="form">
+	      <rich:progressBar mode="client" id="progressBar">
+	      	<f:facet name="initial">
+	      		<h:outputText value="Process doesn't started yet"/>
+	      	</f:facet>
+	      	<f:facet name="complete"> 
+	      		<h:outputText value="Process Done"/>
+	      	</f:facet>
+	      </rich:progressBar>
+	      <button type="button" onclick="startProgress();" style="margin: 9px 0px 5px;" id="button">Start Progress</button>
+	</h:form>
+</ui:composition>

@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:form>
+		<a4j:push interval="1000" eventProducer="#{push.addListener}"
+			reRender="push,out" enabled="#{push.enabled}" id="push"/>
+		<rich:panel>
+		<f:facet name="header">
+			<h:outputText value="Push Example"/>
+		</f:facet>
+		<h:panelGrid columns="1" id="out">
+			<h:outputText rendered="#{!push.enabled}" value="Press Start to run push example"/>
+			<h:panelGroup rendered="#{push.enabled}">
+				<h:outputText value="Generated UUID:"/>
+				<h:outputText value="#{push.uuid}"/>
+			</h:panelGroup>
+			<h:panelGroup>
+				<a4j:commandButton value="Start" action="#{push.start}"
+					ajaxSingle="true" rendered="#{!push.enabled}" reRender="push, out"/>
+				<a4j:commandButton value="Stop" action="#{push.stop}"
+					ajaxSingle="true" rendered="#{push.enabled}" reRender="push, out"/>
+			</h:panelGroup>
+		</h:panelGrid>
+		</rich:panel>
+	</h:form>
+</ui:composition>

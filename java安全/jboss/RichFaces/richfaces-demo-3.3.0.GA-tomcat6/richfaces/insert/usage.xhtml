@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+		<p>rich:insert component allows to insert and, optionally, format the file from the application
+		context into the page. The context relative path to the file is specified with <b>src</b>
+		attribute.
+		</p>
+		<p>
+		<b>highlight</b> attribute defines the type of a syntax highlighting. If this attribute is 
+		specified, inserting text is formated and keywords are colorized using 
+		<a href="https://jhighlight.dev.java.net/" target="_blank">jhighlight
+		open source</a> library. You need to have jhighlight.jar in the classpath to have this feature 
+		enabled. The following example shows the groovy code snippet inserted and highlighted:
+		</p>
+
+		<fieldset class="demo_fieldset">
+			<legend class="demo_legend">Groovy code snippet page integration example</legend>
+			<div class="sample-container">
+				<ui:include src="/richfaces/insert/examples/groovy.xhtml"/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/insert/examples/groovy.xhtml"/>
+					<ui:param name="openlabel" value="View Source" />
+				</ui:include>
+			</div>
+		</fieldset>
+
+		<p>
+		<b>errorContent</b> attribute defines the alternative content that will be shown
+		in case rich:insert cannot read the resource defined with 'src' attribute. If 
+		errorContent attribute is not defined, the component shown the actual error message in the
+		place where the content is expected.
+		</p>
+		
+		</ui:define>
+
+	</ui:composition>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition>
+		<rich:listShuttle var="cap" sourceValue="#{capitalsBean.capitals}" id="ls"
+			sourceListWidth="200px" targetListWidth="200px">
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="State flag"/>
+				</f:facet>
+				<h:graphicImage value="#{cap.stateFlag}"/>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="State capital"/>
+				</f:facet>
+				<h:outputText value="#{cap.state}"/>
+			</rich:column>
+		</rich:listShuttle>
+		<rich:hotKey selector="#ls" key="right" handler="#{rich:component('ls')}.copy()"/>
+		<rich:hotKey selector="#ls" key="left" handler="#{rich:component('ls')}.remove()"/>
+		<rich:hotKey selector="#ls" key="end" handler="#{rich:component('ls')}.copyAll()"/>
+		<rich:hotKey selector="#ls" key="home" handler="#{rich:component('ls')}.removeAll()"/>
+	</ui:composition>
+	
+
+</html>

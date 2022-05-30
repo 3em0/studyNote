@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+				<p>
+					In order to customize built-in sorting you just need:
+				</p> 
+				<ul>
+					<li>
+						Turn <b>selfSorted</b> on the columns to "false"
+					</li>
+					<li>
+						Bind <b>sortOrder</b> attributes on the columns to the bean properties. 
+					</li>
+					<li>
+						Manage the bindings with values from <i>org.richfaces.model.Ordering</i> enum. 
+					</li>
+					<li>
+						If the sorting is multiple - fill the <b>sortPriorities</b> list with column ids
+						in the order the columns should be sorted. 
+					</li>
+				</ul>
+				<p>
+					Try the next example. Just change sorting order on the table via 
+					attributes and it automatically resort its content. In order to perform sorting
+					just choose the sorting properties, sorting direction and press a sort button:   
+				</p>
+				<fieldset class="demo_fieldset">
+					<legend class="demo_legend">Sorting DataTable example</legend>
+					<div  class="sample-container">
+						<ui:include src="/richfaces/sortingFeature/examples/externalMultipleSorting.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcepath" value="/richfaces/sortingFeature/examples/externalMultipleSorting.xhtml"/>
+						</ui:include>
+					</div>
+				</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

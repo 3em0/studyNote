@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<style>
+	.cent{
+		text-align:center;
+	}
+	.rich-menu-item{
+		text-align:left;
+	}
+	.rich-menu-group{
+		text-align:left;
+	}
+</style>
+	<a4j:loadScript src="/scripts/picturesUtils.js"/>
+	<h:panelGrid columns="1" columnClasses="cent">
+
+			<h:panelGroup id="picture">
+				<h:graphicImage value="/richfaces/jQuery/images/pic1.jpg" id="pic" style="border : 5px solid #E4EAEF"/>
+				<rich:contextMenu event="oncontextmenu" attachTo="pic" submitMode="none">
+					<rich:menuItem value="Zoom In" onclick="enlarge('pic');" id="zin"></rich:menuItem>
+					<rich:menuItem value="Zoom Out" onclick="decrease('pic');" id="zout"></rich:menuItem>
+				</rich:contextMenu>
+			</h:panelGroup>
+
+	</h:panelGrid>
+</ui:composition>

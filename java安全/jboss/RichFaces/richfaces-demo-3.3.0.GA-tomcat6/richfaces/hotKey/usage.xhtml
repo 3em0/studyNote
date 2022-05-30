@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<p>
+				The <b>hotKey </b>component allows registering hot keys on the page or 
+				particular elements and defining client side processing functions for 
+				these keys.
+			</p>
+			<p>
+				Main component attributes are:
+			</p>
+			<ul>
+			  <li><b>key</b> - hot key definition <i>("up", "ctrl+a", etc...)</i></li>
+			  <li><b>handler</b> - defines callback function for this hotKey</li>
+			  <li>
+			  	<b>selector</b> -  JQuerry selector, defines elements which will process 
+			  	defined hotKey(<i>html[0] by default</i>)
+			  </li>
+			</ul>
+			<p>
+				First example shows you simple <b>hotKey </b>components usage. In order to enlarge 
+				or reduce image size - press <i>CTRL + Up/Down</i> combinations. and in order to 
+				browse between images - use <i>CTRL + left/right</i> keys. 
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Hot Key example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/hotKey/examples/example.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/hotKey/examples/example.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+			<p>
+				In next example we've used <b>selector</b> attribute. Hence  the keys will work 
+				only if listShuttle component is focused.
+			</p>
+			<p>
+				Press <i>right</i> or <i>left</i> keys in order to move some selected items
+				between lists. Press <i>Home</i> or <i>End</i> buttons in order to move all items between
+				lists.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Targeted Hot Key example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/hotKey/examples/inputNumbers.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/hotKey/examples/inputNumbers.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+		</ui:define>
+		
+	</ui:composition>
+</html>

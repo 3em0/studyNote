@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+
+			<p>
+				Toolbar is a horizontal-oriented panel that can be used in different ways: for top level menu, for information panel, for tools-like menu and so on.<br />
+				The following example shows how the panelBar might look like:
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Tool Bar example 1</legend>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/toolBar/examples/iconBar.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/toolBar/examples/iconBar.xhtml"/>
+					</ui:include>				
+				</div>
+			</fieldset>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Tool Bar example 2</legend>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/toolBar/examples/menus.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/toolBar/examples/menus.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+
+			<p>
+				Items on the toolBar can be grouped with ability to define a separator
+				between different groups and between a member of the same group. The 
+				"location" attribute set to "right" put a group to the right side of the panel.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Tool Bar Separator example</legend>
+				<div class="sample-container">
+					<ui:include src="/richfaces/toolBar/examples/separators.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/toolBar/examples/separators.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>

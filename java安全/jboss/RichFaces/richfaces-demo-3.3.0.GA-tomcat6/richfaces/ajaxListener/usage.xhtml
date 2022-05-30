@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<p>
+				Additionally to the listeners provided by the JSF specification, RichFaces adds one more:
+				Ajax Listener (a4j:ajaxListener). Ajax Listener is invoked before the Render Response
+				phase. Instead of Action Listener or Value Change Listener which is not invoked when
+				Validation of the Update Model phases fails, Ajax Listener is guarantied to be invoked
+				for each Ajax Response. Hence, it is a good way to update a list of re-rendered
+				components, for example.
+			</p>
+			<p>
+				Ajax Listener is not invoked for a non-Ajax request and when RichFaces works in
+				"Ajax request generates Non-Ajax Response" mode. Therefore, Ajax Listener invocation
+				is a good indicator that Ajax Response is going to be processed.
+			</p>
+			
+			<p>
+				<b>type</b> attribute defines the fully qualified Java class name for the listener. This
+				class should implement org.ajax4jsf.events.AjaxListener interface. You can access to
+				the source of the event (Ajax component) using event.getSource() call.
+			</p>
+			
+
+			
+		</ui:define>
+
+	</ui:composition>
+</html>

@@ -1,0 +1,67 @@
+tester:
+  title: DGC Tests
+  description: |-
+    'Performs tests for the serial action on an RMI DGC endpoint.'
+
+  id: '001-005'
+  groups:
+    - dgc
+    - serial
+  id_pattern: '001-005-{:03}'
+
+
+variables:
+  file: jdk8-dgc-rce-test.txt
+
+
+tests:
+  - title: Gadget Call
+    description: |-
+      'Attempts a deserialization attack on the DGC endpoint.'
+      'The deserialization should work, but the chain is broken at some point.'
+
+    groups:
+      - ysoserial
+
+    command:
+      - rmg
+      - serial
+      - ${TARGET}
+      - CommonsCollections6
+      - 'touch ${volume-d}/${file}'
+      - --component
+      - dgc
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - 'Caught unexpected AccessControlException during deserialization attack'
+            - 'The servers SecurityManager may refused the operation.'
+
+
+  - title: Gadget Call (SSL)
+    description: |-
+      'Attempts a deserialization attack on the DGC endpoint.'
+      'The deserialization should work, but the chain is broken at some point.'
+
+    groups:
+      - ysoserial
+
+    command:
+      - rmg
+      - serial
+      - ${TARGET-SSL}
+      - CommonsCollections6
+      - 'touch ${volume-d}/${file}'
+      - --component
+      - dgc
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - 'Caught java.lang.NoClassDefFoundError during deserialization attack'
+

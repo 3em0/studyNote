@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+			
+<style>
+.label{
+font-weight:bold;
+}
+</style>
+		<h:form>
+		<rich:dataList var="car" value="#{dataTableScrollerBean.allCars}" rows="10">
+			<h:outputText value="#{car.make} #{car.model}"/><br/>
+			<h:outputText value="Price:" styleClass="label"></h:outputText>
+			<h:outputText value="#{car.price} " />
+			<h:outputText value="Mileage:" styleClass="label"></h:outputText>
+			<h:outputText value="#{car.mileage} " />
+			<h:outputText value="VIN:" styleClass="label"></h:outputText> 
+			<h:outputText value="#{car.vin}" />
+		</rich:dataList>
+		</h:form>
+</ui:composition>  

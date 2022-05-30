@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	<!DOCTYPE digester-rules SYSTEM "digester-rules.dtd">
+ -->
+
+<digester-rules>
+	<pattern value="*/capital">
+		<object-create-rule	classname="org.richfaces.demo.capitals.Capital" />
+		<bean-property-setter-rule pattern="name" propertyname="name"/>	
+		<bean-property-setter-rule pattern="state" propertyname="state"/>	
+		<bean-property-setter-rule pattern="timeZone" propertyname="timeZone"/>	
+		<set-next-rule methodname="addCapital"/>
+
+		<pattern value="data">
+			<object-create-rule	classname="org.richfaces.demo.capitals.CapitalData" />
+			<set-next-rule methodname="setData"/>
+			
+			<pattern value="item">
+				<call-method-rule methodname="addItem" paramcount="0" />
+			</pattern>
+		</pattern>
+	</pattern>
+</digester-rules>

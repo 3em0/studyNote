@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	
+	<style type="text/css">
+		.pic-normal {
+			width: 120px;
+			border: 2px solid #ACBECE;
+
+		}
+		.wrap1 {
+			width:190px;
+			height: 130px;
+			float: left;			
+		}
+	</style>
+	
+			
+	<br/>
+
+	<a4j:outputPanel id="gallery">
+		<h:graphicImage value="/richfaces/jQuery/images/pic1.jpg" />
+		<h:graphicImage value="/richfaces/jQuery/images/pic2.jpg" />
+		<h:graphicImage value="/richfaces/jQuery/images/pic3.jpg" />
+		<h:graphicImage value="/richfaces/jQuery/images/pic4.jpg" />
+		<h:graphicImage value="/richfaces/jQuery/images/pic5.jpg" />
+		<h:graphicImage value="/richfaces/jQuery/images/pic6.jpg" />
+		<h:graphicImage value="/richfaces/jQuery/images/pic7.jpg" />
+		<h:graphicImage value="/richfaces/jQuery/images/pic8.jpg" />
+		<h:graphicImage value="/richfaces/jQuery/images/pic9.jpg" />
+	</a4j:outputPanel>	
+	
+	<br style="clear:both" />
+
+
+	<rich:jQuery selector="#gallery img" query="addClass('pic-normal')"/>
+	<rich:jQuery selector="#gallery img" query="wrap('&lt;div class=\'wrap1\'&gt;&lt;/div&gt;')" />
+	<rich:jQuery selector="#gallery img" query="mouseover(function(){enlargePic(this)})"/>
+	<rich:jQuery selector="#gallery img" query="mouseout(function(){normalPic(this)})"/>
+	
+	<rich:jQuery name="enlargePic" timing="onJScall" query="stop().animate({width:'180px'})" />
+	<rich:jQuery name="normalPic" timing="onJScall" query="stop().animate({width:'120px'})" />
+	
+	
+
+</ui:composition>

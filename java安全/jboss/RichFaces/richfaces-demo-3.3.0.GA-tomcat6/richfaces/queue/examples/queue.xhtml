@@ -1,0 +1,54 @@
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:a4j="http://richfaces.org/a4j"
+	  xmlns:rich="http://richfaces.org/rich"
+	  xmlns:c="http://java.sun.com/jstl/core">
+	<a4j:loadScript src="/scripts/queueUi.js"/>
+	<a4j:loadStyle src="/css/queueStylesheet.js"/>
+	<style>
+		.inner td{
+			border:none;
+		}
+	</style>
+	<h:form id="form1" prependId="false">
+		<a4j:queue requestDelay="1000" ignoreDupResponce="true"/>
+
+		<h:panelGrid columns="1" cellpadding="0" cellspacing="3">
+			<h:panelGrid columns="6" cellpadding="3" cellspacing="0" border="1" bordercolor="#cccccc">
+				<f:facet name="header">
+					<h:outputText value="Ajax Requests"/>
+				</f:facet>
+				
+				<c:forEach begin="0" end="17" step="1" var="i">
+					<h:panelGrid styleClass="inner">
+						<a4j:commandButton id="_#{i}" image="queue/examples/resources/button2.gif"
+							style="height:50px;width:50px;"
+							onclick="buttonpush('_#{i}');"
+							oncomplete="buttonpop('_#{i}');"	
+							actionListener="#{mojarraBean.process}" value="submit"/>
+						<h:panelGrid cellpadding="5">
+								<h:outputText value="#{i}" style="font-weight:bold"/>
+						</h:panelGrid>
+					</h:panelGrid> 
+				</c:forEach> 
+			</h:panelGrid>
+			<table id="queuetable" cellpadding="3" cellspacing="0" border="1" bordercolor="#cccccc">
+				<thead>
+					<tr>
+						<th colspan="100">
+							Request Queue				
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr id="tr1">
+				</tr>
+				</tbody>
+			</table>
+		</h:panelGrid>
+
+	</h:form>
+
+	</ui:composition>

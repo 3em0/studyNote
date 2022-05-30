@@ -1,0 +1,8 @@
+<h:inputText value="#{bean.name}" id="name">
+	<a4j:support ajaxSingle="true" process="email" event="onblur" reRender="someOut"/>
+</h:inputText>
+<h:inputTextarea value="#{bean.description}" id="desc">
+</h:inputTextarea>
+<h:inputText value="#{bean.email}" id="email">
+	<a4j:support ajaxSingle="true" process="name" event="onblur" reRender="someOut"/>
+</h:inputText>

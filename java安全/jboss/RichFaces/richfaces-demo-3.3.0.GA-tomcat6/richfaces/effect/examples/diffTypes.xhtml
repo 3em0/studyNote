@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+<style type="text/css">
+	.box {
+		background-color: #FFF;
+		height:100px;
+		width: 200px;
+		text-align:center;
+	}
+	.cell { 
+		height:120px;
+		width: 220px;
+		vertical-align:top;
+	
+	}
+	
+</style>
+
+<h:panelGrid columns="3" columnClasses="cell, cell, cell">
+
+	<rich:panel id="fadebox" styleClass="box">
+		<f:facet name="header">Fade Effect</f:facet>
+		<rich:effect event="onclick" type="Fade" />
+		<rich:effect event="onclick"  for="fadebox"  type="Appear" params="delay:3.0,duration:0.5" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+	<rich:panel id="bdbox" styleClass="box">
+		<f:facet name="header">BlindDown Effect</f:facet>
+		<rich:effect event="onclick" type="BlindDown" params="duration:0.8" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+	<rich:panel id="bubox" styleClass="box">
+		<f:facet name="header">BlindUp Effect</f:facet>
+		<rich:effect event="onclick" type="BlindUp" params="duration:0.8" />
+		<rich:effect event="onclick"  for="bubox"  type="Appear" params="delay:3.0,duration:0.5" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+	<rich:panel id="opacitybox" styleClass="box">
+		<f:facet name="header">Opacity Effect</f:facet>
+		<rich:effect event="onclick" type="Opacity" params="duration:0.8, from:1.0, to:0.1" />
+		<rich:effect event="onclick"  for="opacitybox"  type="Appear" params="delay:3.0,duration:0.5" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+	<rich:panel id="switchbox" styleClass="box">
+		<f:facet name="header">SwitchOff Effect</f:facet>
+		<rich:effect event="onclick" type="SwitchOff" params="duration:0.8" />
+		<rich:effect event="onclick"  for="switchbox"  type="Appear" params="delay:3.0,duration:0.5" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+	<rich:panel id="dobox" styleClass="box">
+		<f:facet name="header">DropOut Effect</f:facet>
+		<rich:effect event="onclick"  type="DropOut" params="duration:0.8" />
+		<rich:effect event="onclick"  for="dobox"  type="Appear" params="delay:3.0,duration:0.5" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+	<rich:panel id="highlightbox" styleClass="box">
+		<f:facet name="header">Highlight Effect</f:facet>
+		<rich:effect event="onclick"  type="Highlight" params="duration:0.8" />
+		<rich:effect event="onclick"  for="highlightbox"  type="Appear" params="delay:3.0,duration:0.5" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+	<rich:panel id="foldbox" styleClass="box">
+		<f:facet name="header">Fold Effect</f:facet>
+		<rich:effect event="onclick"  type="Fold" params="duration:0.8" />
+		<rich:effect event="onclick"  for="foldbox"  type="Appear" params="delay:3.0,duration:0.5" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+	<rich:panel id="squishbox" styleClass="box">
+		<f:facet name="header">Squish Effect</f:facet>
+		<rich:effect event="onclick"  type="Squish" params="duration:0.8" />
+		<rich:effect event="onclick"  for="squishbox"  type="Appear" params="delay:3.0,duration:0.5" />
+		<h:outputText value="Click to Activate" />
+	</rich:panel>
+
+</h:panelGrid>
+
+</ui:composition>

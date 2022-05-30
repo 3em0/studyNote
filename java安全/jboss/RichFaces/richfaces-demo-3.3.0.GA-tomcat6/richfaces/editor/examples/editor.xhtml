@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib">
+	<style>
+.column {
+	width: 400px;
+	vertical-align: top;
+}
+</style>
+	<h:form id="form">
+		<h:panelGrid columns="2" width="100%" columnClasses="column,column">
+			<h:panelGroup style="height:320px;width:400px;" layout="block">
+				<rich:editor configuration="#{editorBean.currentConfiguration}"
+					id="editor" width="400" height="300"
+					viewMode="#{editorBean.viewMode}" value="#{editorBean.value}" useSeamText="#{editorBean.useSeamText}">
+					<a4j:support event="onchange" reRender="result" ajaxSingle="true"
+						requestDelay="1000" 
+						onsubmit="if (! #{rich:element('form:editorvalue')}) return false;" />
+				</rich:editor>
+			</h:panelGroup>
+			<rich:panel>
+				<f:facet name="header">
+					<h:outputText value="Editor Settings" />
+				</f:facet>
+				<h:panelGrid columns="2">
+					<h:outputText value="Select Editor Theme" />
+					<h:selectOneRadio value="#{editorBean.currentConfiguration}"
+						layout="pageDirection">
+						<f:selectItems value="#{editorBean.configurations}" />
+						<a4j:support event="onclick" reRender="editor" requestDelay="500"
+							eventsQueue="settingsQueue" similarityGroupingId="settings" />
+					</h:selectOneRadio>
+					<h:outputText value="Toggle Modes" escape="false"/>
+					<h:selectOneRadio value="#{editorBean.viewMode}"
+						layout="pageDirection">
+						<f:selectItem itemLabel="WYSIWYG mode" itemValue="visual" />
+						<f:selectItem itemLabel="Text Area(Disables Preview)" itemValue="source" />
+						<a4j:support event="onclick" reRender="editor" requestDelay="500"
+							eventsQueue="settingsQueue" similarityGroupingId="settings" />
+					</h:selectOneRadio>
+					<h:outputText value="Toggle Preview: " />
+					<h:selectBooleanCheckbox value="#{editorBean.liveUpdatesEnabled}">
+						<a4j:support event="onclick" reRender="result" requestDelay="500"
+							eventsQueue="settingsQueue" similarityGroupingId="settings" />
+					</h:selectBooleanCheckbox>
+					<h:outputText value="Use Seam Text: " />
+					<h:selectBooleanCheckbox value="#{editorBean.useSeamText}">
+						<a4j:support event="onclick" reRender="editor,result" requestDelay="500"
+							eventsQueue="settingsQueue" similarityGroupingId="settings" action="#{editorBean.resetValue}"/>
+					</h:selectBooleanCheckbox>
+				</h:panelGrid>
+			</rich:panel>
+			<a4j:outputPanel layout="block" id="result">
+				<rich:panel rendered="#{editorBean.liveUpdatesEnabled}">
+					<f:facet name="header">
+						<h:outputText value="Preview" />
+					</f:facet>
+					<h:inputTextarea readonly="true" id="editorvalue" value="#{editorBean.value}"
+						cols="55" rows="20"/>
+				</rich:panel>
+			</a4j:outputPanel>
+		</h:panelGrid>
+
+	</h:form>
+</ui:composition>

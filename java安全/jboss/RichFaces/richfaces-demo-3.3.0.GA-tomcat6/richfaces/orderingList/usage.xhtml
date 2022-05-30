@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<p>
+				<b>orderingList</b> component allows to reorder items in a list. 
+			</p>
+			<p>
+				Ordering List could contain several columns in list representation. And it
+				also has strong keyboard support out of the box.
+			</p>
+
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">OrderingList example</legend>
+				<div class="sample-container">
+					<p>Manage simple playlist represented via Ordering List:</p>
+					<br/>
+					<ui:include src="/richfaces/orderingList/example/playlist.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/orderingList/example/playlist.xhtml"/>
+					</ui:include>
+					<br/>
+				</div>
+			</fieldset>
+			<p>
+				In this example you may select some songs (using the mouse and Ctrl/Shift keys) and move them 
+				within the list using controls.
+			</p>
+			
+			<p>
+				Content definition for this component is similar to any Iteration component.
+				Thus, all you need is to define collection in Ordering List <b>value</b> attribute 
+				and iterate the collection in nested columns with <b>var</b> attribute.
+			</p>
+			<p>
+				In order to set initially selected rows or to process submitted selection, 
+				use <b>selection</b> attribute.
+			</p>
+		</ui:define>
+
+	</ui:composition>
+</html>

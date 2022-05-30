@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<style>
+				.rich-message-label{
+					color:red;
+				}
+			</style>
+			<p>
+				Rich Faces State API allows easily to define some set of states for the pages and any 
+				properties sets	for these states. 
+			</p>
+			<p>
+				Imagine one state as a set of named value-bindings method-bindings and some 
+				additional properties to be used after the state is activated. Hence you could define
+				inputs values, controls labels and actions, rendering conditions and etc.
+				using the same state variables which will have different values for every state.   
+			</p>
+			<p>
+				The next small example panel 
+				has two states:	<b>login</b> and <b>register</b>. Let&apos;s list the changes between
+				login and register.  
+			</p>
+			<ul>
+				<li>
+					Confirmation field for password should appear in a register state
+				</li>
+				<li>
+					Method bindings should differ for the action button in every state
+				</li>
+				<li>
+					Value bindings for the fields could be different between states
+				</li>
+				<li>
+					Some labels should be changed between states
+				</li>
+			</ul>
+			<p>
+				Also there should be a link which will switch states from login to register
+			</p>
+			<p>
+				Now try the example itself before further explanations.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Title</legend>
+					<div class="sample-container" >
+						<ui:include src="/richfaces/stateAPI/examples/example.xhtml"/>
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="openlabel" value="Template Page" /> 
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/examples/example.xhtml"/>
+						</ui:include>					
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="openlabel" value="Initial wizard page(Page with EL bindings to state)" />
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/examples/simple.xhtml"/>
+						</ui:include>					
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="openlabel" value="Logged in page" />
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/examples/loginResult.xhtml"/>
+						</ui:include>					
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="openlabel" value="Registered page" />
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/examples/registerResult.xhtml"/>
+						</ui:include>					
+						
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcetype" value="java" />
+							<ui:param name="openlabel" value="Config Bean(States definition)" />
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/snippets/config.java"/>
+						</ui:include>					
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcetype" value="java" />
+							<ui:param name="openlabel" value="Bean(Stores login/register info)" />
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/snippets/bean.java"/>
+						</ui:include>					
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcetype" value="java" />
+							<ui:param name="openlabel" value="Loginaction.java" />
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/snippets/loginaction.java"/>
+						</ui:include>					
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcetype" value="java" />
+							<ui:param name="openlabel" value="Registeraction.java" />
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/snippets/registeraction.java"/>
+						</ui:include>					
+
+						<ui:include src="/templates/include/sourceview.xhtml">
+							<ui:param name="sourcetype" value="xml" />
+							<ui:param name="openlabel" value="faces-config beans definitions" />
+							<ui:param name="sourcepath" value="/richfaces/stateAPI/snippets/cfg.xml"/>
+						</ui:include>					
+					</div>
+			</fieldset>
+			<p>
+				Actually states are a map where the entry key is a name of the state and value
+				is a state map. Particular state map has entries with some names as keys and 
+				any objects as values. Thus any value or method bindings or just simple state
+				constants could be saved in State map. 
+			</p>
+			<p>
+				Rich Faces state API implements states change as a standard JSF navigation.
+				Action component should just return outcome, and our extension for JSF 
+				navigation handler will check whether this outcome is registered as state change 
+				outcome. If such state change outcome is found, the corresponding state will be 
+				activated and in other case, it will call standard navigation handling 
+			</p>
+			<p>
+				There is step by step instructions telling how to configure Rich Faces states 
+				manager for existing JSF application in details tab.   
+			</p>
+		</ui:define>
+	</ui:composition>
+</html>

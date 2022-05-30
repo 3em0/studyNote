@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition>
+<style type="text/css">
+body{
+	background-image : url(${facesContext.externalContext.requestContextPath}/images/page_bg.gif);
+}
+li{
+	list-style : outside url(${facesContext.externalContext.requestContextPath}/images/bullet_arrow.gif);
+}
+.top_navbar td{
+	background-image : url(${facesContext.externalContext.requestContextPath}/images/top_nav_bg.gif);
+}
+.panel_menu{
+	background-image : url(${facesContext.externalContext.requestContextPath}/images/menu_bg.gif);
+}
+.content_tab {
+	background-image : url(${facesContext.externalContext.requestContextPath}/images/tabpanel_custom/tabpanel_bg.jpg);
+}
+.active_tab {
+	background-image : url(${facesContext.externalContext.requestContextPath}/images/tabpanel_custom/tab_unactive_bg.gif);
+}
+.inactive_tab {
+	background-image : url(${facesContext.externalContext.requestContextPath}/images/tabpanel_custom/tab_active_bg.gif);
+}
+h1.hsample {
+	font-size:19px;
+}
+div.esample {
+	border-right: #CCCCCC 1px solid;
+	padding-right: 8px;
+	border-top: #CCCCCC 1px solid;
+	padding-left: 8px;
+	padding-bottom: 0px;
+	border-left: #CCCCCC 1px solid;
+	padding-top: 0px;
+	border-bottom: #CCCCCC 1px solid
+}
+p {
+	font-family : verdana;
+	font-size : 11px;
+	line-height : 150%;
+}
+a {
+	color : #ACBECE
+}
+p.note {
+	padding : 15px 15px 15px 85px;
+	margin : 20px; border : 1px solid #ACBECE;
+	background: url(${facesContext.externalContext.requestContextPath}/images/note_bg.gif) top left no-repeat #F0F3F7
+}
+</style>
+</ui:composition>
+</html>
+

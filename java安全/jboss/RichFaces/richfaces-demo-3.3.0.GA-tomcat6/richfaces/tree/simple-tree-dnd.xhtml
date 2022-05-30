@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+				<p>
+					This example shows the built-in tree drag and drop functionality 
+					and also demonstrates drag and drop from outside the tree to some 
+					of its nodes.
+				</p>
+				<ul>
+					<li>
+						Select "Unsorted" node to see all the pictures in preview panel 
+						from the right. Then you could drag and drop any picture to any other
+						node.
+					</li>
+					<li>
+						Or you could expand some node with pictures and drag and drop 
+						just the leaves between the nodes.
+					</li>
+				</ul>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/tree/examples/simpleDnd.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/tree/examples/simpleDnd.xhtml"/>
+						<ui:param name="openlabel" value="View Source" />
+					</ui:include>		
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/demo/tree/SimpleTreeDndBean.java"/>
+						<ui:param name="openlabel" value="View SimpleTreeDndBean.java Source" />
+						<ui:param name="sourcetype" value="java" />
+					</ui:include>
+				</div>
+		</ui:define>
+	</ui:composition>
+</html>

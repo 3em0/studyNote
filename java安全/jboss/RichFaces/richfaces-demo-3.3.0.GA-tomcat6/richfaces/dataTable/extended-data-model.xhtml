@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			<p>
+Perhaps the most obvious problem of DataTable and javax.faces.model.DataModel is lack of support for more complicated scenarios that uses 
+data from the database.
+To solve that problem <b>Richfaces</b> has two major tools:
+<ul>
+	<li>
+	set of data-driven components that render data sets in many different ways (<b>rich:dataTable</b> , <b>rich:dataGrid</b>, <b>rich:dataList</b>, <b>a4j:repeat</b> etc.). 
+	All this components derived it common functionality from the common core that, in addition to standard javax.faces.model.DataModel, 
+	can understand and use
+	</li>
+	<li>
+	extended data model classes <b>org.ajax4jsf.model.ExtendedDataModel</b> and <b>org.ajax4jsf.model.SerializableDataModel</b>. This two classes works 
+	together to provide functions that missing in standard DataModel.
+	</li>
+</ul>
+The most important additional functions are:
+<ul>
+	<li>access for rows by primary keys instead of index position</li>
+	<li>implementation of "visitor" pattern over the "range" of rows to support "table scroller" or "paginator" functions</li>
+	<li>ability to serialize table data so it may be used on a post-back processing without additional database query</li>
+</ul>
+To use this extensions you need to implement your own DataModel that extends one of our ExtendedDataModel classes and implement few of 
+important functions. Below is the example of such implementation.
+			</p>
+			<div class="sample-container" >
+							
+				<ui:include src="/richfaces/dataTable/examples/extendedDataModel.xhtml"/>
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/richfaces/dataTable/examples/extendedDataModel.xhtml"/>
+					<ui:param name="openlabel" value="View Source" />
+				</ui:include>					
+ 
+				<ui:include src="/templates/include/sourceview.xhtml">
+					<ui:param name="sourcepath" value="/WEB-INF/src/org/richfaces/demo/extendeddatamodel/AuctionDataModel.java"/>
+					<ui:param name="openlabel" value="View AuctionDataModel.java Source" />
+					<ui:param name="sourcetype" value="java" />
+				</ui:include>					
+								
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</html>

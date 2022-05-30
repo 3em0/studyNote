@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition template="/templates/component-sample.xhtml">
+		<ui:define name="sample">
+			
+
+			<p>rich:message is an extension for a standard h:message component. In addition to what the
+			standard component provides, rich:message:
+			<ul>
+				<li>does not require to be wrapped with a4j:outputPanel in order to be rendered during the 
+				Ajax requests</li>
+				<li>allows to have a "passed" or "failed" marker before the text label</li>
+				<li>has a predefined css class names for different kinds of message severities</li>
+			</ul> 
+			</p>
+			<p>The message marker is defined with a facet. There are several facets names available
+			to design the marker for different kind of message severities. The following example
+			shows how the markers might be used to mark the "passed" and "failed" form fields.
+			Fill the form and click "Validate" button to see the entered data passing the
+			defined validation rules.
+			</p>
+			<fieldset class="demo_fieldset">
+				<legend class="demo_legend">Form validation using rich:message example</legend>
+				<div class="sample-container" >
+					<ui:include src="/richfaces/message/examples/form.xhtml"/>
+					<ui:include src="/templates/include/sourceview.xhtml">
+						<ui:param name="sourcepath" value="/richfaces/message/examples/form.xhtml"/>
+					</ui:include>
+				</div>
+			</fieldset>
+		</ui:define>
+
+	</ui:composition>
+</html>
