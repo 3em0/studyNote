@@ -81,27 +81,27 @@ NON_CONCRETE_AND_ARRAYS： 和描述一样
 
 根据typeid寻找反序列化
 
-![image-20220111194949841](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220111194949841.png)
+![image-20220111194949841](https://img.dem0dem0.top/images/image-20220111194949841.png)
 
 然后调用`deser.deserialize()`
 
-![image-20220111195030212](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220111195030212.png)
+![image-20220111195030212](https://img.dem0dem0.top/images/image-20220111195030212.png)
 
-![image-20220111195052313](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220111195052313.png)
+![image-20220111195052313](https://img.dem0dem0.top/images/image-20220111195052313.png)
 
 然后使用
 
-![image-20220111195114719](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220111195114719.png)
+![image-20220111195114719](https://img.dem0dem0.top/images/image-20220111195114719.png)
 
 这是对于最外层的People类的。
 
 对于sex。
 
-![image-20220111195515087](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220111195515087.png)
+![image-20220111195515087](https://img.dem0dem0.top/images/image-20220111195515087.png)
 
 调用这个方法进去，
 
-![image-20220111195629953](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220111195629953.png)
+![image-20220111195629953](https://img.dem0dem0.top/images/image-20220111195629953.png)
 
 然后经过中间的处理设置Type然后再反序列化，调用构造方法。并且再这个也是一个反射调用`setter`
 

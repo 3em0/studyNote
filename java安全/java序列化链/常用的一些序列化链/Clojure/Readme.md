@@ -69,9 +69,9 @@ user=> (Date.)
 
 ### main$eval_opt
 
-![image-20220512235130177](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512235130177.png)
+![image-20220512235130177](https://img.dem0dem0.top/images/image-20220512235130177.png)
 
-![image-20220512235451831](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512235451831.png)
+![image-20220512235451831](https://img.dem0dem0.top/images/image-20220512235451831.png)
 
 所以
 
@@ -84,7 +84,7 @@ main$eval_opt.invokeStatic(payload);
 
 这个类是
 
-![image-20220512235947122](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512235947122.png)
+![image-20220512235947122](https://img.dem0dem0.top/images/image-20220512235947122.png)
 
 可以调用对象的invoke方法。这个类的__clojureFnMap是`IPersistentMap`,猜测是封装的map类型
 
@@ -96,7 +96,7 @@ PersistentArrayMap.create 可以封装。
 
 他的invoke方法
 
-![image-20220513000426222](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513000426222.png)
+![image-20220513000426222](https://img.dem0dem0.top/images/image-20220513000426222.png)
 
 实际上这个类是整条调用链的关键，我们只需要让 `this.g` 是 `main$eval_opt` 类，`this.f` 的 invoke 方法返回待解析的恶意 payload。
 

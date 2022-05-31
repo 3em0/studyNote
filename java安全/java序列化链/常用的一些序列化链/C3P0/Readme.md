@@ -87,29 +87,29 @@ public class C3P0 implements ObjectPayload<Object> {
 
 这里的poolSource
 
-![image-20220511234535859](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220511234535859.png)
+![image-20220511234535859](https://img.dem0dem0.top/images/image-20220511234535859.png)
 
 没有实现反序列化接口，所以在`writeObject`的时候
 
-![image-20220511234626839](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220511234626839.png)
+![image-20220511234626839](https://img.dem0dem0.top/images/image-20220511234626839.png)
 
 会进入图中的流程。
 
-![image-20220511234828167](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220511234828167.png)
+![image-20220511234828167](https://img.dem0dem0.top/images/image-20220511234828167.png)
 
-![image-20220511234838580](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220511234838580.png)
+![image-20220511234838580](https://img.dem0dem0.top/images/image-20220511234838580.png)
 
 `Referenceable`继承了的。所以在最后，这属性就变成了`ReferenceIndirector`.然后在反序列化的时候。
 
-![image-20220511235157612](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220511235157612.png)
+![image-20220511235157612](https://img.dem0dem0.top/images/image-20220511235157612.png)
 
 调用他的getObject.
 
-![image-20220511235234844](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220511235234844.png)
+![image-20220511235234844](https://img.dem0dem0.top/images/image-20220511235234844.png)
 
 然后就会调用`URLClassLoader`.
 
-![image-20220511235339139](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220511235339139.png)
+![image-20220511235339139](https://img.dem0dem0.top/images/image-20220511235339139.png)
 
 ## jndi 注入
 
@@ -153,13 +153,13 @@ public class TemplatePoc {
 
 现在可以利用的地方我能想到的大概就在`Fastjson`,`SnakeYAML`等，可以触发set方法的地方。
 
-![image-20220512001356297](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512001356297.png)
+![image-20220512001356297](https://img.dem0dem0.top/images/image-20220512001356297.png)
 
-![image-20220512002621832](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512002621832.png)
+![image-20220512002621832](https://img.dem0dem0.top/images/image-20220512002621832.png)
 
-![image-20220512002629931](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512002629931.png)
+![image-20220512002629931](https://img.dem0dem0.top/images/image-20220512002629931.png)
 
-![image-20220512002642145](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512002642145.png)
+![image-20220512002642145](https://img.dem0dem0.top/images/image-20220512002642145.png)
 
 ## hex序列化字节加载器
 
@@ -215,11 +215,11 @@ public class TemplatePoc {
 
 首先设置
 
-![image-20220512004053837](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512004053837.png)
+![image-20220512004053837](https://img.dem0dem0.top/images/image-20220512004053837.png)
 
 然后
 
-![image-20220512004239649](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512004239649.png)
+![image-20220512004239649](https://img.dem0dem0.top/images/image-20220512004239649.png)
 
 接下来就是dddd。
 
@@ -309,10 +309,10 @@ public class C3P0Tomcat implements ObjectPayload<Object> {
 这里是触发的地点。
 
 
-![image-20220512200919472](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512200919472.png)
+![image-20220512200919472](https://img.dem0dem0.top/images/image-20220512200919472.png)
 
 整个序列化的链子大概就是
 
-![image-20220512201208386](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220512201208386.png)
+![image-20220512201208386](https://img.dem0dem0.top/images/image-20220512201208386.png)
 
 在writeobject的时候，这里调用poolsource的getReference方法，这样也就是设置好了这些的一切.后面的链子就和JNDI的一样了。

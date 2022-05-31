@@ -40,11 +40,11 @@ queue.add("calc");
 
 ### MethodClosure
 
-![image-20220513100940785](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513100940785.png)
+![image-20220513100940785](https://img.dem0dem0.top/images/image-20220513100940785.png)
 
 初始化的有两个参数一个是对象，一个是对象的方法名称.我们可以大概理解成为===> 一个类的方法的存储 ==》 Method.他的docall方法就是invoke.
 
-![image-20220513101036201](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513101036201.png)
+![image-20220513101036201](https://img.dem0dem0.top/images/image-20220513101036201.png)
 
 所以我们这样写代码就可以执行
 
@@ -81,23 +81,23 @@ methodClosure.call();
 
 ConvertedClosure 实现了 ConversionHandler 类，而 ConversionHandler 又实现了 InvocationHandler。所以说 ConvertedClosure 本身就是一个动态代理类。
 
-![image-20220513102639014](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513102639014.png)
+![image-20220513102639014](https://img.dem0dem0.top/images/image-20220513102639014.png)
 
 可以看到整个类除了一些基本方法，会直接调用，其他的都是invokeCustom来实现的。`ConvertedClosure的method`==>和代理调用时的方法一致。
 
-![image-20220513102713229](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513102713229.png)
+![image-20220513102713229](https://img.dem0dem0.top/images/image-20220513102713229.png)
 
 像什么就不用我多说了把。看到这里就明白这条链的触发逻辑了。后面自然是使用 AnnotationInvocationHandler 将 ConvertedClosure 代理成 Map 类。这样在反序列化。
 
 ### AnnotationInvocationHandler
 
-![image-20220513103129245](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513103129245.png)
+![image-20220513103129245](https://img.dem0dem0.top/images/image-20220513103129245.png)
 
 主要是给大家看一下他的初始化。
 
 ## 分析
 
-![image-20220513103744938](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513103744938.png)
+![image-20220513103744938](https://img.dem0dem0.top/images/image-20220513103744938.png)
 
 AnnotationInvocationHandler#readobject => `handler(用closure代理了map接口)#entrySet` ==> `ConversionHandler#invoke`=>`ConvertedClosure#invokeCustom`==>call方法。
 

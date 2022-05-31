@@ -85,21 +85,21 @@ HashMap o1 = Gadgets.makeMap(equalsBean, "o");
 
 ## 分析
 
-![image-20220513082004576](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513082004576.png)
+![image-20220513082004576](https://img.dem0dem0.top/images/image-20220513082004576.png)
 
 hashmap#readobject == > ObjectBean#hashcode
 
-![image-20220513082041477](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513082041477.png) 
+![image-20220513082041477](https://img.dem0dem0.top/images/image-20220513082041477.png) 
 
 EqualsBead#beanHashCode`这个中间需要包裹一下ObjectBean(主要是把_equalsBean#_obj变成toString )`可以发射实现 == > ToStringBean#toString
 
-![image-20220513082114248](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513082114248.png)
+![image-20220513082114248](https://img.dem0dem0.top/images/image-20220513082114248.png)
 
-![image-20220513082211859](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513082211859.png)
+![image-20220513082211859](https://img.dem0dem0.top/images/image-20220513082211859.png)
 
 ToStringBean#toString ==> ToString#toString(prefix)
 
-![image-20220513082335074](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513082335074.png)
+![image-20220513082335074](https://img.dem0dem0.top/images/image-20220513082335074.png)
 
 调用getter方法
 
@@ -116,7 +116,7 @@ ToStringBean#toString ==> ToString#toString(prefix)
 
 但是我们发现`equalBean的equals`方法其实也是可以触发的。
 
-![image-20220513084226030](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513084226030.png)
+![image-20220513084226030](https://img.dem0dem0.top/images/image-20220513084226030.png)
 
 ## 总结
 

@@ -71,7 +71,7 @@ public class spring1 {
 
 在spring的core包里面有。实现了TypeProvider，说明是可以序列化的。
 
-![image-20220513234515123](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513234515123.png)
+![image-20220513234515123](https://img.dem0dem0.top/images/image-20220513234515123.png)
 
 调用了 ReflectionUtils 先是 `findMethod` 返回 Method 对象然后紧接着调用 `invokeMethod` 反射调用。注意，这里的调用是无参调用。如果可以把这个methodName改成`newTransform`,`this.provider.getType()` 想办法处理成 TemplatesImpl.就可以触发漏洞了。
 
@@ -79,7 +79,7 @@ public class spring1 {
 
 `org.springframework.beans.factory.support.AutowireUtils$ObjectFactoryDelegatingInvocationHandler` 是 InvocationHandler 的实现类.注释中Reflective InvocationHandler for lazy access to the current target object.（用于延迟访问当前目标对象的反射调用处理程序。）实例化的时候会接受objectFactory一个参数，并且在Invoke的时候调用getObject。
 
-![image-20220513235148796](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513235148796.png)
+![image-20220513235148796](https://img.dem0dem0.top/images/image-20220513235148796.png)
 
 ObjectFactory 的 getObject 方法返回的对象是泛型的，那就可以可用 AnnotationInvocationHandler 来代理，返回任意对象。
 
@@ -87,17 +87,17 @@ ObjectFactory 的 getObject 方法返回的对象是泛型的，那就可以可�
 
 ### 动态代理过程
 
-![image-20220514093123817](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220514093123817.png)
+![image-20220514093123817](https://img.dem0dem0.top/images/image-20220514093123817.png)
 
-![image-20220514093300540](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220514093300540.png)
+![image-20220514093300540](https://img.dem0dem0.top/images/image-20220514093300540.png)
 
 这次`method`是`newTranfrom`.然后`invoke`,触发`typetemplateproxy`
 
-![image-20220514093409438](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220514093409438.png)
+![image-20220514093409438](https://img.dem0dem0.top/images/image-20220514093409438.png)
 
 然后触发
 
-![image-20220514093437655](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220514093437655.png)
+![image-20220514093437655](https://img.dem0dem0.top/images/image-20220514093437655.png)
 
 结束。
 
@@ -115,9 +115,9 @@ Type typetemplateproxy = (Type)Proxy.newProxyInstance(ClassLoader.getSystemClass
 
 ## spring2
 
-![image-20220514094848697](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220514094848697.png)
+![image-20220514094848697](https://img.dem0dem0.top/images/image-20220514094848697.png)
 
-![image-20220514094900102](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220514094900102.png)
+![image-20220514094900102](https://img.dem0dem0.top/images/image-20220514094900102.png)
 
 ```java
 JdkDynamicAopProxy ==> ObjectFactoryDelegatingInvocationHandler

@@ -41,7 +41,7 @@ public class AspectJWeaver {
 
 可以看到这个类的put方法，会将key和value，来作为参数调用write
 
-![image-20220515103646076](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220515103646076.png)
+![image-20220515103646076](https://img.dem0dem0.top/images/image-20220515103646076.png)
 
 所以如果可以的话
 

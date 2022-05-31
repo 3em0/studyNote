@@ -257,15 +257,15 @@ ChainedTransformer newTransformer = new ChainedTransformer(new Transformer[]{
 
 跟进去`heapify()`
 
-![image-20220427200401562](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220427200401562.png)
+![image-20220427200401562](https://img.dem0dem0.top/images/image-20220427200401562.png)
 
 继续跟进!
 
-![image-20220427200428138](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220427200428138.png)
+![image-20220427200428138](https://img.dem0dem0.top/images/image-20220427200428138.png)
 
 可以看到整个Comparator好像和我们之前那个有一点点像
 
-![image-20220427200505588](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220427200505588.png)
+![image-20220427200505588](https://img.dem0dem0.top/images/image-20220427200505588.png)
 
 所以这个链子就完全闭合了哦。但是我们如果从开发者角度去思考这两个类到底是进行了怎样的实现的话，建议直接看p神的。[PriorityQueue源码分析 - linghu_java - 博客园 (cnblogs.com)](https://www.cnblogs.com/linghu-java/p/9467805.html)
 
@@ -443,7 +443,7 @@ shiro中很有可能没有cc但是都有cb这依赖。所以我们试一下直�
 
 `Caused by: org.apache.shiro.util.UnknownClassException: Unable to load class named [org.apache.commons.collections.comparators.ComparableComparator] from the thread context, current, or system/application ClassLoaders.  All heuristics have been exhausted.  Class could not be found.`然后又报错了，
 
-![image-20220427211856843](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220427211856843.png)
+![image-20220427211856843](https://img.dem0dem0.top/images/image-20220427211856843.png)
 
 原因就是我们不传递comparator的实现他会默认调用那个玩意。
 
@@ -505,11 +505,11 @@ shiro中很有可能没有cc但是都有cb这依赖。所以我们试一下直�
 
 这个方法是有问题的，现在我们要找方法去触发他。`private`这是一个私有的方法，在invoke中被调用了。然后这个类是一个代理类也就是proxy.
 
-![image-20220427233151694](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220427233151694.png)
+![image-20220427233151694](https://img.dem0dem0.top/images/image-20220427233151694.png)
 
 所以我们需要找到一个方法，在反序列化时对proxy调用equals方法。
 
-![image-20220427233256434](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220427233256434.png)
+![image-20220427233256434](https://img.dem0dem0.top/images/image-20220427233256434.png)
 
 一看equal这个名字，我们大概猜到了就是在进行两个对象之间的比较，于是我们进行
 
@@ -518,17 +518,17 @@ shiro中很有可能没有cc但是都有cb这依赖。所以我们试一下直�
 
 不由得想到上一节中得COMPOARE,但是他使用的是第二种，所以我们还是考虑`set`.`HashSet`
 
-![image-20220427234626861](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220427234626861.png)
+![image-20220427234626861](https://img.dem0dem0.top/images/image-20220427234626861.png)
 
 最后代码逻辑来到这一块，也就是找到两个hash的值不一样的，最后才会执行(key.euqal),我们知道的是key应该就是被代理的template.
 
-![image-20220427235129380](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220427235129380.png)
+![image-20220427235129380](https://img.dem0dem0.top/images/image-20220427235129380.png)
 
 所以最后变成找到`Key.hashcode()===0`,也就是字符串`f5a5a608`
 
 所以最后整条链子如图所示
 
-![image-20220428081545071](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220428081545071.png)
+![image-20220428081545071](https://img.dem0dem0.top/images/image-20220428081545071.png)
 
 最后整个序列化链子的构造大致如上。触发的过程
 
@@ -677,7 +677,7 @@ zkar dump -B
 
 我们在attributes中发现了
 
-![image-20220428213155390](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220428213155390.png)
+![image-20220428213155390](https://img.dem0dem0.top/images/image-20220428213155390.png)
 
 他的`parent`属性是一个TC_ObJECT,同时他的handler和user的一样，正好符合。差不多也就这些东西。我们接着下面看。
 

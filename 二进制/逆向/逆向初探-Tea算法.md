@@ -8,7 +8,7 @@
 
 ## 0x02 TEA
 
-![TEA算法过程](https://gitee.com/ddem0/typora-pic/raw/master/images/20200720005736509.png)
+![TEA算法过程](https://img.dem0dem0.top/images/20200720005736509.png)
 
 下面是c语言的实现过程
 
@@ -95,7 +95,7 @@ int main()
 
 ## 0x04 XXTEA
 
-![XXTEA cipher.svg的算法图](https://gitee.com/ddem0/typora-pic/raw/master/images/20200720005804592.png)
+![XXTEA cipher.svg的算法图](https://img.dem0dem0.top/images/20200720005804592.png)
 
 ```
 #define MX (((z >> 5) ^ (y << 2)) + ((y >> 3) ^ (z << 4))) ^ ((sum ^ y) + (key[(p & 3) ^ e] ^ z))
@@ -141,6 +141,6 @@ static uint32_t * xxtea_uint_decrypt(uint32_t * data, size_t len, uint32_t * key
 }
 ```
 
-![image-20220511000925925](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220511000925925.png)
+![image-20220511000925925](https://img.dem0dem0.top/images/image-20220511000925925.png)
 
 可能是因为我使用的宏定义的原因，可以看出比较明显的特点。MX

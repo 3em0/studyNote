@@ -106,11 +106,11 @@ ICalc calc = (ICalc) registry.lookup("calc");
 
 #### 发生了什么
 
-![image-20220429213739245](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220429213739245.png)
+![image-20220429213739245](https://img.dem0dem0.top/images/image-20220429213739245.png)
 
-![image-20220429215535116](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220429215535116.png)
+![image-20220429215535116](https://img.dem0dem0.top/images/image-20220429215535116.png)
 
-![image-20220429215545259](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220429215545259.png)
+![image-20220429215545259](https://img.dem0dem0.top/images/image-20220429215545259.png)
 
 按照上面图中的分析来讲，
 
@@ -127,7 +127,7 @@ ICalc calc = (ICalc) registry.lookup("calc");
 new Calc();
 ```
 
-![image-20220430164810885](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220430164810885.png)
+![image-20220430164810885](https://img.dem0dem0.top/images/image-20220430164810885.png)
 
 他的`ref`属性是UnicastServerRef(RemoteRef).然后调用他的exportObject方法.
 
@@ -157,7 +157,7 @@ public Remote exportObject(Remote var1, Object var2, boolean var3) throws Remote
 
 因为我们在实现接口的时候，继承了`UnicastRemoteObject`,所以我们在new的时候会调用父类的构造方法
 
-![image-20220430090358259](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220430090358259.png)
+![image-20220430090358259](https://img.dem0dem0.top/images/image-20220430090358259.png)
 
 会自动地帮忙`exportObject`
 
@@ -167,11 +167,11 @@ Creates and exports a new UnicastRemoteObject object using the particular suppli
 
 所以会随机用一个port导出这个类(会生成objectiD(唯一))。现在我们才能说这个远程类可以被导出了。也就完成了这一步。
 
-![image-20220430090625044](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220430090625044.png)
+![image-20220430090625044](https://img.dem0dem0.top/images/image-20220430090625044.png)
 
 接下来就是注册中心create了，这部分不多说。然后就是`bind`了，实现的方式也很简单，`this.bindings(private Hashtable<String, Remote>)`.
 
-![image-20220430091000720](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220430091000720.png)
+![image-20220430091000720](https://img.dem0dem0.top/images/image-20220430091000720.png)
 
 确实就是接口名字，endpoint和objid。现在服务端和register都准备好了，开始看client端了。
 
@@ -329,7 +329,7 @@ target.run();下断点
 
 然后一步一步跟踪
 
-![image-20220430172920205](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220430172920205.png)
+![image-20220430172920205](https://img.dem0dem0.top/images/image-20220430172920205.png)
 
 一步一步我们找到了Transport的serviceCall()方法
 
@@ -879,7 +879,7 @@ public class AttackByDGC {
 
 在客户端的`sun.rmi.transport.StreamRemoteCall#executeCall`控制一手var1，就可以了。
 
-![image-20220503145939667](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220503145939667.png)
+![image-20220503145939667](https://img.dem0dem0.top/images/image-20220503145939667.png)
 
 `JRMPListener`利用就是这里的问题，
 
@@ -1047,7 +1047,7 @@ public class TriggerJRMPCallByDeserialize {
 
 大概的流程就是`UnicastRemoteObject#readObject`==>`UnicastRemoteObject#reexport`==>`export`==>
 
-![image-20220503215649514](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220503215649514.png)
+![image-20220503215649514](https://img.dem0dem0.top/images/image-20220503215649514.png)
 
 剩下的就跟过去了。
 
@@ -1082,4 +1082,4 @@ jdk8u241，在调用`UnicastRef.invoke`之前，做了一个检测。
 
 ### 总结(EKI!!!)
 
-![image-20220503220609196](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220503220609196.png)
+![image-20220503220609196](https://img.dem0dem0.top/images/image-20220503220609196.png)

@@ -32,22 +32,22 @@ new NestedMethodProperty<Object> (templ, "outputProperties");
 这个就是存储了一个templ#outputProperties的getter方法。
 
 
- ![image-20220513094441951](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513094441951.png)
+ ![image-20220513094441951](https://img.dem0dem0.top/images/image-20220513094441951.png)
 
  只要调用他的getvalue方法就可以触发
 
-![image-20220513095101256](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513095101256.png)
+![image-20220513095101256](https://img.dem0dem0.top/images/image-20220513095101256.png)
 
 ### PropertysetItem
 
 触发类是 `com.vaadin.data.util.PropertysetItem` ，这个类用来存储 Property 属性值，为其映射一个 id 对象。数据存放在成员变量 map 中，想要获取相应属性时，则调用 `getItemProperty` 方法在 map 中获取。
 
-![image-20220513095158013](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513095158013.png)
+![image-20220513095158013](https://img.dem0dem0.top/images/image-20220513095158013.png)
 
 ### 链子
 
 
-![image-20220513094304692](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513094304692.png)
+![image-20220513094304692](https://img.dem0dem0.top/images/image-20220513094304692.png)
 
 toString起手==>PropertysetItem#toString ==> NestedMethodProperty#getvalue ==> template
 

@@ -96,11 +96,11 @@ public class Hibernate1  {
 
 可以看到这个类里面有两个内部类`BasicGetter`和`BasicSetter`,我们主要来看`BasicGetter`.
 
-![image-20220513193559708](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513193559708.png)
+![image-20220513193559708](https://img.dem0dem0.top/images/image-20220513193559708.png)
 
 可以看到这个类实例化的时候有三个属性，`class method propertyName`,非常像我们在反射调用时候需要使用到的数据。
 
-![image-20220513193740008](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513193740008.png)
+![image-20220513193740008](https://img.dem0dem0.top/images/image-20220513193740008.png)
 
 可以知道这个类在反序列化的时候是这样创建的。
 
@@ -153,21 +153,21 @@ getter.get(templatesImpl);
 
 有了上面的基础，我们现在的问题在于找到一个调用了`get`方法的地方。`AbstractComponentTuplizer#getPropertyValues`会调用成员变量`getters[i].get`.
 
-![image-20220513195014959](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513195014959.png)
+![image-20220513195014959](https://img.dem0dem0.top/images/image-20220513195014959.png)
 
 但是这个类是`Abstract`,无法直接实例化，所以找他的子类。
 
-![image-20220513195355676](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513195355676.png)
+![image-20220513195355676](https://img.dem0dem0.top/images/image-20220513195355676.png)
 
 一个是 PojoComponentTuplizer，一个是 DynamicMapComponentTuplizer，这对应着 Hibernate 的实体对象的类型，即 pojo 和 dynamic-map。pojo 代表将 Hibernate 类型映射为 Java 实体类，而 dynamic-map 将映射为 Map 对象。
 
 这里exp中选择的是**PojoComponentTuplizer**。
 
-![image-20220513195504787](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513195504787.png)
+![image-20220513195504787](https://img.dem0dem0.top/images/image-20220513195504787.png)
 
 最后会调用到上面的方法.我们使用idea查看还有哪些调用。
 
-![image-20220513195652076](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513195652076.png)
+![image-20220513195652076](https://img.dem0dem0.top/images/image-20220513195652076.png)
 
 可以看到调用的地方很少。`ComponentType#getPropertyValue` 
 
@@ -175,23 +175,23 @@ getter.get(templatesImpl);
 
 一个 final class，用来映射一个 Object 的值和对应的 Hibernate type。Hibernate 中定义了一个自己的类型接口 `org.hibernate.type.Hibernate.Type`，用来定义 Java 类型和一个或多个 JDBC 类型之间的映射。针对不同的类型有不同的实现类，开发人员也可以自己实现这个接口来自定义类型。而 TypedValue 就同时储存一个 Type 和 Object 的映射。上一部分最后提到的 ComponentType 就是 Type 的实现类。
 
-![image-20220513200334644](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513200334644.png)
+![image-20220513200334644](https://img.dem0dem0.top/images/image-20220513200334644.png)
 
-![image-20220513200349433](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513200349433.png)
+![image-20220513200349433](https://img.dem0dem0.top/images/image-20220513200349433.png)
 
 可以看到在初始化的时候还调用了`initTransients`,同时好玩的是我们在readobject同样发现了调用。出于敏感发现了hashcode的方法
 
-![image-20220513200653791](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513200653791.png)
+![image-20220513200653791](https://img.dem0dem0.top/images/image-20220513200653791.png)
 
 我们去看看ValueHolder的getValue方法。
 
-![image-20220513200736402](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513200736402.png)
+![image-20220513200736402](https://img.dem0dem0.top/images/image-20220513200736402.png)
 
-![image-20220513200805450](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513200805450.png)
+![image-20220513200805450](https://img.dem0dem0.top/images/image-20220513200805450.png)
 
 就会调用getHashCode方法。假如这个type刚好是`ComponentType`.
 
-![image-20220513200930100](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220513200930100.png)
+![image-20220513200930100](https://img.dem0dem0.top/images/image-20220513200930100.png)
 
 我们发现ComponentType#getHashCode方法刚好调用了`getPropertyValue`,现在链子就闭合了。
 

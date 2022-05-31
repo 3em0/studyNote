@@ -57,7 +57,7 @@ public class Exp1 {
 
 org.apache.commons.fileupload.FileItem表示在POST请求中接收到的文件或者表单项。而`DiskFileItem`是这个的实现类，用来封装一个请求消息实体中的全部项目，在`FileUploadBase#parseRequest`解析时进行封装，动作，动作由 DiskFileItemFactory 的 `createItem` 方法来完成。
 
-![image-20220515094557881](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220515094557881.png)
+![image-20220515094557881](https://img.dem0dem0.top/images/image-20220515094557881.png)
 
 他这里自己重新实现了自己的逻辑，用于在JVM之间迁移HTTP会话，在不同机器中文件存储文件reposity不同。
 
@@ -84,6 +84,6 @@ org.apache.commons.fileupload.FileItem表示在POST请求中接收到的文件�
 
 其实也不难理解，就是这个类在反序列化的时候有对文件的操作，而我们可以控制他的属性，从而来达到文件的操作。
 
-![image-20220515095751793](https://gitee.com/ddem0/typora-pic/raw/master/images/image-20220515095751793.png)
+![image-20220515095751793](https://img.dem0dem0.top/images/image-20220515095751793.png)
 
 这里的cachedContent==NULL，可以实现文件复制和删除。
