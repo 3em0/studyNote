@@ -6,7 +6,7 @@
 
 ## 0x01 题目
 
-![image-20220326181820829](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220326181820829.png)
+![image-20220326181820829](https://img.dem0dem0.top/images/image-20220326181820829.png)
 
 给了源码是`Hessian`的反序列化，应该不用多说了，该开撸了。而且不出网，就不能配合JNDI了。
 
@@ -20,7 +20,7 @@
 
 再加上题目的究极提示
 
-![image-20220326202058175](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220326202058175.png)
+![image-20220326202058175](https://img.dem0dem0.top/images/image-20220326202058175.png)
 
 我们选择`Rome`这条数据链，首先先熟悉一下这个利用链的触发流程。`HessianInput.readObject()`=>`MapDeserializer.readMap(in)`=>`HashMap.put(key,value)`=>`hashCode`=>`beanHashCode`=>`getter`
 
@@ -44,7 +44,7 @@
 
 二次触发反序列化，`Hessian`的反序列化对于`_tfactory`有限制。然后我们就可以借助` TemplatesImpl`来执行命令了，但是不出网，但是没有回显，就是注入内存马了。存储一个内存马备用。
 
-![image-20220326203948844](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220326203948844.png)
+![image-20220326203948844](https://img.dem0dem0.top/images/image-20220326203948844.png)
 
 ```java
 import com.sun.net.httpserver.HttpContext;
@@ -142,6 +142,6 @@ public class Yyds extends AbstractTranslet implements HttpHandler {
 
 ## 链子2
 
-![image-20220326210519979](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220326210519979.png)
+![image-20220326210519979](https://img.dem0dem0.top/images/image-20220326210519979.png)
 
 命令注入了。

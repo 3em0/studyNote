@@ -583,7 +583,7 @@ debu=1&file=1
 
 第一层 $SERVER 不会对接受到的数据进行urldecode，所以我们就可以嘿嘿
 
-![image-20210916001225377](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210916001225377.png)
+![image-20210916001225377](https://img.dem0dem0.top/images/image-20210916001225377.png)
 
 第二层 
 
@@ -598,7 +598,7 @@ if (!preg_match('/http|https/i', $_GET['file'])) {
 
 正则表达式的绕过 就两种方式 回溯和%0a
 
-![image-20210916001604758](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210916001604758.png)
+![image-20210916001604758](https://img.dem0dem0.top/images/image-20210916001604758.png)
 
 和我们预测的一样
 
@@ -615,13 +615,13 @@ if($_REQUEST) {
 
 这一层其实我是不会的
 
-![image-20210916001808755](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210916001808755.png)
+![image-20210916001808755](https://img.dem0dem0.top/images/image-20210916001808755.png)
 
 可以看出 这里获取了 请求的数据，然后沃恩借鉴另外一道题。
 
 我们知道 `$_REQUEST` **同时接受 GET 和 POST 的数据，并且 POST 具有更高的优先值** //其实我不知道
 
-![image-20210916002058061](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210916002058061.png)
+![image-20210916002058061](https://img.dem0dem0.top/images/image-20210916002058061.png)
 
 这个是在php.ini中写到的。
 
@@ -646,7 +646,7 @@ variables_order = "GPCS"
 
 create_function()的代码注入，先来一个例子来说一下，这个函数一个是参数列表，一个code。
 
-![image-20210916002858158](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210916002858158.png)
+![image-20210916002858158](https://img.dem0dem0.top/images/image-20210916002858158.png)
 
 ```
 function myfunc($a,$b)
@@ -1030,7 +1030,7 @@ var_dump($res);
 
 ## 0x18 [GKCTF 2021]easycms
 
-这个题目 直接模板编辑rce 但是需要一个txt文件去确认 所以四处寻找文件上传 或文件编辑![image-20211130173537760](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211130173537760.png)
+这个题目 直接模板编辑rce 但是需要一个txt文件去确认 所以四处寻找文件上传 或文件编辑![image-20211130173537760](https://img.dem0dem0.top/images/image-20211130173537760.png)
 
 素材库 可以上传txt，所以最好 然后改名字实现目录穿越。
 
@@ -1061,9 +1061,9 @@ toLowerCase
 
 一般模板引擎都有的问题 寻找特殊符号 ejs使用的是正则表达式
 
-![image-20211201001000596](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211201001000596.png)
+![image-20211201001000596](https://img.dem0dem0.top/images/image-20211201001000596.png)
 
-![image-20211201000133458](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211201000133458.png)
+![image-20211201000133458](https://img.dem0dem0.top/images/image-20211201000133458.png)
 
 ![image-20211201000539830](C:\Users\MSI\AppData\Roaming\Typora\typora-user-images\image-20211201000539830.png)
 
@@ -1113,7 +1113,7 @@ if __name__ == '__main__':
 
 ## 0x1B [HarekazeCTF2019]Avatar Uploader 
 
-![image-20211130232602882](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211130232602882.png)
+![image-20211130232602882](https://img.dem0dem0.top/images/image-20211130232602882.png)
 
 破坏掉文件的长宽信息即可
 

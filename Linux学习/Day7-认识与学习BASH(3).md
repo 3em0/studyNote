@@ -362,7 +362,7 @@ find . -exec sh -c 'echo -n {}| tr -d "[:alnum:]_.\-" | tr "/" " "; basename {} 
     losetup -o 32256 /dev/loop2 look.img
    ```
 
-   ![image-20211228011414642](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211228011414642.png)
+   ![image-20211228011414642](https://img.dem0dem0.top/images/image-20211228011414642.png)
 
    如果需要创建分区 就必须手动擦操作了
 
@@ -420,7 +420,7 @@ eject -t 合上。
 
 ### 5. 文件差异
 
-![image-20211228082710985](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211228082710985.png)
+![image-20211228082710985](https://img.dem0dem0.top/images/image-20211228082710985.png)
 
 目录差异
 

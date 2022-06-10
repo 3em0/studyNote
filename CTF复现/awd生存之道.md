@@ -455,8 +455,8 @@ usleep(5000);
 ?>
 ```
 
-![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/cefc1e178a82b9010f8a584f638da9773912efa3)
+![img](https://img.dem0dem0.top/images/cefc1e178a82b9010f8a584f638da9773912efa3)
 
-![image-20211230162736950](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211230162736950.png)
+![image-20211230162736950](https://img.dem0dem0.top/images/image-20211230162736950.png)
 
 后面的网卡可以先看一下重复的时候是怎么写的的，后面的接口不用写，应该是自动分配

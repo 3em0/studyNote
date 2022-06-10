@@ -104,7 +104,7 @@ if (!defined('DEDEREQUEST')) {
 dede/co_url.php?_SERVER[SERVER_SOFTWARE]=PHP%201%20Development%20Server&_SERVER[SCRIPT_NAME]=www.baidu.com
 ```
 
-![image-20211002054740846](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002054740846.png)
+![image-20211002054740846](https://img.dem0dem0.top/images/image-20211002054740846.png)
 
 ```
 攻击者可以利用 Open redirect 漏洞诱骗用户访问某个可信赖站点的 URL，并将他们重定向到恶意站点。攻击者通过对 URL 进行编码，使最终用户很难注意到重定向的恶意目标，即使将这一目标作为 URL 参数传递给可信赖的站点时也会发生这种情况
@@ -116,9 +116,9 @@ dede/co_url.php?_SERVER[SERVER_SOFTWARE]=PHP%201%20Development%20Server&_SERVER[
 plus/recommend.php?_FILES[poc][name]=0&_FILES[poc][type]=1337&_FILES[poc][tmp_name]=phar:///path/to/uploaded/phar.rce&_FILES[poc][size]=
 ```
 
-![image-20211002060938290](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002060938290.png)
+![image-20211002060938290](https://img.dem0dem0.top/images/image-20211002060938290.png)
 
-![image-20211002060951937](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002060951937.png)
+![image-20211002060951937](https://img.dem0dem0.top/images/image-20211002060951937.png)
 
 这不是堪称完美。
 
@@ -128,11 +128,11 @@ plus/recommend.php?_FILES[poc][name]=0&_FILES[poc][type]=1337&_FILES[poc][tmp_na
 
 ## 0x02 sql注入
 
-![image-20211002101414424](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002101414424.png)
+![image-20211002101414424](https://img.dem0dem0.top/images/image-20211002101414424.png)
 
 我们可以看到这是唯一的sql注入的过滤函数。
 
-![image-20211002101443364](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002101443364.png)
+![image-20211002101443364](https://img.dem0dem0.top/images/image-20211002101443364.png)
 
 看到被使用的地方不多，我们可以通过找到，执行`mysqli_query`但是没有执行该函数的地方。
 
@@ -155,15 +155,15 @@ GetTableFields
 
 ## 0x03 ShowMsg RCE
 
-![image-20211002104807891](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002104807891.png)
+![image-20211002104807891](https://img.dem0dem0.top/images/image-20211002104807891.png)
 
-![image-20211002104818885](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002104818885.png)
+![image-20211002104818885](https://img.dem0dem0.top/images/image-20211002104818885.png)
 
-![image-20211002104910416](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002104910416.png)
+![image-20211002104910416](https://img.dem0dem0.top/images/image-20211002104910416.png)
 
-![image-20211002105258814](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002105258814.png)
+![image-20211002105258814](https://img.dem0dem0.top/images/image-20211002105258814.png)
 
-![image-20211002105410762](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211002105410762.png)
+![image-20211002105410762](https://img.dem0dem0.top/images/image-20211002105410762.png)
 
 这个变量来自于FERER但是可以被加载的模板文件中，最后被php解析，这是一个，我们就可以对它进行构造
 

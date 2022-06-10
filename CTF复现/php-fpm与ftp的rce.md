@@ -716,9 +716,9 @@ file_put_contents('ftp://127.0.0.1:46228/aaa',$payload);
 
 然后加载下面中的两个so文件就可以成功getshell了。希望我可以练成本地搭建环境的好习惯
 
-![image-20211004165627849](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211004165627849.png)
+![image-20211004165627849](https://img.dem0dem0.top/images/image-20211004165627849.png)
 
-![image-20211004165710720](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211004165710720.png)
+![image-20211004165710720](https://img.dem0dem0.top/images/image-20211004165710720.png)
 
 ## 0x03 总结与参考链接
 

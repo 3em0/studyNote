@@ -10,7 +10,7 @@
 
 首先是通过kali自带的工具`nm-connection-editor`配置网卡
 
-![image-20220309160810649](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220309160810649.png)
+![image-20220309160810649](https://img.dem0dem0.top/images/image-20220309160810649.png)
 
 `netwox` 老的玩法
 

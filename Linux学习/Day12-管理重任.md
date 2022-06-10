@@ -73,7 +73,7 @@ dem0@ubuntu:~/Desktop/bash$ kill -l
 
 ## 0x04 捕获并且响应信号
 
-![image-20211231232705464](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211231232705464.png)
+![image-20211231232705464](https://img.dem0dem0.top/images/image-20211231232705464.png)
 
 ```bash
 #!/bin/bash

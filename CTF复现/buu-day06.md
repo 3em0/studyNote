@@ -59,11 +59,11 @@ xxx","is_admin":
 
 :a:解题1 - sql注入
 
-![image-20220103091835125](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103091835125.png)
+![image-20220103091835125](https://img.dem0dem0.top/images/image-20220103091835125.png)
 
 打开题目是一个zsh的界面。我们发送一个请求之后开始抓包。
 
-![image-20220103091945572](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103091945572.png)
+![image-20220103091945572](https://img.dem0dem0.top/images/image-20220103091945572.png)
 
 我还以为直接就可以拿到shell了，但是仔细观察请求，发现了一个参数`totp` 吓得我赶忙去百度。
 
@@ -84,13 +84,13 @@ cd ls cat hey hi hello help clear exit ~
 
 这是同一个js文件的信息。
 
-![image-20220103092646426](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103092646426.png)
+![image-20220103092646426](https://img.dem0dem0.top/images/image-20220103092646426.png)
 
 在测试的发现了还有这几条指令，我们发现这里有一个登录点，但是我们不知道账号密码，于是我们先寻找无果。于是经`典sql注入?`
 
 开始fuzz。
 
-![image-20220103093007153](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103093007153.png)
+![image-20220103093007153](https://img.dem0dem0.top/images/image-20220103093007153.png)
 
 猜测一下后端的语句难道是
 
@@ -168,7 +168,7 @@ if __name__ == '__main__':
 
 buu的记得要设置延时，不然会被你ipban了。
 
-![image-20220103103439593](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103103439593.png)
+![image-20220103103439593](https://img.dem0dem0.top/images/image-20220103103439593.png)
 
 后面这个命令，我们看到了双引号，所以{$a()}.懂得都懂。
 
@@ -186,9 +186,9 @@ payload拆分一下就可以了。
 
 第一步这里的注入是要分成两步的。
 
-![image-20220103110637881](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103110637881.png)
+![image-20220103110637881](https://img.dem0dem0.top/images/image-20220103110637881.png)
 
-![image-20220103110645071](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103110645071.png)
+![image-20220103110645071](https://img.dem0dem0.top/images/image-20220103110645071.png)
 
 你注入的语句不能影响他正常的连接的同时还要能够注入数据。
 
@@ -204,13 +204,13 @@ admin@Rrrr_ctf_asde
 
 :b:java反序列化
 
-![image-20220103110834039](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103110834039.png)
+![image-20220103110834039](https://img.dem0dem0.top/images/image-20220103110834039.png)
 
 登录成功之后不难发现，一串数据。
 
 盲猜这个接口。
 
-![image-20220103110942135](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220103110942135.png)
+![image-20220103110942135](https://img.dem0dem0.top/images/image-20220103110942135.png)
 
 对数据进行了反序列化。然后我们应该对这个数据
 

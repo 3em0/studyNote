@@ -163,7 +163,7 @@ public class JDKInvocationHandler implements InvocationHandler, Serializable {
 
 这个其实之前在javaweb中学过，就是加一个中间件，你调用proxy的这个方法，它过滤以下，加点东西进去，再选择是不是要触发。
 
-![image-20220101012704699](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220101012704699.png)
+![image-20220101012704699](https://img.dem0dem0.top/images/image-20220101012704699.png)
 
 必须时接口，这样就可以反射调用。
 

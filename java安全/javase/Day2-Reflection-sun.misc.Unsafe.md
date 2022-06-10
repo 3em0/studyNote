@@ -192,6 +192,6 @@ defineAnonymousClass方法还可以创建内部类
 
 # 测试sun.misc.unsafe
 
-![image-20211229011503686](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229011503686.png)
+![image-20211229011503686](https://img.dem0dem0.top/images/image-20211229011503686.png)
 
-![image-20211229011718838](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229011718838.png)
+![image-20211229011718838](https://img.dem0dem0.top/images/image-20211229011718838.png)

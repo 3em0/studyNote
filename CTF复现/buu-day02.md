@@ -233,9 +233,9 @@ session_start();
 $_SESSION['username'] = "admin";
 ```
 
-![image-20211222212058934](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211222212058934.png)
+![image-20211222212058934](https://img.dem0dem0.top/images/image-20211222212058934.png)
 
-![image-20211222212105868](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211222212105868.png)
+![image-20211222212105868](https://img.dem0dem0.top/images/image-20211222212105868.png)
 
 两步构建
 
@@ -249,7 +249,7 @@ event_handler = eval(action + ('_handler' if is_action else '_function'))
 
 整体代码的逻辑就在于
 
-![image-20211222213724904](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211222213724904.png)
+![image-20211222213724904](https://img.dem0dem0.top/images/image-20211222213724904.png)
 
 绕过后缀的拼接，自己加入自己就可以多执行。buy5个钻石 最后eval getflag就可以了。
 
@@ -300,7 +300,7 @@ action:trigger_event#;action:buy;2#action:buy;3#action:get_flag;#
 %local_dtd;
 ```
 
-![image-20211222222709927](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211222222709927.png)
+![image-20211222222709927](https://img.dem0dem0.top/images/image-20211222222709927.png)
 
 这个回显可控可以做一个笔记。后面其实我们就不能查到了。 我们先读取flag，然后再读第二个文件的文件名设置为上面那个变量 然后加载出来就可以了。
 

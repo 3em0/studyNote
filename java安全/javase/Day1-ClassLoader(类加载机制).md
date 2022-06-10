@@ -8,7 +8,7 @@
 
 jvm的架构图
 
-![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/JvmSpec7.png)
+![img](https://img.dem0dem0.top/images/JvmSpec7.png)
 
 运行流程:
 
@@ -93,7 +93,7 @@ public class TestClassLoader extends ClassLoader {
 
 :a:**不同的ClassLoader可以加载相同的Class（两则必须是非继承关系），同级ClassLoader跨类加载器调用方法时必须使用反射。**
 
-![image-20211025171150475](https://gitee.com/Cralwer/typora-pic/raw/master/images/202110251829223.png)
+![image-20211025171150475](https://img.dem0dem0.top/images/202110251829223.png)
 
 ```java
 package com.dem0.ClassLoader;

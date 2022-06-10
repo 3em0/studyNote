@@ -12,7 +12,7 @@ Process process = Runtime.getRuntime().exec("ipconfig");
 		}
 ```
 
-![image-20211229233502573](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229233502573.png)
+![image-20211229233502573](https://img.dem0dem0.top/images/image-20211229233502573.png)
 
 永远记住，`Runtime.getRuntime().exec`这个不是命令执行的终点。
 
@@ -20,7 +20,7 @@ Process process = Runtime.getRuntime().exec("ipconfig");
 
 ## 0x02 ProcessBuilder命令执行
 
-![image-20211229234158628](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229234158628.png)
+![image-20211229234158628](https://img.dem0dem0.top/images/image-20211229234158628.png)
 
 ```
 InputStream in = new ProcessBuilder(request.getParameterValues("cmd")).start().getInputStream();
@@ -30,7 +30,7 @@ InputStream in = new ProcessBuilder(request.getParameterValues("cmd")).start().g
 
 截取大佬的一句话
 
-![image-20211229234548246](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229234548246.png)
+![image-20211229234548246](https://img.dem0dem0.top/images/image-20211229234548246.png)
 
 :dagger: 所以链子一定要跟到native层不然都不够用!
 

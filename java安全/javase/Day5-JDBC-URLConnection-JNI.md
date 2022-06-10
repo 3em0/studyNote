@@ -255,7 +255,7 @@ public class URLConnectionDemo {
 
 支持的协议
 
-![image-20211231110256990](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211231110256990.png)
+![image-20211231110256990](https://img.dem0dem0.top/images/image-20211231110256990.png)
 
 java中的ssrf
 

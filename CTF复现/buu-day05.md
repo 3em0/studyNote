@@ -16,12 +16,12 @@ str.replace(/(?:Math(?:\.\w+)?)|[()+\-*/&|^%<>=,?:]|(?:\d+\.?\d*(?:e\d+)?)| /g, 
 
 1. `(?:Math(?:\.\w+)?)`
 
-![image-20220102083051223](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102083051223.png)
+![image-20220102083051223](https://img.dem0dem0.top/images/image-20220102083051223.png)
 
 可以看到必须是`Math.xxxx`这种类型
 
 2. `[()+\-*/&|^%<>=,?:]`
-![image-20220102083300685](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102083300685.png)
+![image-20220102083300685](https://img.dem0dem0.top/images/image-20220102083300685.png)
 
 可以看到能使用的符号还有这么多。
 
@@ -127,7 +127,7 @@ http://52d4c318-ed13-49c6-afd9-807ea660e12b.node4.buuoj.cn:81/?file=php://filter
 
 这个题目是sql注入应该没有什么问题，并且是username字端存在sql注入。但是有转义函数，二次注入和宽字节注入都不可能了。我们必须看到源码之后发现有一个地方有问题。
 
-![image-20220102111430473](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102111430473.png)
+![image-20220102111430473](https://img.dem0dem0.top/images/image-20220102111430473.png)
 
 所以应该有的想法是能不能伪造session，但是session数组是再session_start的函数之后才会被创造出来，所以这里是不行的。关于session的三个考点
 
@@ -254,11 +254,11 @@ https://www.php.net/manual/en/function.mb-strtolower.php
 
 在生成这个gd2的图片马的时候，其实我是卡了许久，因为当时做题的时候，题目环境是php7，不能用它原装payload得修改，我是直接用hxd在16进制改的，很容出错，很操蛋，但是我看见yu师傅的操作过程就很骚，稳妥。
 
-![image-20220102130628742](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102130628742.png)
+![image-20220102130628742](https://img.dem0dem0.top/images/image-20220102130628742.png)
 
 把其中的input改成题目原本生成的，我们就可以拿到shellcode在编码之后的鸭子，然后我在010中去编辑它，把它变成想要的样子，注意最好使用覆盖的方法，而不是重写，这样会破坏图片的结构。然后
 
-![image-20220102130758984](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102130758984.png)
+![image-20220102130758984](https://img.dem0dem0.top/images/image-20220102130758984.png)
 
 这里这个就是编辑后的payload
 
@@ -271,7 +271,7 @@ payload = b"a39f67641d201612546f112e29152b2167226b505050506f5f5310"
 
 ## 0x07 [2021祥云杯]Package Manager 2021
 
-![image-20220102154230287](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102154230287.png)
+![image-20220102154230287](https://img.dem0dem0.top/images/image-20220102154230287.png)
 
 sql语句直接用拼接，神仙都救不了。
 
@@ -289,7 +289,7 @@ sqlite注入学习。
 
 1. 首先是`[]` 可以看到他<kbd>`</kbd>这个作用都是一样，标识关键字。
 2. 和mysql中的information一样功能的数据库，sqlite也有[sqlite_master](https://www.sqlite.org/schematab.html)
-![image-20220102164149765](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102164149765.png)
+![image-20220102164149765](https://img.dem0dem0.top/images/image-20220102164149765.png)
 
 
 
@@ -299,7 +299,7 @@ sqlite注入学习。
 
 这个题目我们一看源码
 
-![image-20220102164519259](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102164519259.png)
+![image-20220102164519259](https://img.dem0dem0.top/images/image-20220102164519259.png)
 
 这个时候有两种方式可以注入。
 
@@ -318,7 +318,7 @@ sqlite注入学习。
 
 师傅的博客是说利用长度变化。
 
-![image-20220102165125315](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102165125315.png)
+![image-20220102165125315](https://img.dem0dem0.top/images/image-20220102165125315.png)
 
 大概就是利用这个函数来达到目的，这样我们首先就需要知道这个字段本身的长度，然后一位一位地去爆破。
 

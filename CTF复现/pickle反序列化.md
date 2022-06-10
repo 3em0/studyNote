@@ -37,11 +37,11 @@ b'\x80\x04\x95Y\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\x04dem1\x94\
 
 `_load`和`_loads`基本一致，都是把各自输入得到的东西作为文件流，喂给`_Unpickler`类；然后调用`_Unpickler.load()`实现反序列化。
 
-![image-20211230214105950](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211230214105950.png)
+![image-20211230214105950](https://img.dem0dem0.top/images/image-20211230214105950.png)
 
 大哥总监的Unpickler中最重要的两个变量
 
-![image-20211230214538893](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211230214538893.png)
+![image-20211230214538893](https://img.dem0dem0.top/images/image-20211230214538893.png)
 
 感觉有个小机器的感觉，其实就是利用这些都关系来能够最后成功反序列化。
 

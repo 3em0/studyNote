@@ -6,9 +6,9 @@
 
 参考链接：https://zhuanlan.zhihu.com/p/35454131
 
-![image-20220127205922493](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220127205922493.png)
+![image-20220127205922493](https://img.dem0dem0.top/images/image-20220127205922493.png)
 
-![image-20220127205932989](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220127205932989.png)
+![image-20220127205932989](https://img.dem0dem0.top/images/image-20220127205932989.png)
 
 差多就这些，就可以启动一个tomcat的调试了。
 
@@ -149,11 +149,11 @@ the string representing the code that will be inserted into the source code for 
 
 就是在解析jsp的时候他会被触发，也就是当我们访问jsp文件的时候，这个类就会被调用，如果这个类被赋值成我们的恶意类，就可以执行了。
 
-![image-20220127230221732](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220127230221732.png)
+![image-20220127230221732](https://img.dem0dem0.top/images/image-20220127230221732.png)
 
 我们可以把这个赋值成我们的类然后写一个get的方法，获知直接代码块也可以。如何让jsp重新编译就不用多说了。写入一个，访问就可以了。
 
-![image-20220127231353876](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220127231353876.png)
+![image-20220127231353876](https://img.dem0dem0.top/images/image-20220127231353876.png)
 
 这个jar的加载，`WEB-INF/tomcat-web.xml` 
 
@@ -171,7 +171,7 @@ WatchedResource - The auto deployer will monitor the specified static resource o
 
 大概就是这个思路了，下面进行测试。https://tomcat.apache.org/tomcat-9.0-doc/config/context.html
 
-![image-20220127231830734](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220127231830734.png)
+![image-20220127231830734](https://img.dem0dem0.top/images/image-20220127231830734.png)
 
 ## 0x05 Test
 
@@ -187,10 +187,10 @@ ${applicationScope[param.a]=param.b}
 
 然后在`WatchedResource`插入注释或者新建文件。然后再上传一个jsp任意访问即可。
 
-![image-20220127233234668](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220127233234668.png)
+![image-20220127233234668](https://img.dem0dem0.top/images/image-20220127233234668.png)
 
 ### Tomcat下/META-INF/lib中被加载的jar，为什么可以在其/METAINF/resources/下直接写jsp可以直接访问执行
 
-![image-20220127235157954](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220127235157954.png)
+![image-20220127235157954](https://img.dem0dem0.top/images/image-20220127235157954.png)
 
 可以看到其中需要加入到那个路劲中的一些来源，可以通过这些来达到和jsp文件的直接访问。

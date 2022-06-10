@@ -7,7 +7,7 @@ import java.util.List;
 public class Calc extends UnicastRemoteObject implements ICalc{
     private int baseNumber = 123;
 
-    protected Calc() throws RemoteException {
+    public Calc() throws RemoteException {
         super();
     }
 

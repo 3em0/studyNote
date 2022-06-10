@@ -10,7 +10,7 @@
 
   `mysql` == `mysql空格空格空格空格空格空格空格空格空格空格                  
 
-![image-20220105080355847](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220105080355847.png)
+![image-20220105080355847](https://img.dem0dem0.top/images/image-20220105080355847.png)
 
 可以看到sql的每个字段都进行了长度限制，并且在最后的位置并没有进行代码上的处理而是直接插入。所以，我们就可以开始操作了。
 
@@ -113,7 +113,7 @@ $pdo->query('INSERT INTO `' . FLAG_TABLE . '` VALUES ("' . FLAG . '");');
 $pdo->query($sql);
 ```
 
-![image-20220105102321175](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220105102321175.png)
+![image-20220105102321175](https://img.dem0dem0.top/images/image-20220105102321175.png)
 
 可以看到将列名在页面中显示出来了。所以我们可以考虑在这里进行注入。由于之前，已经做过相关的分析，[]可以用这个来进行注释。
 
@@ -135,7 +135,7 @@ create table landv as select sql [ (dummy1 TEXT, dummy2 TEXT, abc ] from sqlite_
 
 create table landv (a); 最后的语句就是这样，也就是在create中如何来
 
-![image-20220105103011239](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220105103011239.png)
+![image-20220105103011239](https://img.dem0dem0.top/images/image-20220105103011239.png)
 
 ## 0x07 [FireshellCTF2020]URL TO PDF
 

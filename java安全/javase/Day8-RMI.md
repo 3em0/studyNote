@@ -465,7 +465,7 @@ public class JRMPExploit {
 
 利用这个
 
-![image-20220110172958056](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110172958056.png)
+![image-20220110172958056](https://img.dem0dem0.top/images/image-20220110172958056.png)
 
 ```
 Registry registry = LocateRegistry.getRegistry();
@@ -526,7 +526,7 @@ DirContext context = new InitialDirContext(env);
 
 jdni支持的服务
 
-![image-20220106145133187](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220106145133187.png)
+![image-20220106145133187](https://img.dem0dem0.top/images/image-20220106145133187.png)
 
 摘抄师傅的两个实例来体现其作用
 
@@ -750,7 +750,7 @@ uid=longofo,ou=employees,dc=example,dc=com
 
 这是java对象在ldap编程中的存储方式
 
-![image-20220106182730702](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220106182730702.png)
+![image-20220106182730702](https://img.dem0dem0.top/images/image-20220106182730702.png)
 
 ```java
 	private static class OperationInterceptor extends InMemoryOperationInterceptor {
@@ -783,7 +783,7 @@ uid=longofo,ou=employees,dc=example,dc=com
 }
 ```
 
-![image-20220110200719576](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110200719576.png)
+![image-20220110200719576](https://img.dem0dem0.top/images/image-20220110200719576.png)
 
 # JSHELL
 

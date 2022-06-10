@@ -121,7 +121,7 @@ jenv add
 cat /etc/profile => restart 生效
 ```
 
-![image-20210924115611945](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210924115611945.png)
+![image-20210924115611945](https://img.dem0dem0.top/images/image-20210924115611945.png)
 
 ## 0x06 拯救麻瓜操作
 

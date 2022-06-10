@@ -1,0 +1,6 @@
+com\dem0\Application\model\RT.class
+com\dem0\Application\controller\MainController.class
+com\dem0\Application\model\RHttpStatusEnum.class
+com\dem0\Application\controller\MainsiteErrorController.class
+com\dem0\Application\VelocityApplication.class
+com\dem0\Application\model\R.class

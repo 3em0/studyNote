@@ -18,7 +18,7 @@ Shiro的加密是aes的，且key在源码中是写死的，所以我们可以通
 
 ## 漏洞利用
 
-![image-20220112195906734](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220112195906734.png)
+![image-20220112195906734](https://img.dem0dem0.top/images/image-20220112195906734.png)
 
 先使用test目录下的CC11生成cc11的利用链子，然后再使用AEC那个类生成加密后的数据，发送就可以触发。这里使用CC1而不适用cc11，这是为什么呢? p神的java安全漫谈。
 
@@ -26,13 +26,13 @@ Shiro的加密是aes的，且key在源码中是写死的，所以我们可以通
 
 首先通过函数`getRememberedSerializedIdentity`从请求中获取`remember`的值，然后使用`convertBytesToPrincipals`解析
 
-![image-20220112200553757](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220112200553757.png)
+![image-20220112200553757](https://img.dem0dem0.top/images/image-20220112200553757.png)
 
 解密然后反序列化
 
-![image-20220112200616227](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220112200616227.png)
+![image-20220112200616227](https://img.dem0dem0.top/images/image-20220112200616227.png)
 
-![image-20220112200644142](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220112200644142.png)
+![image-20220112200644142](https://img.dem0dem0.top/images/image-20220112200644142.png)
 
 中间就是cc11链子的时刻了。
 
@@ -49,11 +49,11 @@ Shiro的加密是aes的，且key在源码中是写死的，所以我们可以通
 
 :b:不常用
 
-![image-20220112204314813](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220112204314813.png)
+![image-20220112204314813](https://img.dem0dem0.top/images/image-20220112204314813.png)
 
 主要逻辑就在里面，如果解密失误或者序列化的数据不是想要的，那么这里就会捕捉这个异常，并且在回显中加上deleteme。
 
-![image-20220112204347818](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220112204347818.png)
+![image-20220112204347818](https://img.dem0dem0.top/images/image-20220112204347818.png)
 
 写exp: 也就是我只要加上Pri这个类的序列化，那么只有密码错误的时候才会出现deleteme了。
 

@@ -6,27 +6,27 @@
 
 朴实无华的页面，一个base64的小程序页面
 
-![image-20201124235652622](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20201124235652622.png)
+![image-20201124235652622](https://img.dem0dem0.top/images/image-20201124235652622.png)
 
 看到有提示。
 
-![image-20201124235709905](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20201124235709905.png)
+![image-20201124235709905](https://img.dem0dem0.top/images/image-20201124235709905.png)
 
 我就想到了可能是flask的失败报错界面和pin码的获取（来源祥云杯的虐后感）
 
 ## 二 开始解题
 
-![image-20201124235832987](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20201124235832987.png)
+![image-20201124235832987](https://img.dem0dem0.top/images/image-20201124235832987.png)
 
 看到这里就不用多解释了，输入一个非法的字符串会自动跳转到这里，我们接着思路，可以在这里查看源码。
 
-![image-20201124235919632](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20201124235919632.png)
+![image-20201124235919632](https://img.dem0dem0.top/images/image-20201124235919632.png)
 
 可以看到是将解密之后的字符串**直接输出**到页面上，不用说SSTI安排上。
 
-![image-20201125000013089](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20201125000013089.png)
+![image-20201125000013089](https://img.dem0dem0.top/images/image-20201125000013089.png)
 
-![image-20201125000045001](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20201125000045001.png)
+![image-20201125000045001](https://img.dem0dem0.top/images/image-20201125000045001.png)
 
 触发了waf。大概流程就是，在加密页面将注入的内容变成base64，再解密的解密进行解密。**至于waf嘛**，没有源代码，只能一个一个的尝试。注意python是3.8.7的版本。
 

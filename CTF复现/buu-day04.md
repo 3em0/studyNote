@@ -25,7 +25,7 @@
 python .\flask_session_cookie_manager3.py encode -s 'keyqqqwwweee!@#$%^&*' -t "{'id': b'1', 'is_login': True, 'password': 'admin', 'username': 'admin'}"
 ```
 
-![image-20220101195442108](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220101195442108.png)
+![image-20220101195442108](https://img.dem0dem0.top/images/image-20220101195442108.png)
 
 不知道为什么会这样，题目估计配置多少有点问题了。
 
@@ -125,7 +125,7 @@ perl 被喷得好惨呀 呜呜
 
 参考连接: https://tsublogs.wordpress.com/2016/09/18/606/
 
-![image-20220101233621565](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220101233621565.png)
+![image-20220101233621565](https://img.dem0dem0.top/images/image-20220101233621565.png)
 
 其实这个题目还是有点东西。首先需要猜测一波语句，然后还要会perl
 
@@ -139,7 +139,7 @@ https://blog.csdn.net/shangguanzhe/article/details/40432679
 
 那我们先看看preload.php的作用https://wiki.php.net/rfc/preload
 
-查了一下，发现文档中说了这么一句![image-20220101235133651](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220101235133651.png)
+查了一下，发现文档中说了这么一句![image-20220101235133651](https://img.dem0dem0.top/images/image-20220101235133651.png)
 
 他的意思是FFI只能在文件中运行，其他文件都不行，所以我们用它来调用不就可以了吗？。
 
@@ -201,11 +201,11 @@ print(cookie)
 
 这个题目 其实我最开始猜测考点有两个地方
 
-![image-20220102002011574](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102002011574.png)
+![image-20220102002011574](https://img.dem0dem0.top/images/image-20220102002011574.png)
 
 看着有点像是模板渲染。但是这里的命令执行太明显了
 
-![image-20220102002039928](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220102002039928.png)
+![image-20220102002039928](https://img.dem0dem0.top/images/image-20220102002039928.png)
 
 有一个遍历，配套的就只要成功的原型链污染，我一搜那个我没见过的模板，全网都是他的原型链。
 

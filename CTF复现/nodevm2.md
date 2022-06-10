@@ -6,7 +6,7 @@ vm2其实是在vm的基础上进行二次开发所形成的一个沙箱运行环
 
 ## 0x01 vm api
 
-![image-20210920071650251](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920071650251.png)
+![image-20210920071650251](https://img.dem0dem0.top/images/image-20210920071650251.png)
 
 对应的别人的代码就是
 
@@ -37,7 +37,7 @@ console.log(vm.runInNewContext("let a = 2;a")); //2
 
 vm2的包的关键文档就只有以下四个部分
 
-![image-20210920072607352](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920072607352.png)
+![image-20210920072607352](https://img.dem0dem0.top/images/image-20210920072607352.png)
 
 包括了cli.js和contextify.js和main.js和sandbox.js四个文件
 
@@ -53,17 +53,17 @@ sandbox.js => hook了global的属性
 
 当我们创建一个VM的对象的时候，vm2内部引入了 `contextify.js`，并且针对上下文 `context` 进行了封装，最后调用 `script.runInContext(context)` ，可以看到，vm2最核心的操作就在于针对`context`的封装。
 
-![image-20210920091349963](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920091349963.png)
+![image-20210920091349963](https://img.dem0dem0.top/images/image-20210920091349963.png)
 
 分析一下这一行的代码的调用栈
 
-![image-20210920091954260](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920091954260.png)
+![image-20210920091954260](https://img.dem0dem0.top/images/image-20210920091954260.png)
 
 大概长这个样子，我们从最底层开始分析。
 
 他新建了一个Proxy对下个，并且使用Object.assign来进行属性的拷贝
 
-![image-20210920092223195](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920092223195.png)
+![image-20210920092223195](https://img.dem0dem0.top/images/image-20210920092223195.png)
 
 我们会发现这样一个好玩的事情。这里就会将deeptrap和traps来进行合并，从而获得一个完整的属性，前面做的所有事情都是为了判断对象的类型，从而加上不同的traps。从而获得一个全新的proxy。
 
@@ -86,21 +86,21 @@ console.log(a.i); //访问对象的属性
 
 ```
 
-![image-20210920094940936](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920094940936.png)
+![image-20210920094940936](https://img.dem0dem0.top/images/image-20210920094940936.png)
 
 首先是buffer的from方法就被代理的get方法拦截。
 
-![image-20210920100617683](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920100617683.png)
+![image-20210920100617683](https://img.dem0dem0.top/images/image-20210920100617683.png)
 
 对他的调用 又被拦截
 
-![image-20210920100736303](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920100736303.png)
+![image-20210920100736303](https://img.dem0dem0.top/images/image-20210920100736303.png)
 
 设置方法也被拦截
 
-![image-20210920100759957](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920100759957.png)
+![image-20210920100759957](https://img.dem0dem0.top/images/image-20210920100759957.png)
 
-![image-20210920104931151](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920104931151.png)
+![image-20210920104931151](https://img.dem0dem0.top/images/image-20210920104931151.png)
 
 我们看到，如果我们访问这个函数代理对象的 `constructor` 属性，返回的是 `host.Function` !
 
@@ -179,11 +179,11 @@ try{
 
 但是在执行 `descriptor.get` 的时候，由于 `nodejs`是异步的，此时已经执行了。所以他就会去执行我们设置的抛出异常的错误
 
-![image-20210920115934701](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920115934701.png)
+![image-20210920115934701](https://img.dem0dem0.top/images/image-20210920115934701.png)
 
-![image-20210920120027820](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920120027820.png)
+![image-20210920120027820](https://img.dem0dem0.top/images/image-20210920120027820.png)
 
-![image-20210920120042258](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20210920120042258.png)
+![image-20210920120042258](https://img.dem0dem0.top/images/image-20210920120042258.png)
 
 然后就逃出沙箱了
 

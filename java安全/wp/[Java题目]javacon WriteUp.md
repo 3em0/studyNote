@@ -2,7 +2,7 @@
 
 贴一下如何调试jar文件
 
-![image-20220110150643062](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110150643062.png)
+![image-20220110150643062](https://img.dem0dem0.top/images/image-20220110150643062.png)
 
 然后运行的时候
 
@@ -16,11 +16,11 @@ java -Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=y -jar 
 
 spring的配置
 
-![image-20220110150748592](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110150748592.png)
+![image-20220110150748592](https://img.dem0dem0.top/images/image-20220110150748592.png)
 
 有黑名单过来和用户的账号密码，这个key我记得不错好像是`shiro`的。
 
-![image-20220110151100449](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110151100449.png)
+![image-20220110151100449](https://img.dem0dem0.top/images/image-20220110151100449.png)
 
 spel的解析表达。百度知道有spel代码注入。
 
@@ -28,7 +28,7 @@ spel的解析表达。百度知道有spel代码注入。
 
 `Runtime.getRuntime().exec("calc")` 这是
 
-![image-20220110151708371](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110151708371.png)
+![image-20220110151708371](https://img.dem0dem0.top/images/image-20220110151708371.png)
 
 ```java
 
@@ -101,7 +101,7 @@ System.out.println(encrypt("c0dehack1nghere1","0123456789abcdef","#{T(String).ge
 
 
 
-![image-20220110160812808](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110160812808.png)
+![image-20220110160812808](https://img.dem0dem0.top/images/image-20220110160812808.png)
 
 结束了，就是一个反射拿到对象然后命令执行即可。
 

@@ -291,13 +291,13 @@ fuzz 测试很容易看出来是xss，但是有过滤，会被括号变成中文
 
 审计pop链子没什么好说的。开局`__destruct`
 
-![image-20211229203733914](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229203733914.png)
+![image-20211229203733914](https://img.dem0dem0.top/images/image-20211229203733914.png)
 
-![image-20211229203752591](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229203752591.png)
+![image-20211229203752591](https://img.dem0dem0.top/images/image-20211229203752591.png)
 
-![image-20211229203849687](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229203849687.png)
+![image-20211229203849687](https://img.dem0dem0.top/images/image-20211229203849687.png)
 
-![image-20211229203857403](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229203857403.png)
+![image-20211229203857403](https://img.dem0dem0.top/images/image-20211229203857403.png)
 
 这是文件包含的链子 生成exp了。
 
@@ -330,17 +330,17 @@ echo urlencode(serialize(new \Symfony\Component\Cache\Adapter\TagAwareAdapter(ne
 
 ```
 
-![image-20211229205254794](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229205254794.png)
+![image-20211229205254794](https://img.dem0dem0.top/images/image-20211229205254794.png)
 
 任意命令执行的链子
 
 起点不变
 
-![image-20211229205525462](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229205525462.png)
+![image-20211229205525462](https://img.dem0dem0.top/images/image-20211229205525462.png)
 
-![image-20211229205542330](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229205542330.png)
+![image-20211229205542330](https://img.dem0dem0.top/images/image-20211229205542330.png)
 
-![image-20211229205856688](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229205856688.png)
+![image-20211229205856688](https://img.dem0dem0.top/images/image-20211229205856688.png)
 
 这里又学到一个新知识:`"\0*\0innerItem"`获取protected属性。
 
@@ -446,7 +446,7 @@ namespace{
 
 我们来理一理这个链子。首先全局找__destruct()
 
-![image-20211230201652890](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211230201652890.png)
+![image-20211230201652890](https://img.dem0dem0.top/images/image-20211230201652890.png)
 
 大概到达这一步就可以触发toString方法了。
 
@@ -460,13 +460,13 @@ $this->data = ["a"]
 
 就可以对于`$this->name`进行触发
 
-![image-20211230201957367](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211230201957367.png)
+![image-20211230201957367](https://img.dem0dem0.top/images/image-20211230201957367.png)
 
 到这里就可以触发`__call(value)`这样的方法了
 
-![image-20211230202903452](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211230202903452.png)
+![image-20211230202903452](https://img.dem0dem0.top/images/image-20211230202903452.png)
 
-![image-20211230202914958](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211230202914958.png)
+![image-20211230202914958](https://img.dem0dem0.top/images/image-20211230202914958.png)
 
 现在就是call_user_func_array([可控]，可控)；可以任意调用类和方法
 

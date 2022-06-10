@@ -64,7 +64,7 @@ out.close();
 
 ### Transformer接口
 
-![image-20220105153214377](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220105153214377.png)
+![image-20220105153214377](https://img.dem0dem0.top/images/image-20220105153214377.png)
 
 ```java
 public interface Transformer {
@@ -173,7 +173,7 @@ ConstantTransformer transformer = new ConstantTransformer(obj);
 System.out.println(transformer.transform(obj));
 ```
 
-![image-20220105154327192](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220105154327192.png)
+![image-20220105154327192](https://img.dem0dem0.top/images/image-20220105154327192.png)
 
 - InvokerTransformer
 
@@ -264,7 +264,7 @@ Method getRuntime = (Method) Runtime.class.getClass().getMethod("getMethod", new
 
 :a:
 
-![image-20220105195529141](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220105195529141.png)
+![image-20220105195529141](https://img.dem0dem0.top/images/image-20220105195529141.png)
 
 这个类不仅实现了序列化接口，还支持对key和值进行`transform`处理。
 

@@ -27,7 +27,7 @@ public class Test {
 
 ## 使用java对象
 
-![image-20220111113416922](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220111113416922.png)
+![image-20220111113416922](https://img.dem0dem0.top/images/image-20220111113416922.png)
 
 - 反射绕过sm
 
@@ -210,7 +210,7 @@ public class Test {
 
 `load("nashorn:mozilla_compat.js");`导包的时候，我们输入了一个url，我们测试如果把他改成url地址会怎么样呢?
 
-![image-20220111152524500](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220111152524500.png)
+![image-20220111152524500](https://img.dem0dem0.top/images/image-20220111152524500.png)
 
 我们发现，他是去请求了。
 
@@ -227,9 +227,9 @@ evil
 var a=exp();function exp(){var x=new java.lang.ProcessBuilder; x.command("calc"); x.start();};
 ```
 
-![image-20220111154456819](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220111154456819.png)
+![image-20220111154456819](https://img.dem0dem0.top/images/image-20220111154456819.png)
 
-![image-20220111155931737](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220111155931737.png)
+![image-20220111155931737](https://img.dem0dem0.top/images/image-20220111155931737.png)
 
 ## 思考
 

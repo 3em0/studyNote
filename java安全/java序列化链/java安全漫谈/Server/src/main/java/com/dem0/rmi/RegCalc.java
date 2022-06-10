@@ -15,11 +15,11 @@ public class RegCalc {
             System.setSecurityManager(new SecurityManager());
         }
         Math h = new Math();
-        Calc calc = new Calc();
+//        Calc calc = new Calc();
 //        new sun.rmi.registry.RegistryImpl
         LocateRegistry.createRegistry(1099);
         Naming.rebind("r", h);
-        Naming.rebind("calc", calc);
+//        Naming.rebind("calc", calc);
 //        new ObjectInputStream();
 
     }

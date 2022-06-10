@@ -10,36 +10,36 @@
 
 创建的时候，使用`maven-archetype-webapp`
 
-![image-20220401095043402](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401095043402.png)
+![image-20220401095043402](https://img.dem0dem0.top/images/image-20220401095043402.png)
 
 下载tomcat
 
-![image-20220401095137195](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401095137195.png)
+![image-20220401095137195](https://img.dem0dem0.top/images/image-20220401095137195.png)
 
 导入依赖
 
-![image-20220401095352753](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401095352753.png)
+![image-20220401095352753](https://img.dem0dem0.top/images/image-20220401095352753.png)
 
 然后添加一个调试配置
 
-![image-20220401095423005](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401095423005.png)
+![image-20220401095423005](https://img.dem0dem0.top/images/image-20220401095423005.png)
 
-![image-20220401095528015](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401095528015.png)
+![image-20220401095528015](https://img.dem0dem0.top/images/image-20220401095528015.png)
 
-![image-20220401095537212](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401095537212.png)
+![image-20220401095537212](https://img.dem0dem0.top/images/image-20220401095537212.png)
 
 `我们选择war exploded。其实前者是说将本地项目打包成war，部署到Tomcat中；后者是直接将war 解压后的目录部署到Tomcat中，用哪个都可以。`
 
-![image-20220401095959071](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401095959071.png)
+![image-20220401095959071](https://img.dem0dem0.top/images/image-20220401095959071.png)
 
 然后现在就可以调试了，但是现在如果跟进到tomcat中是反汇编的代码，不带劲，我们可以导入`tomcat`的源码，这样就可以看到注释了。
 
-![image-20220401100114927](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401100114927.png)
+![image-20220401100114927](https://img.dem0dem0.top/images/image-20220401100114927.png)
 
-![image-20220401100205867](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401100205867.png)
+![image-20220401100205867](https://img.dem0dem0.top/images/image-20220401100205867.png)
 
 然后我们发现呀，是源码和反编译的字节码不能对应上：然后就要加下下面这个tomcat-deployer的中的`juli.jar`.
 
-![image-20220401100240100](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401100240100.png)
+![image-20220401100240100](https://img.dem0dem0.top/images/image-20220401100240100.png)
 
 然后就大功告成了，成功了。

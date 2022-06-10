@@ -936,7 +936,7 @@ private String hi(String content) {
 
 https://www.cnblogs.com/beansoft/p/15495933.html 可以通过idea的插件来操作，可以说是yyds了!.
 
-![image-20220107112225134](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220107112225134.png)
+![image-20220107112225134](https://img.dem0dem0.top/images/image-20220107112225134.png)
 
 用插件之后，就可以缺啥补啥了，来构建新的方法，生成全新的class文件。
 
@@ -1256,11 +1256,11 @@ java -javaagent:target/javasec-agent.jar -classpath target/test-classes/ com.anb
 
 一定要记得指定`classpath`那么程序现在开始运行了。
 
-![image-20220107214522397](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220107214522397.png)
+![image-20220107214522397](https://img.dem0dem0.top/images/image-20220107214522397.png)
 
 首先创建一个`classfiletransformer`
 
-![image-20220107214607254](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220107214607254.png)
+![image-20220107214607254](https://img.dem0dem0.top/images/image-20220107214607254.png)
 
 重新构建的时候一定要记得好好复写`transform`方法
 
@@ -1279,19 +1279,19 @@ java -javaagent:target/javasec-agent.jar -classpath target/test-classes/ com.anb
 
 首先判断是不是我们要hook的类
 
-![image-20220107214751926](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220107214751926.png)
+![image-20220107214751926](https://img.dem0dem0.top/images/image-20220107214751926.png)
 
 然后将字节码转换为ctclass进行处理
 
-![image-20220107214835764](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220107214835764.png)
+![image-20220107214835764](https://img.dem0dem0.top/images/image-20220107214835764.png)
 
 进行更改
 
-![image-20220107214939850](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220107214939850.png)
+![image-20220107214939850](https://img.dem0dem0.top/images/image-20220107214939850.png)
 
 进行重置
 
-![image-20220107214928720](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220107214928720.png)
+![image-20220107214928720](https://img.dem0dem0.top/images/image-20220107214928720.png)
 
 这也是一个正常的hook过程，一会来实现一个简单的hook。
 
@@ -1376,11 +1376,11 @@ public class UrlClassLoade {
 
 他会现在本地寻找这个类，找不到才去url找
 
-![image-20220110232807901](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110232807901.png)
+![image-20220110232807901](https://img.dem0dem0.top/images/image-20220110232807901.png)
 
 ## 利用ClassLoader#defineClass直接加载字节码
 
-![image-20220110234025197](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110234025197.png)
+![image-20220110234025197](https://img.dem0dem0.top/images/image-20220110234025197.png)
 
 ```java
 public class Define0class {
@@ -1396,7 +1396,7 @@ public class Define0class {
 
 我感觉可以再深入一点
 
-![image-20220110234054966](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220110234054966.png)
+![image-20220110234054966](https://img.dem0dem0.top/images/image-20220110234054966.png)
 
 因为后面好像是`define0`
 

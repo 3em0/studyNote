@@ -14,7 +14,7 @@
 
 这个题目到最后一步之前都挺简单的.....
 
-![image-20220113093346679](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220113093346679.png)
+![image-20220113093346679](https://img.dem0dem0.top/images/image-20220113093346679.png)
 
 存在`ssti`，但是好像有限制，{{config}}，获取到sercret_key,伪造session，访问/admin，拿到源码，发现有tensorflow的模型，默默点开了[wp](https://github.com/RManLuo/ciscn2019_final_web4)。发现需要使用**tensorboard**审计模型。
 

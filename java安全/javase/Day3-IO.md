@@ -10,7 +10,7 @@
 
 :b: java.nio : 底层的native
 
-![image-20211229220651550](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229220651550.png)
+![image-20211229220651550](https://img.dem0dem0.top/images/image-20211229220651550.png)
 
 但确实 java的fileSystem只是对于文件操作的一个封装。
 
@@ -34,7 +34,7 @@ FileInputStream
 private native int readBytes(byte b[], int off, int len) throws IOException;
 ```
 
-![image-20211229222052337](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229222052337.png)
+![image-20211229222052337](https://img.dem0dem0.top/images/image-20211229222052337.png)
 
  FileOutputStream
 
@@ -42,7 +42,7 @@ private native int readBytes(byte b[], int off, int len) throws IOException;
 
 读取文件的调用链
 
-![image-20211229222810955](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229222810955.png)
+![image-20211229222810955](https://img.dem0dem0.top/images/image-20211229222810955.png)
 
 ```
 sun.nio.ch.FileChannelImpl.read
@@ -64,4 +64,4 @@ com.anbai.sec.filesystem.FilesDemo.main
 
 - 修复
 
-  ![image-20211229231058862](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20211229231058862.png)
+  ![image-20211229231058862](https://img.dem0dem0.top/images/image-20211229231058862.png)

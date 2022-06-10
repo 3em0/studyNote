@@ -10,9 +10,9 @@
 
 ![image-20220329211746279](C:\Users\MSI\AppData\Roaming\Typora\typora-user-images\image-20220329211746279.png)
 
-![image-20220329211759298](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220329211759298.png)
+![image-20220329211759298](https://img.dem0dem0.top/images/image-20220329211759298.png)
 
-![image-20220329211823113](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220329211823113.png)
+![image-20220329211823113](https://img.dem0dem0.top/images/image-20220329211823113.png)
 
 ## 2. java中动态加载字节码的那些方法
 
@@ -38,11 +38,11 @@ helloWorld.newInstance();
 
 一个内部类`TransletClassLoader`:
 
-![image-20220330203837297](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220330203837297.png)
+![image-20220330203837297](https://img.dem0dem0.top/images/image-20220330203837297.png)
 
 但是在加载的时候，这个类是有限制的，` com.sun.org.apache.xalan.internal.xsltc.runtime.AbstractTranslet`,这个字节码必须是他的子类
 
-![image-20220330205935505](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220330205935505.png)
+![image-20220330205935505](https://img.dem0dem0.top/images/image-20220330205935505.png)
 
 `BCEL`
 
@@ -80,7 +80,7 @@ public class HelloBCEL {
 
 SerialKiller是⼀个Java反序列化过滤器，可以通过⿊名单与⽩名单的⽅式来限制反序列化时允许通过的 类。
 
-![image-20220331201735045](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220331201735045.png)
+![image-20220331201735045](https://img.dem0dem0.top/images/image-20220331201735045.png)
 
 然后+`InstantiateTransformer`也是⼀个实现了Transformer接⼝的类，他的作⽤就是调⽤构造⽅法。下面来开始构建poc
 
@@ -167,7 +167,7 @@ public class CommonsCollectionsIntro3 {
 >
 > `大量Tomcat对类加载`:如果反序列化流中包含非Java自身的数组，则会出现无法加载类的错误；forName0
 
-![image-20220401131811034](https://gitee.com/Cralwer/typora-pic/raw/master/images/image-20220401131811034.png)
+![image-20220401131811034](https://img.dem0dem0.top/images/image-20220401131811034.png)
 
 这个就是当tomcat和shiro在一起的时候会碰到的那个反序列化的问题，于是我们开始着手解决这个问题。关键在于
 
