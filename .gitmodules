@@ -1,3 +1,6 @@
 [submodule "java安全/jdbc/mysql-fake-server"]
 	path = java安全/jdbc/mysql-fake-server
+	url = https://github.com/4ra1n/mysql-fake-server
+[submodule "java安全/jdbc/MySQL_Fake_Server"]
+	path = java安全/jdbc/MySQL_Fake_Server
 	url = https://github.com/fnmsd/MySQL_Fake_Server
